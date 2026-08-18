@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/blocks/Hero.astro";
+import { CREDENTIALS, MAX_GROUP } from "../lib/constants";
+import { TOURS } from "../lib/catalog";
+import { tourCopy } from "../lib/i18n/dictionary";
+
+const onConservationLand = TOURS.filter((t) => t.conservationLand);
+const weatherGated = TOURS.filter((t) => t.weatherGated);
+
+const STATUS_LABEL = {
+  pending: "In progress",
+  required: "Required before we run this",
+  planned: "Planned",
+} as const;
+---
+<BaseLayout locale="en" title="Safety & credentials — Slow North">
+  <Hero
+    image="tongariro-04"
+    alt="Mount Ngāuruhoe under heavy cloud"
+    kicker="Safety & credentials"
+    title="What we are licensed to do"
+    body="A small operator earns trust by being specific. This is the specific version, including the parts that are not finished yet."
+  />
+
+  <section class="surface-work py-20">
+    <div class="container-page">
+      <div class="prose-measure space-y-5 text-lg leading-relaxed">
+        <p>
+          Running commercial tours in New Zealand is a licensed activity, and the
+          licences are not interchangeable. Below is every credential this operation
+          needs, and where each one currently stands.
+        </p>
+        <p class="rounded-[var(--radius-card)] border border-[var(--color-sulphur)]/40 bg-[var(--color-sulphur)]/10 p-4 text-base">
+          <strong>Nothing here is a real registration.</strong> This is a demonstration
+          site. Every number is deliberately shown as a placeholder rather than invented,
+          because a plausible-looking NZBN is a forged government identifier, not
+          marketing copy.
+        </p>
+      </div>
+
+      <h2 class="font-display mt-14 mb-6 text-2xl font-semibold">Credentials</h2>
+      <ul class="grid gap-4 md:grid-cols-2">
+        {CREDENTIALS.map((c) => (
+          <li data-credential={c.key} class="rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-raised)] p-5">
+            <div class="flex items-start justify-between gap-4">
+              <h3 class="font-display text-lg font-semibold">{c.label}</h3>
+              <span class={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide uppercase ${
+                c.status === "pending" ? "bg-[var(--color-lake-deep)]/15 text-[var(--interactive)]"
+                : c.status === "required" ? "bg-[var(--color-sulphur)]/20 text-[var(--accent)]"
+                : "bg-black/5 text-[var(--text-muted)]"
+              }`}>{STATUS_LABEL[c.status]}</span>
+            </div>
+            <p class="mt-1 font-mono text-sm text-[var(--text-muted)]">{c.value}</p>
+            <p class="mt-3 text-sm">{c.note}</p>
+          </li>
+        ))}
+      </ul>
+
+      <h2 class="font-display mt-16 mb-4 text-2xl font-semibold">Conservation land</h2>
+      <div class="prose-measure space-y-4 text-lg">
+        <p>
+          A <strong>concession</strong> from the Department of Conservation is required to
+          operate commercially on public conservation land. Passenger transport operators
+          visiting DOC-managed parks and reserves must hold one; operators working in
+          dangerous terrain, or providing an adventure activity, may additionally need an
+          Adventure Activity Audit.
+        </p>
+        <p>
+          That is not a formality — it decides which of these itineraries can legally be
+          sold at all. These tours touch conservation land:
+        </p>
+      </div>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+        {onConservationLand.map((t) => (
+          <li data-conservation-tour class="rounded-lg border border-[var(--surface-line)] p-4">
+            <a class="font-medium underline-offset-2 hover:underline" href={`/tours/${t.id}`}>
+              {tourCopy("en", t.id).name}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <h2 class="font-display mt-16 mb-4 text-2xl font-semibold">When we call it off</h2>
+      <div class="prose-measure space-y-4 text-lg">
+        <p>
+          {weatherGated.length} of our tours cross alpine terrain, and they only run in
+          safe conditions. DOC issues a formal warning in bad weather and approved
+          shuttle operators must stop running under the terms of their concession — so a
+          cancelled crossing is a normal part of the season, not an exception.
+        </p>
+        <p>
+          If we cancel, you choose: another date, or a full refund. We would rather lose
+          the booking than take {MAX_GROUP} people onto a mountain that is telling us not to.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

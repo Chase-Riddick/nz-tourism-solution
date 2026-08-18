@@ -22,6 +22,8 @@ export interface Route {
 
 export const ROUTES: Route[] = [
   { href: "/tours", label: "Tours", primary: true, group: "explore" },
+  { href: "/about", label: "About", primary: true, group: "company" },
+  { href: "/safety", label: "Safety", primary: true, group: "company" },
   { href: "/contact", label: "Contact", primary: true, group: "company" },
   { href: "/credits", label: "Photo credits", group: "legal" },
 ];

@@ -17,6 +17,7 @@ export const SITE = {
    */
   indexable: false,
   base: "Rotorua",
+  foundingYear: 2026,
   region: "North Island, New Zealand",
 } as const;
 
@@ -148,3 +149,70 @@ export const BOOKING = {
   depositPct: 25,       // SAM-VERIFY
   balanceDueDays: 30,   // SAM-VERIFY
 } as const;
+
+/**
+ * The credential surface. Research (docs/research/regulatory.md) says a real NZ
+ * operator publishes these and their absence reads as fake.
+ *
+ * Every value is a VISIBLE PLACEHOLDER. We show the shape of the credential
+ * without inventing a government identifier - fabricating a plausible NZBN
+ * would be forging a registry number, which is a different act from drafting
+ * marketing copy. Enforced by tests/trust.spec.ts.
+ */
+export const CREDENTIALS = [
+  {
+    key: "nzbn",
+    label: "NZBN",
+    value: "—",
+    note: "New Zealand Business Number, issued on incorporation.",
+    status: "pending" as const,
+  },
+  {
+    key: "gst",
+    label: "GST",
+    value: "Registered",
+    note: "All prices on this site include GST.",
+    status: "pending" as const,
+  },
+  {
+    key: "doc",
+    label: "DOC concession",
+    value: "—",
+    note:
+      "Required to run commercial trips on public conservation land — which covers " +
+      "Tongariro National Park, Te Urewera and Whirinaki.",
+    status: "required" as const,
+  },
+  {
+    key: "worksafe",
+    label: "WorkSafe adventure activity registration",
+    value: "—",
+    note:
+      "Required where an itinerary is classified as an adventure activity under the " +
+      "Health and Safety at Work (Adventure Activities) Regulations 2016.",
+    status: "required" as const,
+  },
+  {
+    key: "qualmark",
+    label: "Qualmark",
+    value: "—",
+    note:
+      "Tourism New Zealand's quality and sustainability accreditation. Also accepted " +
+      "as evidence of a safety management plan in a DOC concession application.",
+    status: "planned" as const,
+  },
+  {
+    key: "insurance",
+    label: "Public liability insurance",
+    value: "—",
+    note: "Required by most venues and wholesalers before they will contract.",
+    status: "required" as const,
+  },
+  {
+    key: "pendorsement",
+    label: "P endorsement",
+    value: "Held",
+    note: "Passenger endorsement — required to carry paying passengers.",
+    status: "pending" as const,
+  },
+] as const;

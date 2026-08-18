@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/blocks/Hero.astro";
+import Photo from "../components/Photo.astro";
+import { SITE, MAX_GROUP, CONTACT } from "../lib/constants";
+---
+<BaseLayout locale="en" title="About — Slow North">
+  <Hero
+    image="east-cape-04"
+    alt="An empty road along the East Cape with a single wind-shaped tree"
+    kicker="About"
+    title="A small operation, on purpose"
+    body="One vehicle, one guide, and a maximum of eight people. Everything about how this works follows from that."
+  />
+
+  <section class="surface-work py-20">
+    <div class="container-page">
+      <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+        <div class="prose-measure space-y-5 text-lg leading-relaxed">
+          <p>
+            Slow North is based in {SITE.base} and works across the {SITE.region}. We
+            started in {SITE.foundingYear} after years of guiding for other people, and
+            the whole reason for going out alone was to run trips at a pace that
+            a fifty-seat coach cannot.
+          </p>
+          <p>
+            That means we are genuinely small. There is no office, no call centre, and
+            no second vehicle waiting if the first one is out. Enquiries are answered by
+            a person, {CONTACT.responseTime}, {CONTACT.hours.toLowerCase()}.
+          </p>
+          <p>
+            It also means we say no more often than a larger operator would. If the
+            weather is wrong, if a track is closed, or if the group is not right for the
+            walk, we will tell you before you book rather than after.
+          </p>
+
+          <h2 class="font-display pt-6 text-2xl font-semibold">Why {MAX_GROUP}</h2>
+          <p>
+            Eight is the largest group one guide can keep together on a mountain and
+            still have a conversation with. Below that, the economics stop working. Above
+            it, you are running a coach tour with extra steps.
+          </p>
+          <p>
+            It costs more per person than a large-group tour, and we would rather explain
+            why than pretend otherwise. The whole pricing argument is on the
+            <a class="underline underline-offset-2" href="/tours">tours page</a>.
+          </p>
+        </div>
+
+        <div class="grid gap-4">
+          <Photo id="coast-11" alt="The Hokianga Harbour, with the north-head dunes across the water"
+                 sizes="(min-width:1024px) 42vw, 90vw"
+                 class="aspect-[4/3] w-full rounded-[var(--radius-card)] object-cover" />
+          <Photo id="forest-01" alt="Lake Waikaremoana, ringed by old-growth forest"
+                 sizes="(min-width:1024px) 42vw, 90vw"
+                 class="aspect-[4/3] w-full rounded-[var(--radius-card)] object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
