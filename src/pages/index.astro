@@ -1,31 +1,146 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/blocks/Hero.astro";
+import Section from "../components/blocks/Section.astro";
+import TourCard from "../components/blocks/TourCard.astro";
 import Photo from "../components/Photo.astro";
-import { SITE } from "../lib/constants";
+import { byRank, multiDayTours, perDay, nzd, toursInSeason } from "../lib/catalog";
+import { MAX_GROUP, SEASONS, CREDENTIALS, SITE } from "../lib/constants";
 
-const locale = "en" as const;
+const featured = byRank().slice(0, 6);
+
+/* Every number in the price argument is derived, so the argument cannot drift
+   away from the catalogue it is arguing about. */
+const rates = multiDayTours().map(perDay);
+const ourLow = Math.min(...rates);
+const COACH_DAY_RATE = 283;   // Wild Kiwi 7-day North Island — docs/research/pricing-and-products.md
+const PRIVATE_DAY_RATE = 950; // NZ$1,900/day for two — same source
 ---
-<BaseLayout locale={locale} title={SITE.name}>
-  <section class="surface-dream relative isolate flex min-h-[88svh] items-end overflow-hidden">
-    <Photo
-      id="tongariro-01"
-      alt="Red Crater on the Tongariro Alpine Crossing, with Mount Ngauruhoe rising above cloud"
-      sizes="100vw"
-      priority
-      class="absolute inset-0 -z-10 h-full w-full object-cover"
-    />
-    {/* A photograph behind a gradient wash and a headline stops being a photo
-        you evaluate and becomes texture - which is what lets a merely-good
-        frame carry a hero band. */}
-    <div class="hero-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
-
-    <div class="container-page w-full pb-16">
-      <p class="mb-3 text-xs font-semibold tracking-[0.2em] text-[var(--color-sulphur)] uppercase">
-        North Island, Aotearoa New Zealand
-      </p>
-      <h1 class="font-display max-w-4xl text-5xl leading-[1.02] font-semibold text-balance sm:text-6xl lg:text-7xl">
-        {SITE.tagline}
-      </h1>
+<BaseLayout locale="en" title={`${SITE.name} — small-group North Island tours`}>
+  <Hero
+    size="full"
+    image="tongariro-01"
+    alt="Red Crater on the Tongariro Alpine Crossing, with Mount Ngāuruhoe rising above cloud"
+    kicker="North Island, Aotearoa New Zealand"
+    title="The North Island, at its own pace"
+    body={`${MAX_GROUP} people, one guide, and the time to actually stop. One to five days, year-round, from Auckland and Rotorua.`}
+  >
+    <div class="flex flex-wrap gap-4">
+      <a href="/tours" class="rounded-full bg-[var(--color-sulphur)] px-7 py-3.5 font-semibold text-[var(--color-ground-deep)] transition hover:bg-[var(--color-sulphur-bright)]">
+        See the tours
+      </a>
+      <a href="#why" class="rounded-full border border-white/25 px-7 py-3.5 font-semibold text-[var(--color-ink-on-dark)] transition hover:border-[var(--color-lake)] hover:text-[var(--color-lake)]">
+        Why {MAX_GROUP} people
+      </a>
     </div>
-  </section>
+  </Hero>
+
+  <Section id="why" surface="work" kicker="What we do" title="Small enough to change the plan">
+    <div class="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
+      <div class="prose-measure space-y-5 text-lg leading-relaxed" data-reveal>
+        <p>
+          Most tours of this island run in fifty-seat coaches on a timetable that cannot
+          bend. Ours do not. We take a maximum of {MAX_GROUP} guests in one vehicle, which
+          means we can wait out a rain squall, take the long way round the East Cape, or
+          stay at a lookout until the light is right.
+        </p>
+        <p>
+          It also means we cost more per person than a coach, and we would rather explain
+          why than pretend otherwise.
+        </p>
+      </div>
+      <Photo id="east-cape-04" alt="An empty road along the East Cape with a single wind-shaped tree"
+             sizes="(min-width:1024px) 45vw, 90vw"
+             class="aspect-[4/3] w-full rounded-[var(--radius-card)] object-cover" data-reveal />
+    </div>
+
+    {/* The comparison a guest makes in their head anyway. */}
+    <div data-price-argument class="mt-16 rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-raised)] p-8" data-reveal>
+      <h3 class="font-display text-xl font-semibold">What a day actually costs</h3>
+      <div class="mt-6 grid gap-6 sm:grid-cols-3">
+        <div>
+          <p class="font-display text-3xl font-semibold text-[var(--text-muted)]">{nzd(COACH_DAY_RATE)}</p>
+          <p class="mt-1 text-sm text-[var(--text-muted)]">
+            A 16-seat coach tour, per person per day. It works because it fills sixteen seats.
+          </p>
+        </div>
+        <div class="sm:border-x sm:border-[var(--surface-line)] sm:px-6">
+          <p class="font-display text-3xl font-semibold text-[var(--accent)]">{nzd(ourLow)}</p>
+          <p class="mt-1 text-sm">
+            Us, at a maximum of {MAX_GROUP}. Roughly double the coach, and deliberately so.
+          </p>
+        </div>
+        <div>
+          <p class="font-display text-3xl font-semibold text-[var(--text-muted)]">{nzd(PRIVATE_DAY_RATE)}</p>
+          <p class="mt-1 text-sm text-[var(--text-muted)]">
+            A private driver-guide for two. Better again, at roughly triple.
+          </p>
+        </div>
+      </div>
+      <p class="mt-6 text-sm text-[var(--text-muted)]">
+        Group size is the whole difference. We sit in the middle on purpose.
+      </p>
+    </div>
+  </Section>
+
+  <Section kicker="Tours" title="Where we can take you"
+           lede="One to five days. Day tours run most of the year; multi-day departures are set.">
+    <div data-featured class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {featured.map((tour, i) => <TourCard tour={tour} data-reveal style={`--reveal-delay:${i * 70}ms`} />)}
+    </div>
+    <div class="mt-10">
+      <a href="/tours" class="inline-block rounded-full border border-white/20 px-6 py-3 font-semibold transition hover:border-[var(--color-lake)] hover:text-[var(--color-lake)]">
+        All tours and prices →
+      </a>
+    </div>
+  </Section>
+
+  <Section surface="work" kicker="The year" title="It is a different island in July"
+           lede="New Zealand's seasons run opposite to the northern hemisphere — December is high summer and July is midwinter. The North Island has no ski season to speak of, so we do not close. We move.">
+    <div data-season-summary>
+      <div class="grid gap-px overflow-hidden rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-line)] md:grid-cols-4">
+        {SEASONS.map((s, i) => (
+          <div data-season-key={s.key} class="bg-[var(--surface-raised)] p-6" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+            <div class="flex items-baseline justify-between gap-2">
+              <h3 class="font-display text-xl font-semibold">{s.label}</h3>
+              <span class="rounded-full bg-black/5 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase">{s.pricing}</span>
+            </div>
+            <p class="mt-1 text-sm font-medium text-[var(--text-muted)]">{s.months}</p>
+            <p class="mt-4 text-sm">{s.note}</p>
+            <p class="mt-4 border-t border-[var(--surface-line)] pt-3 text-xs text-[var(--text-muted)]">
+              {toursInSeason(s.key).length} tours run
+            </p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8">
+        <a href="/tours" class="font-semibold text-[var(--interactive)] underline underline-offset-4">
+          See what runs when →
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <Section kicker="The practical part" title="What we are licensed to do"
+           lede="A small operator earns trust by being specific, so here is the specific version — including the parts that are not finished yet.">
+    <div data-proof>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {CREDENTIALS.slice(0, 6).map((c, i) => (
+          <li class="flex items-start gap-3 rounded-lg border border-[var(--surface-line)] p-4"
+              data-reveal style={`--reveal-delay:${i * 60}ms`}>
+            <span class={`mt-1.5 size-2 shrink-0 rounded-full ${c.status === "pending" ? "bg-[var(--color-lake)]" : "bg-[var(--color-sulphur)]"}`}></span>
+            <div>
+              <p class="text-sm font-medium">{c.label}</p>
+              <p class="mt-0.5 text-sm text-[var(--text-muted)]">{c.note}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-8">
+        <a href="/safety" class="font-semibold text-[var(--interactive)] underline underline-offset-4">
+          Safety &amp; credentials in full →
+        </a>
+      </p>
+    </div>
+  </Section>
 </BaseLayout>

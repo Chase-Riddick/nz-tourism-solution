@@ -17,7 +17,7 @@ interface Props {
   class?: string;
   priority?: boolean;
 }
-const { id, alt, sizes, class: className = "", priority = false } = Astro.props;
+const { id, alt, sizes, class: className = "", priority = false, ...rest } = Astro.props;
 const meta = photo(id);
 const widest = meta.widths[meta.widths.length - 1];
 ---
@@ -33,4 +33,5 @@ const widest = meta.widths[meta.widths.length - 1];
   data-photo-id={id}
   class={className}
   style={`object-position: ${meta.focus};`}
+  {...rest}
 />

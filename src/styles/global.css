@@ -229,3 +229,47 @@ p { text-wrap: pretty; }
   backdrop-filter: blur(12px);
   box-shadow: 0 10px 30px -18px rgb(0 0 0 / 0.8);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOTION
+   Reveal-on-scroll and a slow hero drift. Both are decoration over content
+   that is already in the DOM — a reader who never triggers them loses nothing.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 0.8, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 700ms cubic-bezier(0.22, 0.8, 0.3, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-reveal][data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Slow drift across a landscape, in the direction the eye already travels.
+   1.06 not 1.2: at hero scale a large scale factor reads as a zoom effect
+   rather than as weather. */
+@keyframes hero-drift {
+  from { transform: scale(1.06) translate3d(0, 0, 0); }
+  to   { transform: scale(1.12) translate3d(-1.2%, -1.2%, 0); }
+}
+
+[data-hero-image] {
+  animation: hero-drift 26s ease-out both;
+}
+
+/* The one non-negotiable: if the visitor asked the OS for less motion, every
+   staged element is simply present, and nothing animates. Handled in CSS as
+   well as JS so it holds even before the script runs. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  [data-hero-image] { animation: none; }
+}

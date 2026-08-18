@@ -14,7 +14,8 @@ const { image, alt, kicker, title, body, size = "page" } = Astro.props;
 const h = size === "full" ? "min-h-[88svh]" : "min-h-[52svh]";
 ---
 <section class={`surface-dream relative isolate flex ${h} items-end overflow-hidden`}>
-  <Photo id={image} alt={alt} priority sizes="100vw" class="absolute inset-0 -z-10 h-full w-full" />
+  <Photo id={image} alt={alt} priority sizes="100vw" data-hero-image
+         class="absolute inset-0 -z-10 h-full w-full object-cover" />
   {/* The scrim is what lets a merely-good photograph carry a hero band: behind a
       gradient wash and a headline it stops being a photo you evaluate. */}
   <div class="hero-scrim absolute inset-0 -z-10" aria-hidden="true"></div>

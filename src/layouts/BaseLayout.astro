@@ -32,5 +32,37 @@ const { locale, title } = Astro.props;
     </main>
     <Footer />
     <ConsentBanner />
+
+    <script is:inline>
+      (function () {
+        var staged = document.querySelectorAll("[data-reveal]");
+        if (!staged.length) return;
+
+        var reduced =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // Reduced motion, or no IntersectionObserver: everything is simply
+        // present. Content must never depend on an effect having run.
+        if (reduced || !("IntersectionObserver" in window)) {
+          staged.forEach(function (el) { el.setAttribute("data-revealed", "true"); });
+          return;
+        }
+
+        staged.forEach(function (el) { el.setAttribute("data-revealed", "false"); });
+
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              entry.target.setAttribute("data-revealed", "true");
+              io.unobserve(entry.target);
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.05 }
+        );
+        staged.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
   </body>
 </html>
