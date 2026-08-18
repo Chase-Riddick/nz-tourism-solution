@@ -17,6 +17,7 @@ export const SITE = {
    */
   indexable: false,
   base: "Rotorua",
+  url: "https://slownorth.claralabs.tech",
   foundingYear: 2026,
   region: "North Island, New Zealand",
 } as const;
@@ -215,4 +216,22 @@ export const CREDENTIALS = [
     note: "Passenger endorsement — required to carry paying passengers.",
     status: "pending" as const,
   },
+] as const;
+
+export const OG_IMAGE = {
+  path: "/og/default-share-card.png",
+  width: 1200,
+  height: 630,
+  alt: `${SITE.name} — ${SITE.tagline}`,
+} as const;
+
+/**
+ * Social channels a small NZ inbound operator actually runs.
+ * SAM-VERIFY: every handle is a placeholder. None of these accounts exist and
+ * they must be registered before launch - a dead social link is worse than none.
+ */
+export const SOCIAL = [
+  { label: "Instagram", href: "https://instagram.com/slownorth.nz" },
+  { label: "Facebook", href: "https://facebook.com/slownorth.nz" },
+  { label: "TripAdvisor", href: "https://tripadvisor.com/slownorth" },
 ] as const;

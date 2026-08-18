@@ -1,5 +1,5 @@
 ---
-import { SITE } from "../lib/constants";
+import { SITE, SOCIAL } from "../lib/constants";
 import { byRank } from "../lib/catalog";
 import { tourCopy } from "../lib/i18n/dictionary";
 import { footerGroup } from "../lib/nav";
@@ -50,7 +50,17 @@ const top = byRank().slice(0, 5);
       </div>
 
       <div>
-        <h2 class="text-xs font-semibold tracking-[0.14em] text-[var(--color-sulphur)] uppercase">Where we are</h2>
+        <h2 class="text-xs font-semibold tracking-[0.14em] text-[var(--color-sulphur)] uppercase">Follow along</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          {SOCIAL.map((s) => (
+            <li>
+              <a class="text-[var(--text-muted)] transition hover:text-[var(--color-lake)]"
+                 href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}</a>
+            </li>
+          ))}
+        </ul>
+
+        <h2 class="mt-6 text-xs font-semibold tracking-[0.14em] text-[var(--color-sulphur)] uppercase">Where we are</h2>
         <p class="mt-4 text-sm text-[var(--text-muted)]">
           Based in {SITE.base}, working across the North Island.
         </p>

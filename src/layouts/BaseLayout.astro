@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { SITE } from "../lib/constants";
+import SEO from "../components/SEO.astro";
 import { LOCALE_TAGS, type Locale } from "../lib/i18n";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -9,16 +9,17 @@ import ConsentBanner from "../components/ConsentBanner.astro";
 interface Props {
   locale: Locale;
   title: string;
+  description: string;
+  image?: string;
 }
-const { locale, title } = Astro.props;
+const { locale, title, description, image } = Astro.props;
 ---
 <!doctype html>
 <html lang={LOCALE_TAGS[locale]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    {!SITE.indexable && <meta name="robots" content="noindex, nofollow" />}
+    <SEO title={title} description={description} image={image} />
 
     {/* Self-hosted, so no third-party font request. latin-ext is not an
         optimisation: it carries the Maori macrons and German umlauts. */}

@@ -1,0 +1,10 @@
+# Slow North describes a tour operator that does not exist, at prices
+# reverse-engineered from real operators, with a booking flow that looks real.
+# A traveller must never reach this site while trying to book a holiday.
+#
+# This is an ethics decision, not an SEO one. See AGENTS.md rule 4.
+# It is paired with <meta name="robots" content="noindex, nofollow, noarchive">
+# on every page, and no sitemap is published.
+
+User-agent: *
+Disallow: /

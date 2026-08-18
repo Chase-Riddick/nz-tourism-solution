@@ -176,10 +176,109 @@ locale is complete — no half-translated pages, no English fallbacks in body co
 
 ## Content and research
 
-*(appended as research lands)*
+Recorded in full in `docs/research/`. The five that most shape the site:
+
+1. **Prices are triangulated, not invented.** Four independent reference points,
+   and the two that should agree do: an independent NZ$269/person/day mid-range
+   benchmark and Wild Kiwi's ~$283/day land within 5% of each other.
+2. **The Tongariro Alpine Crossing can only be sold October–May.** Shuttles stop
+   when snow covers the track, and operators must stop running *under the terms of
+   their DOC concession*. This is encoded as data (`ALPINE_SEASON`) and asserted
+   by tests, not written as marketing copy.
+3. **The company name is English on purpose.** NZ guidance is explicit that te reo
+   naming without cultural foundations is appropriation, and IPONZ can decline a
+   mark on a noa/tapu basis. "Longwhite" was the leading candidate until research
+   found three separate collisions.
+4. **Credentials are shown as placeholders, never invented.** Fabricating a
+   plausible NZBN forges a government registry number — a different act from
+   drafting marketing copy. Asserted by `tests/trust.spec.ts`.
+5. **No photograph of a person appears anywhere.** No model releases exist for
+   Commons imagery, so those slots are absent rather than faked.
 
 ---
 
 ## Design
 
-*(appended as the visual direction settles)*
+### The palette departs from the brief, and this is the most useful thing here
+
+The instinct given was *New Zealand's blues and greens, possibly on a dark
+ground*. The dark ground is confirmed and the hues are right. But **blue and
+green alone is a South Island palette** — glacial lakes, snow, tussock, the
+Aoraki postcard. It is the *other island*.
+
+The North Island's signature is volcanic and geothermal: basalt and black sand,
+the sulphur and ochre of Wai-O-Tapu, the orange rim of the Champagne Pool, steam
+over Rotorua. A cool-only palette would render this operator generically *New
+Zealand* and specifically *not North Island* — the exact confusion a site selling
+North Island tours cannot afford.
+
+So blues and greens hold the ground, and a **geothermal sulphur accent** does the
+work. One accent, used rarely. The hero photograph (Red Crater, with its volcanic
+reds and ochres) is the argument in a single image.
+
+### Dark ground, but split by page function
+
+A fully dark site sells exclusivity. This operator sells $265 day tours to
+families, and full-dark would misprice it visually before a reader reaches a
+number.
+
+- **`surface-dream`** (basalt): hero, destinations, galleries, narrative. Where
+  photography leads and the reader is imagining.
+- **`surface-work`** (warm off-white): prices, dates, inclusions, FAQ, forms,
+  policies. Where the reader is comparing and deciding.
+
+Components read CSS custom properties and never hardcode a colour, so the same
+card works on either surface. It is also an accessibility argument: dense tabular
+information is measurably harder to read light-on-dark, and pricing tables are the
+densest thing here.
+
+### Type
+
+Fraunces (variable soft-serif, real character) over Inter. Deliberately **not**
+the reference build's Newsreader/Noto pairing — the same technical approach,
+self-hosted with unicode-range subsetting, but a different voice.
+
+`latin-ext` is a hard requirement rather than an optimisation: it carries the
+Māori macrons (ā ē ī ō ū) in Taupō, Ōpōtiki and Te Rēinga, and German's ä ö ü ß.
+Coverage was verified against the actual glyph tables, not assumed from the
+declared unicode range.
+
+### Motion
+
+Calibrated against the reference build's depth, in our own vocabulary:
+staggered scroll reveal, and a 26-second hero drift at scale 1.06→1.12 —
+deliberately not 1.2, because at hero scale a large factor reads as a zoom
+effect rather than as weather.
+
+Reduced motion is handled in **both CSS and JS**, so it holds before the script
+runs, and the spec asserts computed opacity is 1 for every staged element.
+Content never depends on an effect having run.
+
+### What is deliberately not done
+
+No marae, moko or taonga as decorative texture. No "100% Pure" mimicry. No
+full-screen autoplay video — category cliché, a bandwidth problem on rural NZ
+connections, and a small operator has no footage. No red-and-green pairing:
+pōhutukawa crimson next to forest green reads as Christmas.
+
+---
+
+## Process, in hindsight
+
+The single most valuable thing the TDD loop did was **catch tests that could not
+fail.** Three cases:
+
+- a per-day-rate assertion that looped over a locator matching zero elements
+- guards written against already-clean source, which pass without proving anything
+- worst: the harness ran against a **stale `dist/`**, so an injected regression
+  "passed". The whole suite was capable of lying.
+
+Every guard on this build has since been verified by injecting the failure it is
+meant to catch — a hardcoded price, a raw catalogue key, a year-round Tongariro
+Crossing, a rejected image leaked into `public/`, an unconditional `gtag` in
+`<head>`, a plausible 13-digit NZBN. All caught, all reverted.
+
+The slicing was also wrong in one place: no issue owned site navigation or the
+homepage past the hero. That surfaced because each slice had to justify its own
+acceptance criteria, and it was filed as #14 and #15 rather than smuggled into an
+unrelated commit.

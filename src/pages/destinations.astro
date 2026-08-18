@@ -10,7 +10,8 @@ const places = [...new Set(TOURS.flatMap((t) => t.places))];
 /** Derived, so a place can never claim a tour that no longer visits it. */
 const toursFor = (key: string) => TOURS.filter((t) => t.places.includes(key));
 ---
-<BaseLayout locale="en" title="Where we go — Slow North">
+<BaseLayout locale="en" title="Where we go — Slow North"
+  description="The places a small operation can genuinely reach on a one to five day loop from Auckland or Rotorua, and which tours visit each.">
   <Hero
     image="coast-11"
     alt="The Hokianga Harbour with the north-head dunes across the water"

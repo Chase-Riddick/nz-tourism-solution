@@ -17,7 +17,9 @@ const u = ui("en");
 /** The tour copy uses **bold** sparingly for the weather-cancellation clause. */
 const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 ---
-<BaseLayout locale="en" title={`${copy.name} — Slow North`}>
+<BaseLayout locale="en" title={`${copy.name} — Slow North`}
+  description={copy.tagline}
+  image={`/photos/${tour.hero}-1600.webp`}>
   <section class="surface-dream relative isolate flex min-h-[52svh] items-end overflow-hidden">
     <Photo
       id={tour.hero}
