@@ -2,6 +2,7 @@
 import { SITE } from "../lib/constants";
 import { byRank } from "../lib/catalog";
 import { tourCopy } from "../lib/i18n/dictionary";
+import { footerGroup } from "../lib/nav";
 
 const year = new Date().getFullYear();
 const top = byRank().slice(0, 5);
@@ -32,7 +33,12 @@ const top = byRank().slice(0, 5);
       <div>
         <h2 class="text-xs font-semibold tracking-[0.14em] text-[var(--color-sulphur)] uppercase">This site</h2>
         <ul class="mt-4 space-y-2 text-sm">
-          <li><a class="text-[var(--text-muted)] transition hover:text-[var(--color-lake)]" href="/credits">Photo credits</a></li>
+          {footerGroup("legal").map((r) => (
+            <li><a class="text-[var(--text-muted)] transition hover:text-[var(--color-lake)]" href={r.href}>{r.label}</a></li>
+          ))}
+          {footerGroup("company").map((r) => (
+            <li><a class="text-[var(--text-muted)] transition hover:text-[var(--color-lake)]" href={r.href}>{r.label}</a></li>
+          ))}
           {/* GDPR: withdrawing consent must be as easy as giving it. */}
           <li>
             <button type="button" data-consent-open

@@ -1,0 +1,93 @@
+---
+import { SITE } from "../lib/constants";
+import { primaryNav, isCurrent } from "../lib/nav";
+
+const path = Astro.url.pathname;
+const links = primaryNav();
+---
+<a
+  href="#main"
+  class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded focus:bg-[var(--color-sulphur)] focus:px-4 focus:py-2 focus:font-semibold focus:text-[var(--color-ground-deep)]"
+>
+  Skip to content
+</a>
+
+<header data-header class="absolute inset-x-0 top-0 z-40 transition-colors duration-300">
+  <div class="container-page flex items-center justify-between gap-6 py-5">
+    <a href="/" class="font-display text-xl font-semibold tracking-tight text-[var(--color-ink-on-dark)]" aria-label={SITE.name}>
+      Slow<span class="text-[var(--color-sulphur)]">North</span>
+    </a>
+
+    <nav class="hidden items-center gap-7 lg:flex" aria-label="Primary">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          aria-current={isCurrent(l.href, path) ? "page" : undefined}
+          class="text-sm text-[var(--color-ink-on-dark)]/85 transition hover:text-[var(--color-lake)] aria-[current=page]:text-[var(--color-lake)]"
+        >
+          {l.label}
+        </a>
+      ))}
+      <a
+        href="/contact"
+        class="rounded-full bg-[var(--color-sulphur)] px-4 py-2 text-sm font-semibold text-[var(--color-ground-deep)] transition hover:bg-[var(--color-sulphur-bright)]"
+      >
+        Enquire
+      </a>
+    </nav>
+
+    <button
+      type="button"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      class="rounded-md p-2 text-[var(--color-ink-on-dark)] lg:hidden"
+    >
+      <span class="sr-only">Menu</span>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-nav" hidden class="surface-dream border-t border-[var(--color-ground-line)] lg:hidden">
+    <nav class="container-page flex flex-col py-3" aria-label="Primary">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          aria-current={isCurrent(l.href, path) ? "page" : undefined}
+          class="border-b border-[var(--color-ground-line)] py-3 text-[var(--color-ink-on-dark)] aria-[current=page]:text-[var(--color-lake)]"
+        >
+          {l.label}
+        </a>
+      ))}
+      <a href="/contact" class="py-3 font-semibold text-[var(--color-sulphur)]">Enquire</a>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  (function () {
+    const btn = document.querySelector("[data-menu-toggle]");
+    const nav = document.getElementById("mobile-nav");
+    if (btn && nav) {
+      btn.addEventListener("click", function () {
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+        nav.hidden = open;
+      });
+    }
+
+    // The header floats over a photographic hero. Once past it, it needs its own
+    // ground or the links stop being legible against pale sky.
+    const header = document.querySelector("[data-header]");
+    if (header) {
+      const onScroll = function () {
+        const past = window.scrollY > 60;
+        header.classList.toggle("is-stuck", past);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+  })();
+</script>
