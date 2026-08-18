@@ -91,11 +91,27 @@ built and adding `zh` is a content job, not surgery.
 
 ## Decision
 
-**English + German (`en`, `de`), both complete.**
+**Launch: English only. German queued as the confirmed second locale.**
+
+*Revised 2026-08-18 (Chase).* The analysis below is unchanged and still picks
+German — what changed is when it ships, not whether.
+
+Translating content that has not yet been confirmed means every revision to a
+price, an itinerary or a season has to be made twice, and the second copy rots
+silently while nobody notices. The English content has to survive contact with
+Sam first: he is expected to move prices, durations and itineraries. Translating
+before that is work done against a moving target.
+
+So the order is: ship English → confirm to ~95% with Sam → translate once.
 
 Third locale deliberately deferred rather than half-built. The i18n architecture is
 built to carry more locales from day one — adding one is a content exercise, and the
 route structure, dictionary layer and hreflang set are all n-locale generic.
+
+The i18n architecture is built n-locale generic from day one and
+`localePath()` already reserves the `/de/…` prefix, so adding German never
+moves an existing URL. A complete German dictionary and tour copy already exist
+on `spike/first-pass`.
 
 **This is a service promise the site makes explicit**: the site states which languages
 guides actually speak rather than implying capability from the existence of a

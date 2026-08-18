@@ -50,12 +50,25 @@ is a researched approximation, not a fact. See rule 5.
    client here, and day tours are a comparison purchase where essentially every real
    operator publishes a rate. Prices ship, in NZD, GST-inclusive, per person.
 
-7. **Few locales, each complete.** `../capital-v3` ships ~15 locales because
-   multilingual *is* the product for a language school. It is not the product here,
-   and a team of two to four cannot service inquiries in fifteen languages. The
-   locale list is set by inbound-arrivals research (`docs/research/`), and every
-   locale that ships must be complete — no half-translated pages, no English
-   fallbacks in body copy.
+7. **English only for now, i18n-ready.** `../capital-v3` ships ~15 locales
+   because multilingual *is* the product for a language school. It is not the
+   product here.
+
+   The launch locale set is **English alone** (Chase, 2026-08-18). The research
+   still names German as the correct second locale and that conclusion has not
+   changed — the *sequencing* has. Translating unconfirmed content means every
+   revision to a price, itinerary or season is made twice, and the second copy
+   rots silently. Confirm the English content with Sam to ~95%, ship, then
+   translate once.
+
+   Keep user-facing strings out of components and in the dictionary layer so a
+   locale can be added without surgery. `src/lib/i18n` is n-locale generic and
+   `localePath()` already reserves the `/de/…` prefix shape, so adding a locale
+   never moves an existing URL. A complete German dictionary and tour copy exist
+   on `spike/first-pass` and can be lifted when the content settles.
+
+   **No half-translated pages, ever.** A published locale is a promise that
+   someone answers email in that language.
 
 8. **Cultural care is not optional.** Māori place names carry macrons (Taupō,
    Whakatāne, Tongariro, Ōpōtiki) — the font stack and every content file must

@@ -142,6 +142,23 @@ This also makes the artifact more useful to Sam: a concrete number is something 
 can disagree with. "Contact us for pricing" gives him nothing to react to, and
 reacting is the entire point of the deliverable.
 
+### Locale sequencing: English first, German once the content is confirmed
+
+*Chase, 2026-08-18.* The build originally shipped English and German together.
+It now ships English alone, with German queued behind content confirmation.
+
+The reasoning is about **churn, not budget**. This site exists to be argued with:
+Sam is expected to change prices, durations, itineraries and seasons. Every one
+of those edits would have to be made twice, in a language the person making the
+edit may not read. The second copy does not stay wrong loudly — it stays wrong
+quietly, which is worse.
+
+Nothing is lost. The i18n layer is n-locale generic, `localePath()` already
+reserves the `/de/…` prefix so no URL moves later, and a full German dictionary
+plus all ten tours' German copy already exist on `spike/first-pass`.
+
+The market research is untouched and still selects German. See below.
+
 ### Few locales, each complete (reversing capital-v3's ~15)
 
 That repo ships around fifteen locales because multilingual *is* the product for a

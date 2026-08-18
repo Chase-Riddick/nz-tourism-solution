@@ -26,7 +26,7 @@ only he can decide is a **`SAM-VERIFY`** marker, mirrored in `docs/sam-decisions
 | **Season** | Which months a tour runs, as `months: Month[]`. Not marketing copy — a hard constraint. |
 | **Alpine season** | October–May. The only window the Tongariro Alpine Crossing can be sold in. |
 | **Peak supplement** | The December–February uplift on multi-day tours, because accommodation and vehicle costs rise 20–50%. |
-| **Locale** | `en` or `de`. A published locale is a *service promise*, not a translation. |
+| **Locale** | `en` only at launch; `de` queued. A published locale is a *service promise*, not a translation. |
 | **Credit** | An image's licence + author + source. A licence condition, not a courtesy. |
 | **Curation verdict** | `hero` / `gallery` / `texture` / `reject` — the human judgement over the machine-filtered photo set. |
 | **Surface** | `dream` (dark, photography leads) or `work` (light, reader is comparing). Chosen by page function. |
@@ -46,7 +46,8 @@ only he can decide is a **`SAM-VERIFY`** marker, mirrored in `docs/sam-decisions
 1. **The site is `noindex`.** Ethics rule, not SEO. See `docs/adr/`.
 2. **Prices are published**, NZD, GST inclusive, per person.
 3. **Every published image has a credit entry**; rejected images never reach `public/`.
-4. **Every locale is complete** — no English fallback in German body copy.
+4. **English only at launch, i18n-ready.** Strings stay in the dictionary layer.
+   A locale ships complete or not at all — never a half-translated page.
 5. **The Crossing is never year-round.**
 6. **No fact lives outside `constants.ts` / `catalog.ts`.**
 
