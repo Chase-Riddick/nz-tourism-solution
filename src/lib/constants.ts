@@ -16,6 +16,8 @@ export const SITE = {
    * Flip to `true` only if this becomes a real, trading business.
    */
   indexable: false,
+  base: "Rotorua",
+  region: "North Island, New Zealand",
 } as const;
 
 /**

@@ -1,0 +1,59 @@
+---
+import { SITE } from "../lib/constants";
+import { byRank } from "../lib/catalog";
+import { tourCopy } from "../lib/i18n/dictionary";
+
+const year = new Date().getFullYear();
+const top = byRank().slice(0, 5);
+---
+<footer class="surface-dream border-t border-[var(--color-ground-line)]">
+  <div class="container-page py-14">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <p class="font-display text-lg font-semibold">
+          Slow<span class="text-[var(--color-sulphur)]">North</span>
+        </p>
+        <p class="mt-3 max-w-xs text-sm text-[var(--text-muted)]">{SITE.tagline}</p>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-semibold tracking-[0.14em] text-[var(--color-sulphur)] uppercase">Tours</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          {top.map((tr) => (
+            <li>
+              <a class="text-[var(--text-muted)] transition hover:text-[var(--color-lake)]"
+                 href={`/tours/${tr.id}`}>{tourCopy("en", tr.id).name}</a>
+            </li>
+          ))}
+          <li><a class="text-[var(--text-muted)] transition hover:text-[var(--color-lake)]" href="/tours">All tours and prices</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-semibold tracking-[0.14em] text-[var(--color-sulphur)] uppercase">This site</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a class="text-[var(--text-muted)] transition hover:text-[var(--color-lake)]" href="/credits">Photo credits</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-semibold tracking-[0.14em] text-[var(--color-sulphur)] uppercase">Where we are</h2>
+        <p class="mt-4 text-sm text-[var(--text-muted)]">
+          Based in {SITE.base}, working across the North Island.
+        </p>
+      </div>
+    </div>
+
+    {/* The repo is public and the operator is invented. Saying so on every page
+        is the minimum honest disclosure, and it is why this can be public at all. */}
+    <p class="mt-12 rounded-[var(--radius-card)] border border-[var(--color-sulphur)]/30 bg-[var(--color-sulphur)]/[0.07] p-4 text-sm text-[var(--text-muted)]">
+      <strong class="text-[var(--color-sulphur)]">Please note.</strong>
+      This is a demonstration website for a company that does not exist. Nothing on it
+      can be booked, and no price here is a real offer.
+    </p>
+
+    <p class="mt-8 border-t border-[var(--color-ground-line)] pt-8 text-xs text-[var(--text-muted)]">
+      © {year} {SITE.name}.
+    </p>
+  </div>
+</footer>

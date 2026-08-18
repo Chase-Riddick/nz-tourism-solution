@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { attributions, shareAlikeCount, publishedCount } from "../lib/photos";
+
+const rows = attributions();
+const sa = shareAlikeCount();
+const clean = (s: string) => s.replace(/\s+/g, " ").trim() || "Unknown";
+---
+<BaseLayout locale="en" title="Photo credits — Slow North">
+  <section class="surface-work py-20">
+    <div class="container-page">
+      <h1 class="font-display text-4xl font-semibold sm:text-5xl">Photo credits</h1>
+      <div class="prose-measure mt-4 space-y-4 text-lg text-[var(--text-muted)]">
+        <p>
+          Every photograph on this site comes from Wikimedia Commons under a licence
+          that permits commercial use. {publishedCount()} images are published;
+          {rows.length} of them require attribution as a <em>condition of the licence</em>,
+          not as a courtesy. Those are listed below.
+        </p>
+        <p>
+          {sa} are share-alike (CC BY-SA). Resizing and grading a photograph makes a
+          derivative <em>of that photograph</em>, which carries the same licence. That
+          applies to the images only — not to this site's code, copy or design.
+        </p>
+        <p>
+          Neither Commons nor any free-stock platform guarantees a model release, so
+          frames containing identifiable individuals were rejected during curation.
+        </p>
+      </div>
+
+      <div class="mt-12 overflow-x-auto">
+        <table class="w-full min-w-[44rem] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[var(--surface-line)]">
+              <th class="py-3 pr-4 font-semibold">Image</th>
+              <th class="py-3 pr-4 font-semibold">Photographer</th>
+              <th class="py-3 pr-4 font-semibold">Licence</th>
+              <th class="py-3 font-semibold">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(([id, c]) => (
+              <tr class="border-b border-[var(--surface-line)]/60">
+                <td class="py-3 pr-4 font-mono text-xs">{id}</td>
+                <td class="py-3 pr-4">{clean(c.author)}</td>
+                <td class="py-3 pr-4">{c.licence}</td>
+                <td class="py-3">
+                  <a class="underline underline-offset-2 hover:text-[var(--interactive)]"
+                     href={c.source} rel="noopener noreferrer" target="_blank">Wikimedia Commons</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

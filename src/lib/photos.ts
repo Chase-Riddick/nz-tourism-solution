@@ -39,3 +39,14 @@ export const src = (id: string): string => {
   const c = photo(id);
   return `/photos/${id}-${c.widths[c.widths.length - 1]}.webp`;
 };
+
+/** Every credit whose licence obliges attribution, sorted for the credits page. */
+export const attributions = (): Array<[string, PhotoCredit]> =>
+  Object.entries(CREDITS)
+    .filter(([, c]) => c.attributionRequired)
+    .sort(([a], [b]) => a.localeCompare(b));
+
+export const shareAlikeCount = (): number =>
+  Object.values(CREDITS).filter((c) => c.shareAlike).length;
+
+export const publishedCount = (): number => Object.keys(CREDITS).length;
