@@ -53,3 +53,45 @@ export const CANCELLATION = [
     refund: "Full refund or a transfer to another date - your choice",
   },
 ] as const;
+
+/**
+ * Southern hemisphere. December-February is summer. Getting this backwards is
+ * the fastest way to lose a New Zealand reader.
+ * Source: docs/research/seasons-and-places.md
+ */
+export const SEASONS = [
+  {
+    key: "summer",
+    label: "Summer",
+    months: "December – February",
+    temp: "20–24°C",
+    pricing: "peak" as const,
+    note: "Long daylight and the best alpine weather. Busiest and dearest — book early.",
+  },
+  {
+    key: "autumn",
+    label: "Autumn",
+    months: "March – May",
+    temp: "17–22°C",
+    pricing: "shoulder" as const,
+    note: "Settled weather, thinning crowds. March is the value sweet spot.",
+  },
+  {
+    key: "winter",
+    label: "Winter",
+    months: "June – August",
+    temp: "10–15°C",
+    pricing: "low" as const,
+    note:
+      "No alpine crossings. The tours move north and to the coast, where Northland " +
+      "earns its 'winterless north' name, and geothermal country runs regardless.",
+  },
+  {
+    key: "spring",
+    label: "Spring",
+    months: "September – November",
+    temp: "16–20°C",
+    pricing: "shoulder" as const,
+    note: "Young stock in the paddocks and the alpine season reopening. November is quietly the best month of the year.",
+  },
+] as const;

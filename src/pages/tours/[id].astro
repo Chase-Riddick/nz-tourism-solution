@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Photo from "../../components/Photo.astro";
 import Gallery from "../../components/blocks/Gallery.astro";
-import { TOURS, nzd, perDay, type Tour } from "../../lib/catalog";
+import { TOURS, nzd, perDay, seasonLabel, type Tour } from "../../lib/catalog";
 import { CANCELLATION, PEAK_SUPPLEMENT_PCT, MAX_GROUP } from "../../lib/constants";
 import { tourCopy, ui } from "../../lib/i18n/dictionary";
 
@@ -27,6 +27,10 @@ const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
     />
     <div class="hero-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
     <div class="container-page w-full pb-14">
+      <p class="mb-3 text-xs font-semibold tracking-[0.2em] text-[var(--color-sulphur)] uppercase">
+        {tour.days === 1 ? `${tour.hours} hours` : `${tour.days} days`}
+        <span data-season>· {seasonLabel(tour)}</span>
+      </p>
       <h1 class="font-display text-4xl font-semibold text-balance sm:text-5xl">{copy.name}</h1>
       <p class="prose-measure mt-4 text-lg text-[var(--color-ink-on-dark)]/85">{copy.tagline}</p>
     </div>
@@ -66,6 +70,16 @@ const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
           </li>
         ))}
       </ol>
+
+      {tour.weatherGated && (
+        <p data-weather-notice class="mt-2 rounded-[var(--radius-card)] border border-[var(--color-sulphur)]/40 bg-[var(--color-sulphur)]/10 p-4 text-sm">
+          <strong>Weather dependent.</strong> This tour only runs in safe conditions.
+          DOC issues a formal warning in bad weather and shuttle operators must stop
+          running under the terms of their concession — so this is a normal part of
+          the season, not an exception. If we cancel, you choose: another date, or a
+          full refund.
+        </p>
+      )}
 
       <div data-price-panel class="mt-14 rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-raised)] p-6 sm:max-w-md">
         <p class="text-sm text-[var(--text-muted)]">From</p>

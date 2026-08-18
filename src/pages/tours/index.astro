@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TourCard from "../../components/blocks/TourCard.astro";
-import { dayTours, multiDayTours } from "../../lib/catalog";
+import { dayTours, multiDayTours, toursInSeason } from "../../lib/catalog";
+import { SEASONS } from "../../lib/constants";
+import { tourCopy } from "../../lib/i18n/dictionary";
 import { MAX_GROUP } from "../../lib/constants";
 ---
 <BaseLayout locale="en" title="Tours and prices — Slow North">
@@ -32,6 +34,42 @@ import { MAX_GROUP } from "../../lib/constants";
         </p>
         <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {multiDayTours().map((tour) => <TourCard tour={tour} />)}
+        </div>
+      </section>
+
+      {/* The product rotates with the season rather than the calendar simply
+          repeating. Showing winter with the alpine tours absent - and something
+          still running - is the honest version of "tours across the year". */}
+      <section class="mt-24">
+        <h2 class="font-display text-2xl font-semibold">What runs when</h2>
+        <p class="prose-measure mt-2 text-[var(--text-muted)]">
+          New Zealand's seasons run opposite to the northern hemisphere. There is no
+          real ski season on the North Island, so we do not close — we move.
+        </p>
+
+        <div class="mt-8 grid gap-px overflow-hidden rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-line)] md:grid-cols-4">
+          {SEASONS.map((s) => (
+            <div data-season-key={s.key} class="bg-[var(--surface-raised)] p-5">
+              <div class="flex items-baseline justify-between gap-2">
+                <h3 class="font-display text-lg font-semibold">{s.label}</h3>
+                <span class="rounded-full bg-black/5 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase">
+                  {s.pricing}
+                </span>
+              </div>
+              <p class="mt-1 text-sm font-medium text-[var(--text-muted)]">{s.months}</p>
+              <p class="mt-1 text-sm text-[var(--text-muted)]">{s.temp}</p>
+              <p class="mt-3 text-sm">{s.note}</p>
+              <ul class="mt-4 space-y-1.5 border-t border-[var(--surface-line)] pt-3 text-sm">
+                {toursInSeason(s.key).map((tr) => (
+                  <li data-season-tour>
+                    <a class="underline-offset-2 hover:underline" href={`/tours/${tr.id}`}>
+                      {tourCopy("en", tr.id).name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
     </div>

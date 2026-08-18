@@ -27,7 +27,7 @@ const seasonal = tour.months.length < 12;
         {tour.days === 1 ? `${tour.hours} hours` : `${tour.days} days`}
       </span>
       {seasonal && (
-        <span class="rounded-full bg-[var(--color-sulphur)]/90 px-2.5 py-1 text-[11px] font-semibold text-[var(--color-ground-deep)]">
+        <span data-seasonal-badge class="rounded-full bg-[var(--color-sulphur)]/90 px-2.5 py-1 text-[11px] font-semibold text-[var(--color-ground-deep)]">
           Seasonal
         </span>
       )}

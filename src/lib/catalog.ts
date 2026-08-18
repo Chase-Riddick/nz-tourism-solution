@@ -233,3 +233,35 @@ export const nzd = (n: number): string =>
 
 /** Per-person per-day rate — the comparison the site invites openly. */
 export const perDay = (t: Tour): number => Math.round(t.price / t.days);
+
+const MONTH_SHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+/**
+ * Human season label, derived from the months array rather than written by
+ * hand. A tour's availability is DATA - if the months change, every surface
+ * that mentions the season changes with it, and none of them can drift.
+ */
+export const seasonLabel = (t: Tour): string =>
+  t.months.length === 12
+    ? "Year-round"
+    : `${MONTH_SHORT[t.months[0] - 1]} – ${MONTH_SHORT[t.months[t.months.length - 1] - 1]}`;
+
+export const isSeasonal = (t: Tour): boolean => t.months.length < 12;
+
+/** Calendar months belonging to each season key, southern hemisphere. */
+export const SEASON_MONTHS: Record<string, Month[]> = {
+  summer: [12, 1, 2],
+  autumn: [3, 4, 5],
+  winter: [6, 7, 8],
+  spring: [9, 10, 11],
+};
+
+/**
+ * Tours runnable in a season - a tour qualifies if it runs in EVERY month of
+ * that season. Deliberately strict: "available in spring" must not mean
+ * "available for three weeks of spring".
+ */
+export const toursInSeason = (key: string): Tour[] => {
+  const months = SEASON_MONTHS[key] ?? [];
+  return TOURS.filter((t) => months.every((m) => t.months.includes(m)));
+};
