@@ -97,3 +97,16 @@ export const SEASONS = [
     note: "Young stock in the paddocks and the alpine season reopening. November is quietly the best month of the year.",
   },
 ] as const;
+
+/**
+ * Consent-gated analytics.
+ *
+ * Dormant by design: ga4MeasurementId is a placeholder, so no choice a visitor
+ * makes can load any script. The consent UX is real and reviewable; the
+ * tracking is not wired until a real G- id exists.
+ */
+export const ANALYTICS = {
+  ga4MeasurementId: "G-XXXXXXXXXX", // SAM-VERIFY: real GA4 property
+  storageKey: "sn-consent",
+  renewDays: 180,
+} as const;

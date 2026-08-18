@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { SITE } from "../lib/constants";
 import { LOCALE_TAGS, type Locale } from "../lib/i18n";
 import Footer from "../components/Footer.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
 
 interface Props {
   locale: Locale;
@@ -28,5 +29,6 @@ const { locale, title } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <ConsentBanner />
   </body>
 </html>

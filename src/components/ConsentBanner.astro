@@ -1,0 +1,131 @@
+---
+/**
+ * Consent-gated analytics. Nothing loads before an explicit yes.
+ *
+ * Strictest posture available: no gtag.js, no cookie, no request to Google of
+ * any kind on arrival. This is Consent Mode "basic" — deliberately not
+ * "advanced", whose cookieless pings still reach Google before consent.
+ *
+ * Declining is one equal click and expires any existing _ga cookies. The choice
+ * lives in localStorage (a preference, not tracking, so itself consent-exempt).
+ *
+ * Dormant by design: ANALYTICS.ga4MeasurementId is a placeholder, so no choice
+ * can load any script until a real G- id exists. The UX is real and reviewable;
+ * the tracking is not wired.
+ */
+import { ANALYTICS } from "../lib/constants";
+
+const COPY = {
+  title: "Cookies",
+  body:
+    "We would like to use Google Analytics to see which pages people actually " +
+    "read. It sets cookies. Nothing loads and nothing is sent unless you say yes.",
+  accept: "Allow analytics",
+  decline: "No thanks",
+  policyLink: "Read the cookie policy",
+} as const;
+
+const configured = /^G-[A-Z0-9]{6,}$/.test(ANALYTICS.ga4MeasurementId) &&
+                   ANALYTICS.ga4MeasurementId !== "G-XXXXXXXXXX";
+---
+
+<div
+  id="consent-banner"
+  hidden
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="consent-title"
+  class="surface-work fixed inset-x-0 bottom-0 z-50 border-t border-[var(--surface-line)] shadow-2xl"
+>
+  <div class="container-page flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between">
+    <div class="prose-measure">
+      <p id="consent-title" class="font-display text-base font-semibold">{COPY.title}</p>
+      <p class="mt-1 text-sm text-[var(--text-muted)]">
+        {COPY.body}
+        <a class="underline underline-offset-2" href="/cookies">{COPY.policyLink}</a>
+      </p>
+    </div>
+    <div class="flex shrink-0 gap-3">
+      <button type="button" data-consent="decline"
+        class="rounded-full border border-[var(--surface-line)] px-5 py-2.5 text-sm font-medium hover:bg-black/5">
+        {COPY.decline}
+      </button>
+      <button type="button" data-consent="accept"
+        class="rounded-full bg-[var(--color-forest)] px-5 py-2.5 text-sm font-medium text-white hover:bg-[var(--color-forest-deep)]">
+        {COPY.accept}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ KEY: ANALYTICS.storageKey, DAYS: ANALYTICS.renewDays, GA: ANALYTICS.ga4MeasurementId, CONFIGURED: configured }}>
+  (function () {
+    const banner = document.getElementById("consent-banner");
+    const now = Date.now();
+
+    function read() {
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (!raw) return null;
+        const v = JSON.parse(raw);
+        if (!v || typeof v.at !== "number") return null;
+        if (now - v.at > DAYS * 864e5) return null;   // expired: ask again
+        return v.choice;
+      } catch { return null; }
+    }
+
+    function loadAnalytics() {
+      if (!CONFIGURED) return;      // placeholder id: never load anything
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      window.gtag = gtag;
+      // Consent Mode v2: deny everything, then grant analytics alone. Ad
+      // signals are never granted anywhere in this codebase.
+      gtag("consent", "default", {
+        ad_storage: "denied", ad_user_data: "denied",
+        ad_personalization: "denied", analytics_storage: "denied",
+      });
+      gtag("consent", "update", { analytics_storage: "granted" });
+      const s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA;
+      document.head.appendChild(s);
+      gtag("js", new Date());
+      gtag("config", GA, { anonymize_ip: true });
+    }
+
+    function clearGaCookies() {
+      document.cookie.split(";").forEach(function (c) {
+        const name = c.split("=")[0].trim();
+        if (name.indexOf("_ga") === 0) {
+          document.cookie = name + "=; Max-Age=0; path=/";
+          document.cookie = name + "=; Max-Age=0; path=/; domain=." + location.hostname;
+        }
+      });
+    }
+
+    function decide(choice) {
+      try { localStorage.setItem(KEY, JSON.stringify({ choice, at: Date.now() })); } catch {}
+      if (banner) banner.hidden = true;
+      if (choice === "accept") loadAnalytics(); else clearGaCookies();
+    }
+
+    const stored = read();
+    if (stored === "accept") loadAnalytics();
+    else if (stored !== "decline" && banner) banner.hidden = false;
+
+    document.querySelectorAll("[data-consent]").forEach(function (el) {
+      el.addEventListener("click", function () { decide(el.getAttribute("data-consent")); });
+    });
+
+    // "Withdrawing must be as easy as giving" — the footer control reopens this.
+    document.querySelectorAll("[data-consent-open]").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (banner) banner.hidden = false;
+      });
+    });
+  })();
+</script>
