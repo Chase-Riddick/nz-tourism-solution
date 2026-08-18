@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout locale="en" title="Page not found — Slow North">
+  <section class="surface-dream flex min-h-[70svh] items-center pt-32 pb-20">
+    <div class="container-page prose-measure">
+      <p class="text-xs font-semibold tracking-[0.2em] text-[var(--color-sulphur)] uppercase">404</p>
+      <h1 class="font-display mt-3 text-4xl font-semibold sm:text-5xl">That road doesn't go anywhere</h1>
+      <p class="mt-4 text-lg text-[var(--text-muted)]">
+        The page you were after has moved or never existed. The tours are all still here.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/tours" class="rounded-full bg-[var(--color-sulphur)] px-7 py-3.5 font-semibold text-[var(--color-ground-deep)] transition hover:bg-[var(--color-sulphur-bright)]">
+          All tours and prices
+        </a>
+        <a href="/" class="rounded-full border border-white/25 px-7 py-3.5 font-semibold text-[var(--color-ink-on-dark)] transition hover:border-[var(--color-lake)] hover:text-[var(--color-lake)]">
+          Back to the start
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

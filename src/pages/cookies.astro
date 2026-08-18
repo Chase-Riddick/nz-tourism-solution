@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LegalPage from "../components/blocks/LegalPage.astro";
+import { ANALYTICS } from "../lib/constants";
+---
+<BaseLayout locale="en" title="Cookie policy — Slow North">
+  <LegalPage title="Cookie policy"
+             lede="Short, because there is not much to say.">
+    <h2>Before you choose, we set nothing</h2>
+    <p>
+      Arriving on this site sets no cookies. No analytics script is loaded, and no request
+      is made to Google or any other third party. That is a deliberate choice: we use
+      Google Consent Mode in its <em>basic</em> configuration rather than the “advanced”
+      one, because advanced still sends cookieless pings before consent.
+    </p>
+
+    <h2>If you allow analytics</h2>
+    <p>
+      Google Analytics 4 loads and sets its own cookies (names beginning <code>_ga</code>)
+      to count visits and see which pages are read. We grant analytics storage only.
+      Advertising storage, ad personalisation and ad user data are never granted.
+    </p>
+
+    <h2>If you decline</h2>
+    <p>
+      Nothing loads, and we actively expire any <code>_ga</code> cookies a previous
+      acceptance had set.
+    </p>
+
+    <h2>Remembering your choice</h2>
+    <p>
+      Your decision is stored in your browser's local storage under
+      <code>{ANALYTICS.storageKey}</code>. That is a preference rather than tracking, so it
+      is itself exempt from consent. We re-ask after {ANALYTICS.renewDays} days.
+    </p>
+
+    <h2>Changing your mind</h2>
+    <p>
+      Use <strong>Cookie preferences</strong> in the footer of any page. Withdrawing
+      consent is exactly as easy as giving it, which is the legal requirement and also
+      just fair.
+    </p>
+  </LegalPage>
+</BaseLayout>

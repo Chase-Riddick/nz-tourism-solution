@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LegalPage from "../components/blocks/LegalPage.astro";
+import { BOOKING, CANCELLATION, MAX_GROUP, CONTACT } from "../lib/constants";
+---
+<BaseLayout locale="en" title="Booking conditions — Slow North">
+  <LegalPage title="Booking conditions"
+             lede="The commercial terms, stated before you commit rather than after.">
+    <h2>Booking and payment</h2>
+    <p>
+      A <strong>{BOOKING.depositPct}% deposit</strong> confirms your place. The balance is
+      due <strong>{BOOKING.balanceDueDays} days</strong> before departure. For bookings
+      made inside that window, the full amount is payable at the time of booking.
+    </p>
+    <p>
+      All prices are in New Zealand dollars and include GST. Multi-day prices are per
+      person, twin share; a single room supplement applies where shown on the tour.
+    </p>
+
+    <h2>If you cancel</h2>
+    <div class="overflow-x-auto">
+      <table data-cancellation class="w-full border-collapse text-left text-sm">
+        <tbody>
+          {CANCELLATION.map((c) => (
+            <tr class="border-b border-[var(--surface-line)]">
+              <td class="py-3 pr-6 font-medium">{c.window}</td>
+              <td class="py-3 text-[var(--text-muted)]">{c.refund}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h2>If we cancel</h2>
+    <p>
+      We may cancel for weather, track closure, or any condition we judge unsafe. On the
+      alpine tours this is a normal part of the season, not an exception: the Department
+      of Conservation issues a formal warning in bad conditions and approved shuttle
+      operators must stop running under the terms of their concession.
+    </p>
+    <p>
+      If we cancel, you choose — another date, or a full refund. We are not able to
+      reimburse flights, accommodation or other travel arranged separately, which is why
+      we ask everyone to hold travel insurance.
+    </p>
+
+    <h2>Minimum numbers and group size</h2>
+    <p>
+      Every departure is capped at <strong>{MAX_GROUP} guests</strong>. Multi-day tours
+      require a minimum of two bookings to run; if we cannot reach it we will tell you at
+      least 21 days out and offer another date or a full refund.
+    </p>
+
+    <h2>Fitness and honesty</h2>
+    <p>
+      Each tour states the fitness required. Please take it seriously — an alpine crossing
+      is a genuine mountain day and a group moves at the pace of its slowest member. If
+      you are unsure, tell us before booking and we will give you a straight answer about
+      whether it suits you.
+    </p>
+
+    <h2>Insurance</h2>
+    <p>
+      Travel insurance is not included and we strongly recommend it, including cover for
+      cancellation, medical treatment and activities of the kind on your itinerary.
+    </p>
+
+    <h2>Questions</h2>
+    <p>Email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> and a person will reply.</p>
+  </LegalPage>
+</BaseLayout>

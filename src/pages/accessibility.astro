@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LegalPage from "../components/blocks/LegalPage.astro";
+import { CONTACT } from "../lib/constants";
+---
+<BaseLayout locale="en" title="Accessibility — Slow North">
+  <LegalPage title="Accessibility"
+             lede="What we aim for, what is built, and what we know is not solved.">
+    <h2>The standard we aim at</h2>
+    <p>
+      WCAG 2.2 Level AA. We do not claim full conformance, because claiming it without an
+      independent audit is not worth much.
+    </p>
+
+    <h2>What is built</h2>
+    <ul>
+      <li>A skip link as the first focusable element on every page.</li>
+      <li>Landmarks — banner, navigation, main and contentinfo — so a screen reader can jump between regions.</li>
+      <li>Visible focus rings that hold their contrast on both the dark and light surfaces.</li>
+      <li>The current navigation section marked with <code>aria-current</code>, so its state is announced rather than only coloured.</li>
+      <li>Text contrast checked against the light and dark palettes rather than assumed.</li>
+      <li>Every photograph carries descriptive alt text; decorative layers are hidden from assistive technology.</li>
+      <li>Reduced motion honoured in both CSS and JavaScript — all content is present immediately, and nothing animates.</li>
+      <li>The whole site usable at 375px wide without sideways scrolling.</li>
+      <li>Expandable answers built on native <code>&lt;details&gt;</code>, so they work with the keyboard by default.</li>
+    </ul>
+
+    <h2>Known gaps</h2>
+    <ul>
+      <li>No independent audit has been carried out.</li>
+      <li>Tour itineraries are long; we have not yet added in-page navigation for them.</li>
+      <li>Some photographic captions repeat the licence rather than describing the image.</li>
+    </ul>
+
+    <h2>Tell us</h2>
+    <p>
+      If something here blocks you, email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+      and describe what happened. That is more useful to us than a conformance badge.
+    </p>
+  </LegalPage>
+</BaseLayout>

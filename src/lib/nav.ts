@@ -28,6 +28,10 @@ export const ROUTES: Route[] = [
   { href: "/safety", label: "Safety", primary: true, group: "company" },
   { href: "/contact", label: "Contact", primary: true, group: "company" },
   { href: "/credits", label: "Photo credits", group: "legal" },
+  { href: "/privacy", label: "Privacy", group: "legal" },
+  { href: "/terms", label: "Booking conditions", group: "legal" },
+  { href: "/cookies", label: "Cookie policy", group: "legal" },
+  { href: "/accessibility", label: "Accessibility", group: "legal" },
 ];
 
 export const primaryNav = (): Route[] => ROUTES.filter((r) => r.primary);
