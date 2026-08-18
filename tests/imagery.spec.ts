@@ -32,3 +32,29 @@ test.describe("imagery", () => {
     }
   });
 });
+
+test.describe("tour imagery", () => {
+  test("every photograph across every tour page is credited and resolves", async ({ page }) => {
+    const { TOURS } = await import("../src/lib/catalog");
+    let checked = 0;
+
+    for (const tour of TOURS) {
+      await page.goto(`/tours/${tour.id}`);
+      const ids = await page.locator("img[data-photo-id]").evaluateAll((imgs) =>
+        imgs.map((i) => ({
+          id: i.getAttribute("data-photo-id"),
+          src: i.getAttribute("src"),
+        })),
+      );
+      expect(ids.length, `${tour.id} should render photographs`).toBeGreaterThan(0);
+
+      for (const { id, src } of ids) {
+        expect(Object.keys(credits), `${tour.id}: "${id}" has no credit entry`).toContain(id);
+        const res = await page.request.get(src!);
+        expect(res.status(), `${tour.id}: ${src} should resolve`).toBe(200);
+        checked++;
+      }
+    }
+    expect(checked, "should have checked real images").toBeGreaterThan(10);
+  });
+});

@@ -1,0 +1,149 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Photo from "../../components/Photo.astro";
+import Gallery from "../../components/blocks/Gallery.astro";
+import { TOURS, nzd, perDay, type Tour } from "../../lib/catalog";
+import { CANCELLATION, PEAK_SUPPLEMENT_PCT, MAX_GROUP } from "../../lib/constants";
+import { tourCopy, ui } from "../../lib/i18n/dictionary";
+
+export function getStaticPaths() {
+  return TOURS.map((tour) => ({ params: { id: tour.id }, props: { tour } }));
+}
+const { tour } = Astro.props as { tour: Tour };
+const copy = tourCopy("en", tour.id);
+const u = ui("en");
+
+/** The tour copy uses **bold** sparingly for the weather-cancellation clause. */
+const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+---
+<BaseLayout locale="en" title={`${copy.name} — Slow North`}>
+  <section class="surface-dream relative isolate flex min-h-[52svh] items-end overflow-hidden">
+    <Photo
+      id={tour.hero}
+      alt={copy.name}
+      sizes="100vw"
+      priority
+      class="absolute inset-0 -z-10 h-full w-full object-cover"
+    />
+    <div class="hero-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
+    <div class="container-page w-full pb-14">
+      <h1 class="font-display text-4xl font-semibold text-balance sm:text-5xl">{copy.name}</h1>
+      <p class="prose-measure mt-4 text-lg text-[var(--color-ink-on-dark)]/85">{copy.tagline}</p>
+    </div>
+  </section>
+
+  <section class="surface-work py-16">
+    <div class="container-page">
+      <div class="prose-measure text-lg leading-relaxed">
+        {copy.summary.split("\n\n").map((para) => <p class="mb-4">{para}</p>)}
+      </div>
+
+      <h2 class="font-display mt-12 mb-5 text-2xl font-semibold">Highlights</h2>
+      <ul class="space-y-3">
+        {copy.highlights.map((h) => (
+          <li class="flex gap-3">
+            <span class="mt-2 size-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+            <span>{h}</span>
+          </li>
+        ))}
+      </ul>
+
+      <h2 class="font-display mt-12 mb-5 text-2xl font-semibold">
+        {tour.days === 1 ? "The day, hour by hour" : "Where you go, day by day"}
+      </h2>
+      <ol class="space-y-8">
+        {copy.itinerary.map((day, i) => (
+          <li data-itinerary-day={i + 1} class="border-l-2 border-[var(--surface-line)] pl-5">
+            {tour.days > 1 && (
+              <p class="text-xs font-semibold tracking-[0.15em] text-[var(--accent)] uppercase">
+                Day {i + 1}
+              </p>
+            )}
+            <h3 class="font-display mt-1 text-xl font-semibold">{day.title}</h3>
+            <div class="prose-measure mt-3 space-y-3 text-[var(--text-muted)]">
+              {day.body.split("\n\n").map((para) => <p set:html={md(para)} />)}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div data-price-panel class="mt-14 rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-raised)] p-6 sm:max-w-md">
+        <p class="text-sm text-[var(--text-muted)]">From</p>
+        <p class="font-display text-4xl font-semibold">{nzd(tour.price)}</p>
+        <p class="mt-1 text-sm text-[var(--text-muted)]">per person · GST included</p>
+        {tour.days > 1 && (
+          <p class="mt-1 text-sm text-[var(--text-muted)]">
+            {nzd(perDay(tour))} per person, per day
+          </p>
+        )}
+
+        <dl class="mt-5 space-y-2 border-t border-[var(--surface-line)] pt-5 text-sm">
+          {tour.priceChild && (
+            <div data-child-price class="flex justify-between gap-4">
+              <dt class="text-[var(--text-muted)]">Child (5–14)</dt>
+              <dd class="font-medium">{nzd(tour.priceChild)}</dd>
+            </div>
+          )}
+          {tour.singleSupplement && (
+            <div data-single-supplement class="flex justify-between gap-4">
+              <dt class="text-[var(--text-muted)]">Single room supplement</dt>
+              <dd class="font-medium">{nzd(tour.singleSupplement)}</dd>
+            </div>
+          )}
+          {tour.days > 1 && (
+            <div class="flex justify-between gap-4">
+              <dt class="text-[var(--text-muted)]">December–February</dt>
+              <dd class="font-medium">+{PEAK_SUPPLEMENT_PCT}%</dd>
+            </div>
+          )}
+          <div class="flex justify-between gap-4">
+            <dt class="text-[var(--text-muted)]">Group size</dt>
+            <dd class="font-medium">Maximum {MAX_GROUP}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="mt-14 grid gap-8 sm:grid-cols-2">
+        <div>
+          <h2 class="font-display text-xl font-semibold">What's included</h2>
+          <ul data-includes class="mt-4 space-y-2 text-sm">
+            {tour.includes.map((k) => (
+              <li class="flex gap-2.5">
+                <span class="mt-0.5 text-[var(--interactive)]">✓</span>
+                <span>{u.includes[k as keyof typeof u.includes]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-display text-xl font-semibold">What's not included</h2>
+          <ul data-excludes class="mt-4 space-y-2 text-sm text-[var(--text-muted)]">
+            {tour.excludes.map((k) => (
+              <li class="flex gap-2.5">
+                <span class="mt-0.5">–</span>
+                <span>{u.includes[k as keyof typeof u.includes]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="font-display mt-14 mb-5 text-2xl font-semibold">Photographs</h2>
+      <Gallery ids={tour.gallery} alt={copy.name} />
+
+      <h2 class="font-display mt-14 mb-5 text-2xl font-semibold">If plans change</h2>
+      <div class="overflow-x-auto">
+        <table data-cancellation class="w-full min-w-[34rem] border-collapse text-left text-sm">
+          <tbody>
+            {CANCELLATION.map((c) => (
+              <tr class="border-b border-[var(--surface-line)]">
+                <td class="py-3 pr-6 font-medium">{c.window}</td>
+                <td class="py-3 text-[var(--text-muted)]">{c.refund}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

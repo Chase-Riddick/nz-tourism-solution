@@ -11,11 +11,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "astro build && playwright test",
+    "test": "playwright test",
     "test:harness": "playwright test",
     "photos:source": "python3 scripts/photos/source_commons.py",
     "photos:sheet": "~/.claude/tools/pdfenv/bin/python scripts/photos/contact_sheet.py",
-    "photos:build": "~/.claude/tools/pdfenv/bin/python scripts/photos/webify.py"
+    "photos:build": "~/.claude/tools/pdfenv/bin/python scripts/photos/webify.py",
+    "test:ui": "playwright test --ui"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

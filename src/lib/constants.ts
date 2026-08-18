@@ -29,3 +29,27 @@ export const SITE = {
  * rate. The site states this openly rather than hiding it.
  */
 export const MAX_GROUP = 8;
+
+/**
+ * Peak supplement on multi-day departures.
+ *
+ * Derivation: peak-season accommodation and vehicle costs rise 20-50%
+ * (docs/research/pricing-and-products.md). Multi-day tours carry accommodation
+ * so they carry a supplement; day tours return to base nightly and do not.
+ * 15% is deliberately below the underlying cost rise - the rest is absorbed.
+ */
+export const PEAK_SUPPLEMENT_PCT = 15;
+
+/**
+ * Cancellation terms.
+ * SAM-VERIFY: this is a common industry shape, not Sam's actual policy.
+ */
+export const CANCELLATION = [
+  { window: "More than 30 days before departure", refund: "Full refund, less a $50 administration fee" },
+  { window: "15-30 days before departure", refund: "50% refund" },
+  { window: "14 days or fewer", refund: "No refund" },
+  {
+    window: "Cancelled by us for weather or safety",
+    refund: "Full refund or a transfer to another date - your choice",
+  },
+] as const;

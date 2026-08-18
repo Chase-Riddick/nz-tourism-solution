@@ -1,0 +1,33 @@
+---
+import Photo from "../Photo.astro";
+import { photo } from "../../lib/photos";
+
+interface Props { ids: string[]; alt: string }
+const { ids, alt } = Astro.props;
+
+/** Credit line shown under each frame. 42 of 49 published images require
+ *  attribution as a licence condition, so it travels with the image. */
+const credit = (id: string) => {
+  const c = photo(id);
+  return `${c.author.replace(/\s+/g, " ").trim() || "Unknown"} / ${c.licence}`;
+};
+---
+<div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+  {ids.map((id, i) => (
+    <figure
+      class={`relative overflow-hidden rounded-[var(--radius-card)] ${
+        i === 0 ? "col-span-2 aspect-[16/10]" : "aspect-[4/3]"
+      }`}
+    >
+      <Photo
+        id={id}
+        alt={`${alt} — ${i + 1}`}
+        sizes="(min-width:768px) 30vw, 45vw"
+        class="h-full w-full object-cover"
+      />
+      <figcaption class="absolute right-0 bottom-0 bg-black/55 px-2 py-1 text-[10px] tracking-wide text-white/70 backdrop-blur-sm">
+        {credit(id)}
+      </figcaption>
+    </figure>
+  ))}
+</div>

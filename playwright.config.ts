@@ -37,9 +37,15 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: "npx http-server dist -p 4321 --silent -c-1",
+    // Builds before serving. Without this, `npx playwright test` runs against a
+    // stale dist/ and the suite silently lies - a guard verified that way looks
+    // green while the source it guards is already broken. Found the hard way
+    // on #5: an injected raw-key regression "passed" because dist/ predated it.
+    command: "npm run build && npx http-server dist -p 4321 --silent -c-1",
     url: "http://localhost:4321",
-    reuseExistingServer: !process.env.CI,
-    timeout: 60_000,
+    // Never reuse: a leftover server from a previous run would serve a stale
+    // dist/ and skip the rebuild above, reintroducing the exact footgun.
+    reuseExistingServer: false,
+    timeout: 120_000,
   },
 });
