@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Photo from "../components/Photo.astro";
+import { SITE } from "../lib/constants";
+
+const locale = "en" as const;
+---
+<BaseLayout locale={locale} title={SITE.name}>
+  <section class="surface-dream relative isolate flex min-h-[88svh] items-end overflow-hidden">
+    <Photo
+      id="tongariro-01"
+      alt="Red Crater on the Tongariro Alpine Crossing, with Mount Ngauruhoe rising above cloud"
+      sizes="100vw"
+      priority
+      class="absolute inset-0 -z-10 h-full w-full object-cover"
+    />
+    {/* A photograph behind a gradient wash and a headline stops being a photo
+        you evaluate and becomes texture - which is what lets a merely-good
+        frame carry a hero band. */}
+    <div class="hero-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
+
+    <div class="container-page w-full pb-16">
+      <p class="mb-3 text-xs font-semibold tracking-[0.2em] text-[var(--color-sulphur)] uppercase">
+        North Island, Aotearoa New Zealand
+      </p>
+      <h1 class="font-display max-w-4xl text-5xl leading-[1.02] font-semibold text-balance sm:text-6xl lg:text-7xl">
+        {SITE.tagline}
+      </h1>
+    </div>
+  </section>
+</BaseLayout>

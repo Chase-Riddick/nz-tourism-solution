@@ -1,0 +1,36 @@
+---
+/**
+ * The only way an image reaches a page, so three rules cannot be forgotten
+ * per-component:
+ *   1. object-position comes from the curation pass, not a default centre crop.
+ *   2. Every image carries data-photo-id, which tests/imagery.spec.ts uses to
+ *      prove everything rendered has a licence entry.
+ *   3. `sizes` is required - an unsized responsive image downloads the largest
+ *      candidate, which on a photo-led site is the whole performance budget.
+ */
+import { srcset, src, photo } from "../lib/photos";
+
+interface Props {
+  id: string;
+  alt: string;
+  sizes: string;
+  class?: string;
+  priority?: boolean;
+}
+const { id, alt, sizes, class: className = "", priority = false } = Astro.props;
+const meta = photo(id);
+const widest = meta.widths[meta.widths.length - 1];
+---
+<img
+  src={src(id)}
+  srcset={srcset(id)}
+  sizes={sizes}
+  alt={alt}
+  width={widest}
+  height={Math.round((widest * 2) / 3)}
+  loading={priority ? "eager" : "lazy"}
+  decoding={priority ? "sync" : "async"}
+  data-photo-id={id}
+  class={className}
+  style={`object-position: ${meta.focus};`}
+/>

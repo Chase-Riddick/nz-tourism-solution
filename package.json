@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "engines": { "node": ">=22.12.0" },
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -22,6 +24,7 @@
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
-    "@playwright/test": "^1.61.1"
+    "@playwright/test": "^1.61.1",
+    "http-server": "^14.1.1"
   }
 }
