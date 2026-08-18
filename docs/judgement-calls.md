@@ -39,6 +39,41 @@ That was asked, along with repo owner and visibility, because the answers change
 where every artifact lands and are not researchable. Everything else on this build
 is a research question, and was treated as one.
 
+### Course correction, 2026-08-18: the first pass was built the wrong way
+
+Recorded because it is the most important process decision on the project, and
+because the failure is instructive rather than embarrassing.
+
+The brief asked for a measured, well-engineered build: skills configured, a
+repo, issues, and a TDD Ralph loop. What actually happened was that the research
+phase ran properly and then the entire application — 33 files, 24 pages — was
+built in **one uninterrupted pass with no tests, no issues, and no remote.**
+
+The tell was in my own plan: "Playwright harness" was listed as *step 5*. Tests
+last is the exact inversion of test-first. Configuring `docs/agents/issue-tracker.md`
+and then never opening an issue is the same error in a different place.
+
+Two things fell out of it, both real:
+
+- **238 MB of full-resolution originals were committed to git history.** The
+  photography commit ran `git add -A` before `.gitignore` existed, and a later
+  `.gitignore` does not untrack what is already tracked. Caught only because the
+  pause prompted a check of the repo state. History was rewritten before any
+  push; `photo-library/` originals are regenerable via `npm run photos:source`,
+  so only the manifest and curation JSON are tracked.
+- **No test ever ran.** Not one. A build that compiles is not a build that works,
+  and "24 pages built" was reported as though it were evidence.
+
+The correction: `spike/first-pass` holds the first pass as a reference, `main`
+returns to research plus infrastructure, and every slice is re-landed behind a
+failing test through an issue. The research (markets, pricing, regulatory,
+seasons, brand) and the photography pipeline are kept — those were done
+properly, and they are the part the brief called "the job."
+
+**The general lesson, for whoever reads this next:** the research being good is
+not evidence the process was good. They are independent, and this project got
+one right and one wrong.
+
 ---
 
 ## Positioning and hosting

@@ -87,6 +87,25 @@ Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-
 
 Single-context: one `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
 
+## How this repo is built — process is not optional here
+
+Work moves in **tracer-bullet vertical slices**, one GitHub issue at a time,
+each implemented test-first.
+
+1. `/to-prd` — the PRD, filed as an issue. The destination.
+2. `/to-issues` — thin vertical slices with blocking relationships. The journey.
+3. `/tdd` per issue — strict red → green → refactor, one test at a time.
+4. Repeat until the queue is empty (the "Ralph loop").
+
+**`spike/first-pass` is a reference branch, not shippable work.** It is a
+complete first-pass build — 33 source files, 24 pages, and *zero tests* —
+produced in one uninterrupted pass with no issues and no failing test written
+first. It is kept because its design tokens, i18n structure and catalogue shape
+are worth porting, and deleted-and-re-derived would waste that.
+
+**Port from it only behind a failing test.** Copying a file across without a
+red test first defeats the entire reason it was quarantined. Never merge it.
+
 ## Development
 
 ```sh
