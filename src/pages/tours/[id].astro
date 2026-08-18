@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Photo from "../../components/Photo.astro";
 import Gallery from "../../components/blocks/Gallery.astro";
+import InquiryForm from "../../components/blocks/InquiryForm.astro";
 import { TOURS, nzd, perDay, seasonLabel, type Tour } from "../../lib/catalog";
 import { CANCELLATION, PEAK_SUPPLEMENT_PCT, MAX_GROUP } from "../../lib/constants";
 import { tourCopy, ui } from "../../lib/i18n/dictionary";
@@ -157,6 +158,14 @@ const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div class="mt-16 max-w-2xl border-t border-[var(--surface-line)] pt-12">
+        <h2 class="font-display mb-2 text-2xl font-semibold">Ask about this tour</h2>
+        <p class="mb-6 text-[var(--text-muted)]">
+          Dates, how many of you, and anything you are unsure about.
+        </p>
+        <InquiryForm preselect={tour.id} />
       </div>
     </div>
   </section>

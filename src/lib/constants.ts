@@ -110,3 +110,41 @@ export const ANALYTICS = {
   storageKey: "sn-consent",
   renewDays: 180,
 } as const;
+
+export const CONTACT = {
+  // SAM-VERIFY: every contact detail is a placeholder pattern, not a live line.
+  email: "kiaora@slownorth.example",
+  phone: { display: "+64 7 000 0000", e164: "+6470000000" },
+  /** Southern-hemisphere hours. A team of two to four is not a 24/7 desk. */
+  hours: "Mon-Sat, 8am-6pm NZST",
+  responseTime: "within one working day",
+} as const;
+
+/**
+ * ADR pattern inherited from the reference build: the enquiry path is real UI
+ * wired to nothing. Unset, the form renders in presentation mode with a
+ * graceful static success state.
+ *
+ * A real operator books through Rezdy / Bokun / Checkfront / FareHarbor. That
+ * choice is commercial - commission rates, OTA distribution, wholesaler
+ * connectivity - and it is Sam's, so the site models it as one constant rather
+ * than building an integration against a guess.
+ */
+/**
+ * Read a build-time public env var safely.
+ *
+ * `import.meta.env` exists under Astro/Vite but NOT when a Playwright spec
+ * imports this module directly in Node, which is exactly how the harness reads
+ * the catalogue. Reaching for it unguarded throws before a single test runs.
+ */
+const publicEnv = (key: string): string | null => {
+  const env = (import.meta as unknown as { env?: Record<string, string> }).env;
+  return env?.[key] ?? null;
+};
+
+export const BOOKING = {
+  provider: null as null | "rezdy" | "bokun" | "checkfront" | "fareharbor",
+  contactEndpoint: publicEnv("PUBLIC_CONTACT_ENDPOINT"),
+  depositPct: 25,       // SAM-VERIFY
+  balanceDueDays: 30,   // SAM-VERIFY
+} as const;
