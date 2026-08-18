@@ -5,6 +5,29 @@
  * content job rather than surgery. AGENTS.md rule 7.
  */
 export const enUi = {
+  places: {
+    matamata: "Matamata",
+    waitomo: "Waitomo",
+    rotorua: "Rotorua",
+    waiotapu: "Wai-O-Tapu",
+    redwoods: "Whakarewarewa Forest",
+    piha: "Piha",
+    waitakere: "Waitākere Ranges",
+    muriwai: "Muriwai",
+    waiheke: "Waiheke Island",
+    tongariro: "Tongariro National Park",
+    taupo: "Taupō",
+    hukafalls: "Huka Falls",
+    bayofislands: "Bay of Islands",
+    hokianga: "Hokianga",
+    waipoua: "Waipoua Forest",
+    capereinga: "Cape Rēinga",
+    coromandel: "Coromandel",
+    eastcape: "East Cape",
+    tolagabay: "Tolaga Bay",
+    gisborne: "Gisborne",
+    waikaremoana: "Lake Waikaremoana",
+  },
   /* ──────────────────────────  Inclusion lines  ───────────────────────── */
   includes: {
     transport: "Travel in our own vehicle, with commentary along the way",

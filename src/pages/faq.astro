@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/blocks/Hero.astro";
+import { MAX_GROUP, CANCELLATION, BOOKING, CONTACT, PEAK_SUPPLEMENT_PCT } from "../lib/constants";
+import { TOURS, nzd } from "../lib/catalog";
+
+const cheapest = Math.min(...TOURS.map((t) => t.price));
+const weatherRow = CANCELLATION.find((c) => /weather/i.test(c.window))!;
+
+const FAQ = [
+  {
+    q: "How much does it cost, and what is in the price?",
+    a: `Every price is published on the tours page — they start at ${nzd(cheapest)} per person and every one is GST inclusive. Each tour page lists exactly what is and is not included. Multi-day prices are twin share, and a single room supplement is shown where it applies. Departures between December and February carry a ${PEAK_SUPPLEMENT_PCT}% peak supplement on multi-day tours, because accommodation and vehicle costs rise sharply over summer.`,
+  },
+  {
+    q: "How big is the group?",
+    a: `A maximum of ${MAX_GROUP} guests, in one vehicle, with one guide for the whole trip. That is the entire product. It is why we cost roughly double a 16-seat coach tour per day and roughly a third of a private driver-guide.`,
+  },
+  {
+    q: "What happens if the weather cancels my tour?",
+    a: `${weatherRow.refund}. On the alpine crossings this is a normal part of the season rather than an exception — the Department of Conservation issues a formal warning in bad conditions and shuttle operators must stop running under the terms of their concession. We do not go anyway.`,
+  },
+  {
+    q: "How fit do I need to be?",
+    a: "It depends entirely on the tour, so each one states its level. Easy means short walks on formed paths with plenty of sitting down. Moderate means a few hours on your feet over some uneven ground. Active means a full day's walking with real ascent — the Tongariro Alpine Crossing is 19.4km with around 800m of climb, and it is a genuine mountain day.",
+  },
+  {
+    q: "What should I bring?",
+    a: "For day tours: layers, a rain shell, and shoes you can walk in. New Zealand weather changes fast and the forecast is a suggestion. For alpine days you will need proper hiking boots — we will send a full list once you book, and we carry the safety gear and a spare warm layer ourselves.",
+  },
+  {
+    q: "What languages do your guides speak?",
+    a: "English. We would rather say so plainly than imply more: this is a small operation and we will not promise a language we cannot actually deliver on the day. If you would prefer a German-speaking guide, ask — we will tell you honestly whether we can arrange it for your dates.",
+  },
+  {
+    q: "How do I book, and when do I pay?",
+    a: `Start with the enquiry form and we will come back ${CONTACT.responseTime}. A ${BOOKING.depositPct}% deposit confirms your place, with the balance due ${BOOKING.balanceDueDays} days before departure.`,
+  },
+  {
+    q: "Can you run a private departure, or change an itinerary?",
+    a: "Often, yes — that flexibility is most of the reason to use an operation this size. Tell us what you have in mind. Multi-day departures are set rather than daily because one vehicle and one guide only stretches so far, and New Zealand law requires rest days for a driver-guide after a given number of working hours.",
+  },
+];
+---
+<BaseLayout locale="en" title="Questions — Slow North">
+  <Hero
+    image="geothermal-04"
+    alt="Steam rising from Craters of the Moon near Taupō"
+    kicker="Questions"
+    title="The things people ask first"
+    body="If the answer you need is not here, ask us directly — you will get a person."
+  />
+
+  <section class="surface-work py-20">
+    <div class="container-page">
+      <div class="prose-measure">
+        <div class="divide-y divide-[var(--surface-line)] border-y border-[var(--surface-line)]">
+          {FAQ.map((item) => (
+            <details class="group py-5">
+              <summary class="flex cursor-pointer list-none items-start justify-between gap-4 font-medium">
+                <span>{item.q}</span>
+                <svg class="mt-1 shrink-0 transition group-open:rotate-45" width="18" height="18"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+                </svg>
+              </summary>
+              <p class="mt-3 text-[var(--text-muted)]">{item.a}</p>
+            </details>
+          ))}
+        </div>
+
+        <p class="mt-10">
+          <a href="/contact" class="font-semibold text-[var(--interactive)] underline underline-offset-4">
+            Ask us something else →
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

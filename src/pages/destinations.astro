@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/blocks/Hero.astro";
+import { TOURS, seasonLabel } from "../lib/catalog";
+import { tourCopy, ui } from "../lib/i18n/dictionary";
+
+const u = ui("en");
+const places = [...new Set(TOURS.flatMap((t) => t.places))];
+
+/** Derived, so a place can never claim a tour that no longer visits it. */
+const toursFor = (key: string) => TOURS.filter((t) => t.places.includes(key));
+---
+<BaseLayout locale="en" title="Where we go — Slow North">
+  <Hero
+    image="coast-11"
+    alt="The Hokianga Harbour with the north-head dunes across the water"
+    kicker="Where we go"
+    title="The places we can actually reach"
+    body="Not a national highlights list — this is what a small operation can genuinely get to on a one to five day loop from Auckland or Rotorua."
+  />
+
+  <section class="surface-work py-20">
+    <div class="container-page">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {places.map((key, i) => {
+          const tours = toursFor(key);
+          return (
+            <article data-place={key}
+                     class="rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-raised)] p-5"
+                     data-reveal style={`--reveal-delay:${(i % 6) * 60}ms`}>
+              <h2 class="font-display text-lg font-semibold">
+                {u.places[key as keyof typeof u.places] ?? key}
+              </h2>
+              <ul class="mt-3 space-y-1.5 text-sm">
+                {tours.map((t) => (
+                  <li data-place-tour>
+                    <a class="text-[var(--text-muted)] underline-offset-2 hover:text-[var(--interactive)] hover:underline"
+                       href={`/tours/${t.id}`}>
+                      {tourCopy("en", t.id).name}
+                    </a>
+                    <span class="text-xs text-[var(--text-muted)]"> · {seasonLabel(t)}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
