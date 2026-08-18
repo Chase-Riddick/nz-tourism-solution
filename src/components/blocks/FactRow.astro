@@ -1,0 +1,40 @@
+---
+import { nzd, type Tour } from "../../lib/catalog";
+import { t } from "../../lib/i18n/dictionary";
+import { SEASONS } from "../../lib/constants";
+import type { Locale } from "../../lib/i18n";
+
+interface Props { tour: Tour; locale: Locale }
+const { tour, locale } = Astro.props;
+const d = t(locale);
+
+const MONTH_SHORT = locale === "de"
+  ? ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"]
+  : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+const seasonText = tour.months.length === 12
+  ? d.ui.allYear
+  : `${MONTH_SHORT[tour.months[0] - 1]}–${MONTH_SHORT[tour.months[tour.months.length - 1] - 1]}`;
+
+const facts = [
+  { label: d.ui.days, value: tour.days === 1 ? `1 (${tour.hours} ${d.ui.hours})` : String(tour.days) },
+  { label: d.ui.maxGroup.split(" ")[0], value: String(tour.maxGroup) },
+  { label: d.ui.departsFrom, value: tour.base === "auckland" ? "Auckland" : "Rotorua" },
+  { label: d.ui.season, value: seasonText },
+  { label: d.ui.minAge, value: String(tour.minAge) },
+];
+---
+<div class="grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-line)] sm:grid-cols-3 lg:grid-cols-6">
+  {facts.map((f) => (
+    <div class="bg-[var(--surface-raised)] p-4">
+      <dt class="text-xs tracking-wide text-[var(--text-muted)] uppercase">{f.label}</dt>
+      <dd class="mt-1 font-display text-lg font-semibold">{f.value}</dd>
+    </div>
+  ))}
+  {/* The price tile keeps the single accent. This is where visitors come
+      specifically to ask what it costs, so it is answered here plainly. */}
+  <div class="bg-[var(--surface-raised)] p-4">
+    <dt class="text-xs tracking-wide text-[var(--text-muted)] uppercase">{d.ui.from}</dt>
+    <dd class="mt-1 font-display text-lg font-semibold text-[var(--accent)]">{nzd(tour.price)}</dd>
+  </div>
+</div>

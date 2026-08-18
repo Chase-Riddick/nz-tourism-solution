@@ -1,0 +1,26 @@
+---
+import { t } from "../../lib/i18n/dictionary";
+import { localePath, type Locale } from "../../lib/i18n";
+
+interface Props { locale: Locale; title?: string; body?: string }
+const { locale, title, body } = Astro.props;
+const d = t(locale);
+---
+<section class="surface-dream border-y border-[var(--color-ground-line)] py-20">
+  <div class="container-page">
+    <div class="prose-measure">
+      <h2 class="font-display text-3xl font-semibold text-balance sm:text-4xl">{title ?? d.home.ctaTitle}</h2>
+      <p class="mt-4 text-lg text-[var(--text-muted)]">{body ?? d.home.ctaBody}</p>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href={localePath(locale, "contact")}
+         class="rounded-full bg-[var(--color-sulphur)] px-7 py-3.5 font-semibold text-[var(--color-ground-deep)] transition hover:bg-[var(--color-sulphur-bright)]">
+        {d.home.ctaButton}
+      </a>
+      <a href={localePath(locale, "tours")}
+         class="rounded-full border border-white/20 px-7 py-3.5 font-semibold text-[var(--color-ink-on-dark)] transition hover:border-[var(--color-lake)] hover:text-[var(--color-lake)]">
+        {d.ui.backToTours}
+      </a>
+    </div>
+  </div>
+</section>

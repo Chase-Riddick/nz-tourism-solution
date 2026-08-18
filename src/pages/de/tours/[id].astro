@@ -1,0 +1,10 @@
+---
+import TourDetail from "../../_pages/TourDetail.astro";
+import { TOURS } from "../../../lib/catalog";
+
+export function getStaticPaths() {
+  return TOURS.map((tour) => ({ params: { id: tour.id }, props: { tour } }));
+}
+const { tour } = Astro.props;
+---
+<TourDetail locale="de" tour={tour} />

@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/blocks/Hero.astro";
+import Section from "../../components/blocks/Section.astro";
+import TourCard from "../../components/blocks/TourCard.astro";
+import CtaBand from "../../components/blocks/CtaBand.astro";
+import { t, tourCopy } from "../../lib/i18n/dictionary";
+import { localePath, type Locale } from "../../lib/i18n";
+import { dayTours, multiDayTours, nzd, perDay } from "../../lib/catalog";
+import { MAX_GROUP, PEAK_SUPPLEMENT_PCT } from "../../lib/constants";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const d = t(locale);
+---
+<BaseLayout locale={locale} title={d.toursIndex.metaTitle} description={d.toursIndex.metaDescription} path="tours">
+  <Hero image="coromandel-01" alt="Te Hoho Rock seen through the Cathedral Cove arch"
+        kicker={d.nav.tours} title={d.toursIndex.title} body={d.toursIndex.lede} />
+
+  <Section surface="work" title={d.toursIndex.dayToursTitle} lede={d.toursIndex.dayToursBody}>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {dayTours().map((tour) => <TourCard tour={tour} locale={locale} />)}
+    </div>
+  </Section>
+
+  <Section title={d.toursIndex.multiDayTitle} lede={d.toursIndex.multiDayBody}>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {multiDayTours().map((tour) => <TourCard tour={tour} locale={locale} />)}
+    </div>
+  </Section>
+
+  {/* The price argument, made openly. Hiding it would invite the comparison
+      anyway; making it is the more persuasive move. */}
+  <Section surface="work" tight title={d.toursIndex.comparePrice}>
+    <div class="prose-measure text-lg">
+      <p>{d.toursIndex.comparePriceBody}</p>
+    </div>
+    <div class="mt-8 overflow-x-auto">
+      <table class="w-full min-w-[38rem] border-collapse text-left text-sm">
+        <thead>
+          <tr class="border-b border-[var(--surface-line)]">
+            <th class="py-3 pr-4 font-semibold">{d.nav.tours}</th>
+            <th class="py-3 pr-4 font-semibold">{d.ui.days}</th>
+            <th class="py-3 pr-4 font-semibold">{d.ui.from}</th>
+            <th class="py-3 pr-4 font-semibold">{d.ui.perPersonPerDay}</th>
+            <th class="py-3 font-semibold">{d.ui.season}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[...dayTours(), ...multiDayTours()].map((tr) => (
+            <tr class="border-b border-[var(--surface-line)]/60">
+              <td class="py-3 pr-4">
+                <a class="font-medium underline underline-offset-2 hover:text-[var(--interactive)]"
+                   href={localePath(locale, `tours/${tr.id}`)}>{tourCopy(locale, tr.id).name}</a>
+              </td>
+              <td class="py-3 pr-4">{tr.days}</td>
+              <td class="py-3 pr-4 font-semibold">{nzd(tr.price)}</td>
+              <td class="py-3 pr-4">{nzd(perDay(tr))}</td>
+              <td class="py-3">{tr.months.length === 12 ? d.ui.allYear : d.ui.seasonalOnly}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-6 text-sm text-[var(--text-muted)]">
+      {d.ui.gstIncluded} · {d.ui.maxGroup} · +{PEAK_SUPPLEMENT_PCT}% Dec–Feb (multi-day only)
+    </p>
+  </Section>
+
+  <CtaBand locale={locale} />
+</BaseLayout>

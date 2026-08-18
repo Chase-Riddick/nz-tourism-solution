@@ -1,0 +1,46 @@
+---
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
+import { LOCALE_TAGS, type Locale } from "../lib/i18n";
+import { t } from "../lib/i18n/dictionary";
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** Locale-less logical path, for hreflang and the language switcher. */
+  path: string;
+  image?: string;
+}
+
+const { locale, title, description, path, image } = Astro.props;
+const d = t(locale);
+---
+<!doctype html>
+<html lang={LOCALE_TAGS[locale]} class="scroll-pt-24">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0c1316" />
+
+    {/* Self-hosted, so no third-party font request. Preload only the two files
+        every page needs; latin-ext loads on demand for macrons and umlauts. */}
+    <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <SEO title={title} description={description} locale={locale} path={path} image={image} />
+    <slot name="head" />
+  </head>
+  <body class="min-h-dvh bg-[var(--color-ground)] antialiased">
+    <Header locale={locale} path={Astro.url.pathname} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <ConsentBanner locale={locale} />
+  </body>
+</html>

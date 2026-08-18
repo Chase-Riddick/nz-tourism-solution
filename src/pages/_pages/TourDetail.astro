@@ -1,0 +1,174 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/blocks/Hero.astro";
+import Section from "../../components/blocks/Section.astro";
+import FactRow from "../../components/blocks/FactRow.astro";
+import Gallery from "../../components/blocks/Gallery.astro";
+import TourCard from "../../components/blocks/TourCard.astro";
+import InquiryForm from "../../components/blocks/InquiryForm.astro";
+import { t, tourCopy } from "../../lib/i18n/dictionary";
+import { localePath, type Locale } from "../../lib/i18n";
+import { nzd, perDay, byRank, type Tour } from "../../lib/catalog";
+import { CANCELLATION, PEAK_SUPPLEMENT_PCT, SITE } from "../../lib/constants";
+
+interface Props { locale: Locale; tour: Tour }
+const { locale, tour } = Astro.props;
+const d = t(locale);
+const copy = tourCopy(locale, tour.id);
+const related = byRank().filter((x) => x.id !== tour.id).slice(0, 3);
+
+const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+---
+<BaseLayout
+  locale={locale}
+  title={`${copy.name} — ${SITE.name}`}
+  description={copy.tagline}
+  path={`tours/${tour.id}`}
+  image={`/photos/${tour.hero}-1600.webp`}
+>
+  <Hero image={tour.hero} alt={copy.name} kicker={`${tour.days === 1 ? `${tour.hours} ${d.ui.hours}` : `${tour.days} ${d.ui.days}`} · ${d.ui.maxGroup}`}
+        title={copy.name} body={copy.tagline} />
+
+  <Section surface="work" tight>
+    <FactRow tour={tour} locale={locale} />
+
+    {tour.weatherGated && (
+      <p class="mt-6 rounded-[var(--radius-card)] border border-[var(--color-sulphur)]/40 bg-[var(--color-sulphur)]/10 p-4 text-sm">
+        <strong>{d.ui.weatherDependent}.</strong>
+        {" "}
+        {locale === "de"
+          ? "Diese Tour findet nur bei sicheren Bedingungen statt. Sagen wir ab, erhalten Sie einen Ersatztermin oder Ihr Geld vollständig zurück."
+          : "This tour only runs in safe conditions. If we cancel, you get another date or a full refund — your choice."}
+      </p>
+    )}
+
+    <div class="mt-12 grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+      <div>
+        <div class="prose-measure text-lg leading-relaxed">
+          {copy.summary.split("\n\n").map((p) => <p class="mb-4">{p}</p>)}
+        </div>
+
+        <h2 class="font-display mt-12 mb-5 text-2xl font-semibold">{d.ui.highlights}</h2>
+        <ul class="space-y-3">
+          {copy.highlights.map((h) => (
+            <li class="flex gap-3">
+              <span class="mt-2 size-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>{h}</span>
+            </li>
+          ))}
+        </ul>
+
+        <h2 class="font-display mt-12 mb-5 text-2xl font-semibold">
+          {tour.days === 1 ? d.ui.itinerary : d.ui.itineraryMulti}
+        </h2>
+        <ol class="space-y-8">
+          {copy.itinerary.map((day, i) => (
+            <li class="border-l-2 border-[var(--surface-line)] pl-5">
+              <p class="text-xs font-semibold tracking-[0.15em] text-[var(--accent)] uppercase">
+                {tour.days === 1 ? "" : `${d.ui.day} ${i + 1}`}
+              </p>
+              <h3 class="font-display mt-1 text-xl font-semibold">{day.title}</h3>
+              <div class="prose-measure mt-3 space-y-3 text-[var(--text-muted)]">
+                {day.body.split("\n\n").map((p) => <p set:html={md(p)} />)}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {/* Sticky price panel: the one thing a comparison shopper wants pinned. */}
+      <aside class="lg:sticky lg:top-28">
+        <div class="rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-raised)] p-6">
+          <p class="text-sm text-[var(--text-muted)]">{d.ui.from}</p>
+          <p class="font-display text-4xl font-semibold">{nzd(tour.price)}</p>
+          <p class="mt-1 text-sm text-[var(--text-muted)]">
+            {d.ui.perPerson} · {d.ui.gstIncluded}
+          </p>
+          {tour.days > 1 && (
+            <p class="mt-1 text-sm text-[var(--text-muted)]">{nzd(perDay(tour))} {d.ui.perPersonPerDay}</p>
+          )}
+
+          <dl class="mt-5 space-y-2 border-t border-[var(--surface-line)] pt-5 text-sm">
+            {tour.priceChild && (
+              <div class="flex justify-between gap-4">
+                <dt class="text-[var(--text-muted)]">{d.ui.childPrice}</dt>
+                <dd class="font-medium">{nzd(tour.priceChild)}</dd>
+              </div>
+            )}
+            {tour.singleSupplement && (
+              <div class="flex justify-between gap-4">
+                <dt class="text-[var(--text-muted)]">{d.ui.singleSupp}</dt>
+                <dd class="font-medium">{nzd(tour.singleSupplement)}</dd>
+              </div>
+            )}
+            {tour.days > 1 && (
+              <div class="flex justify-between gap-4">
+                <dt class="text-[var(--text-muted)]">Dec–Feb</dt>
+                <dd class="font-medium">+{PEAK_SUPPLEMENT_PCT}%</dd>
+              </div>
+            )}
+            <div class="flex justify-between gap-4">
+              <dt class="text-[var(--text-muted)]">{d.ui.fitness}</dt>
+              <dd class="max-w-[60%] text-right font-medium">{d.fitnessLevels[tour.fitness].split("—")[0].trim()}</dd>
+            </div>
+          </dl>
+
+          <a href="#inquiry"
+             class="mt-6 block rounded-full bg-[var(--color-sulphur)] px-6 py-3.5 text-center font-semibold text-[var(--color-ground-deep)] transition hover:bg-[var(--color-sulphur-bright)]">
+            {d.ui.enquire}
+          </a>
+        </div>
+
+        <div class="mt-6 rounded-[var(--radius-card)] border border-[var(--surface-line)] p-6">
+          <h3 class="font-display text-lg font-semibold">{d.ui.included}</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            {tour.includes.map((k) => (
+              <li class="flex gap-2.5">
+                <span class="mt-1 text-[var(--interactive)]">✓</span>
+                <span>{d.includes[k as keyof typeof d.includes]}</span>
+              </li>
+            ))}
+          </ul>
+          <h3 class="font-display mt-6 text-lg font-semibold">{d.ui.notIncluded}</h3>
+          <ul class="mt-3 space-y-2 text-sm text-[var(--text-muted)]">
+            {tour.excludes.map((k) => (
+              <li class="flex gap-2.5">
+                <span class="mt-1">–</span>
+                <span>{d.includes[k as keyof typeof d.includes]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </Section>
+
+  <Section title={d.ui.gallery}>
+    <Gallery ids={tour.gallery} alt={copy.name} />
+  </Section>
+
+  <Section surface="work" title={d.footer.terms}>
+    <div class="overflow-x-auto">
+      <table class="w-full min-w-[34rem] border-collapse text-left text-sm">
+        <tbody>
+          {CANCELLATION.map((c) => (
+            <tr class="border-b border-[var(--surface-line)]">
+              <td class="py-3 pr-6 font-medium">{c.window}</td>
+              <td class="py-3 text-[var(--text-muted)]">{c.refund}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-12 max-w-2xl">
+      <h2 class="font-display mb-5 text-2xl font-semibold">{d.ui.enquire}</h2>
+      <InquiryForm locale={locale} preselect={tour.id} />
+    </div>
+  </Section>
+
+  <Section title={d.ui.relatedTours}>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {related.map((r) => <TourCard tour={r} locale={locale} />)}
+    </div>
+  </Section>
+</BaseLayout>

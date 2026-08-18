@@ -1,0 +1,47 @@
+---
+import Photo from "../Photo.astro";
+import { nzd, perDay, type Tour } from "../../lib/catalog";
+import { t, tourCopy } from "../../lib/i18n/dictionary";
+import { localePath, type Locale } from "../../lib/i18n";
+
+interface Props { tour: Tour; locale: Locale }
+const { tour, locale } = Astro.props;
+const d = t(locale);
+const copy = tourCopy(locale, tour.id);
+const href = localePath(locale, `tours/${tour.id}`);
+const seasonal = tour.months.length < 12;
+---
+<article class="group relative flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-raised)] transition hover:border-[var(--color-lake)]/40">
+  <div class="relative aspect-[4/3] overflow-hidden">
+    <Photo id={tour.hero} alt={copy.name} sizes="(min-width:1024px) 30vw, (min-width:640px) 45vw, 90vw"
+           class="h-full w-full transition duration-500 group-hover:scale-[1.03]" />
+    <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+      <span class="rounded-full bg-[var(--color-ground-deep)]/80 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
+        {tour.days === 1 ? `${tour.hours} ${d.ui.hours}` : `${tour.days} ${d.ui.days}`}
+      </span>
+      {seasonal && (
+        <span class="rounded-full bg-[var(--color-sulphur)]/90 px-2.5 py-1 text-[11px] font-semibold text-[var(--color-ground-deep)]">
+          {d.ui.seasonalOnly}
+        </span>
+      )}
+    </div>
+  </div>
+
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="font-display text-xl font-semibold">
+      <a href={href} class="after:absolute after:inset-0 hover:text-[var(--interactive)]">{copy.name}</a>
+    </h3>
+    <p class="mt-2 text-sm text-[var(--text-muted)]">{copy.tagline}</p>
+
+    <div class="mt-5 flex items-end justify-between border-t border-[var(--surface-line)] pt-4">
+      <div>
+        <p class="text-xs text-[var(--text-muted)]">{d.ui.from}</p>
+        <p class="font-display text-2xl font-semibold">{nzd(tour.price)}</p>
+        <p class="text-xs text-[var(--text-muted)]">
+          {d.ui.perPerson}{tour.days > 1 ? ` · ${nzd(perDay(tour))} ${d.ui.perPersonPerDay}` : ""}
+        </p>
+      </div>
+      <p class="text-right text-xs text-[var(--text-muted)]">{d.ui.maxGroup}</p>
+    </div>
+  </div>
+</article>

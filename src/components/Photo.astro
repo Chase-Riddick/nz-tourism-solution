@@ -1,0 +1,53 @@
+---
+/**
+ * The only way an image reaches a page.
+ *
+ * Everything goes through here so that three rules cannot be forgotten
+ * per-component:
+ *   1. `object-position` comes from the curation pass, not from a default
+ *      centre crop. Landscapes with a low horizon lose their subject when
+ *      cropped from the middle.
+ *   2. Every image carries a `data-photo-id`, which tests/imagery.spec.ts uses
+ *      to assert that everything rendered has a licence entry.
+ *   3. `sizes` is required — an unsized responsive image downloads the largest
+ *      candidate, which on a photo-led site is the whole performance budget.
+ */
+import { srcset, src, photo, creditLine } from "../lib/photos";
+
+interface Props {
+  id: string;
+  alt: string;
+  sizes: string;
+  class?: string;
+  /** First contentful image on the page — skips lazy loading. */
+  priority?: boolean;
+  /** Render the credit as a visible caption (used in galleries). */
+  showCredit?: boolean;
+}
+
+const { id, alt, sizes, class: className = "", priority = false, showCredit = false } = Astro.props;
+const meta = photo(id);
+---
+
+<figure class={`relative overflow-hidden ${className}`}>
+  <img
+    src={src(id)}
+    srcset={srcset(id)}
+    sizes={sizes}
+    alt={alt}
+    width={meta.widths[meta.widths.length - 1]}
+    height={Math.round((meta.widths[meta.widths.length - 1] * 2) / 3)}
+    loading={priority ? "eager" : "lazy"}
+    decoding={priority ? "sync" : "async"}
+    fetchpriority={priority ? "high" : "auto"}
+    data-photo-id={id}
+    data-placeholder="true"
+    class="h-full w-full object-cover"
+    style={`object-position: ${meta.focus};`}
+  />
+  {showCredit && (
+    <figcaption class="absolute right-0 bottom-0 bg-black/55 px-2 py-1 text-[10px] tracking-wide text-white/70 backdrop-blur-sm">
+      {creditLine(id)}
+    </figcaption>
+  )}
+</figure>

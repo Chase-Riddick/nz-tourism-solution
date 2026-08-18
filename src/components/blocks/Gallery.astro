@@ -1,0 +1,18 @@
+---
+import Photo from "../Photo.astro";
+
+interface Props { ids: string[]; alt: string; title?: string }
+const { ids, alt, title } = Astro.props;
+---
+{title && <h2 class="font-display mb-6 text-2xl font-semibold">{title}</h2>}
+<div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+  {ids.map((id, i) => (
+    <Photo
+      id={id}
+      alt={`${alt} — ${i + 1}`}
+      showCredit
+      sizes="(min-width:768px) 30vw, 45vw"
+      class={`overflow-hidden rounded-[var(--radius-card)] ${i === 0 ? "col-span-2 aspect-[16/10] md:col-span-2" : "aspect-[4/3]"}`}
+    />
+  ))}
+</div>

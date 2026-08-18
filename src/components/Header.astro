@@ -1,0 +1,115 @@
+---
+import { SITE } from "../lib/constants";
+import { t } from "../lib/i18n/dictionary";
+import { localePath, stripLocale, LOCALES, LOCALE_NAMES, type Locale } from "../lib/i18n";
+
+interface Props { locale: Locale; path: string }
+const { locale, path } = Astro.props;
+const d = t(locale);
+
+const links = [
+  { href: localePath(locale, "tours"), label: d.nav.tours },
+  { href: localePath(locale, "destinations"), label: d.nav.destinations },
+  { href: localePath(locale, "about"), label: d.nav.about },
+  { href: localePath(locale, "safety"), label: d.nav.safety },
+  { href: localePath(locale, "faq"), label: d.nav.faq },
+];
+const here = stripLocale(path);
+---
+
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-3 focus:rounded focus:bg-[var(--color-sulphur)] focus:px-4 focus:py-2 focus:text-black">
+  {d.ui.skipToContent}
+</a>
+
+<header class="absolute inset-x-0 top-0 z-40" data-header>
+  <div class="container-page flex items-center justify-between gap-6 py-5">
+    <a href={localePath(locale)} class="group flex items-baseline gap-2" aria-label={SITE.name}>
+      <span class="font-display text-xl font-semibold tracking-tight text-[var(--color-ink-on-dark)]">
+        Slow<span class="text-[var(--color-sulphur)]">North</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-7 lg:flex" aria-label="Primary">
+      {links.map((l) => (
+        <a href={l.href}
+           aria-current={here === stripLocale(l.href) ? "page" : undefined}
+           class="text-sm text-[var(--color-ink-on-dark)]/85 transition hover:text-[var(--color-lake)] aria-[current=page]:text-[var(--color-lake)]">
+          {l.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <div class="hidden items-center gap-1 text-xs sm:flex" role="group" aria-label={d.ui.languageLabel}>
+        {LOCALES.map((l, i) => (
+          <>
+            {i > 0 && <span class="text-white/25">/</span>}
+            <a href={localePath(l, here)}
+               hreflang={l}
+               aria-current={l === locale ? "true" : undefined}
+               class="px-1 text-[var(--color-ink-on-dark)]/60 transition hover:text-[var(--color-lake)] aria-[current=true]:text-[var(--color-ink-on-dark)] aria-[current=true]:font-semibold">
+              {LOCALE_NAMES[l]}
+            </a>
+          </>
+        ))}
+      </div>
+
+      <a href={localePath(locale, "contact")}
+         class="hidden rounded-full bg-[var(--color-sulphur)] px-4 py-2 text-sm font-semibold text-[var(--color-ground-deep)] transition hover:bg-[var(--color-sulphur-bright)] sm:inline-block">
+        {d.ui.enquireShort}
+      </a>
+
+      <button type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav"
+              class="rounded-md p-2 text-[var(--color-ink-on-dark)] lg:hidden">
+        <span class="sr-only">{d.ui.menu}</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-nav" hidden class="surface-dream border-t border-[var(--color-ground-line)] lg:hidden">
+    <nav class="container-page flex flex-col py-4" aria-label="Primary">
+      {links.map((l) => (
+        <a href={l.href} class="border-b border-[var(--color-ground-line)] py-3 text-[var(--color-ink-on-dark)]">{l.label}</a>
+      ))}
+      <a href={localePath(locale, "contact")} class="py-3 font-semibold text-[var(--color-sulphur)]">{d.nav.contact}</a>
+      <div class="flex gap-3 pt-3 text-sm">
+        {LOCALES.map((l) => (
+          <a href={localePath(l, here)} hreflang={l}
+             class={l === locale ? "font-semibold text-[var(--color-ink-on-dark)]" : "text-[var(--color-ink-on-dark)]/60"}>
+            {LOCALE_NAMES[l]}
+          </a>
+        ))}
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  (function () {
+    const btn = document.querySelector("[data-menu-toggle]");
+    const nav = document.getElementById("mobile-nav");
+    if (!btn || !nav) return;
+    btn.addEventListener("click", function () {
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      nav.hidden = open;
+    });
+    // Header sits over the hero. Once past it, give it a ground so links stay legible.
+    const header = document.querySelector("[data-header]");
+    if (header) {
+      const onScroll = function () {
+        const past = window.scrollY > 60;
+        header.classList.toggle("bg-[var(--color-ground)]/92", past);
+        header.classList.toggle("backdrop-blur-md", past);
+        header.classList.toggle("fixed", past);
+        header.classList.toggle("absolute", !past);
+        header.classList.toggle("shadow-lg", past);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+  })();
+</script>

@@ -1,0 +1,29 @@
+---
+/**
+ * A page band. `surface` is the only place the dream/work split is decided —
+ * components inside read tokens and never hardcode a colour, so the same card
+ * works on either ground.
+ */
+interface Props {
+  surface?: "dream" | "work";
+  kicker?: string;
+  title?: string;
+  lede?: string;
+  id?: string;
+  class?: string;
+  tight?: boolean;
+}
+const { surface = "dream", kicker, title, lede, id, class: className = "", tight = false } = Astro.props;
+---
+<section id={id} class={`surface-${surface} ${tight ? "py-14" : "py-20 md:py-28"} ${className}`}>
+  <div class="container-page">
+    {(kicker || title || lede) && (
+      <header class="prose-measure mb-12">
+        {kicker && <p class="mb-3 text-xs font-semibold tracking-[0.2em] text-[var(--accent)] uppercase">{kicker}</p>}
+        {title && <h2 class="font-display text-3xl font-semibold text-balance sm:text-4xl">{title}</h2>}
+        {lede && <p class="mt-4 text-lg text-[var(--text-muted)]">{lede}</p>}
+      </header>
+    )}
+    <slot />
+  </div>
+</section>

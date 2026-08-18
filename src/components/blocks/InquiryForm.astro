@@ -1,0 +1,126 @@
+---
+/**
+ * Enquiry form. Presentation mode when BOOKING.contactEndpoint is unset —
+ * real UI, graceful static success state, no endpoint.
+ *
+ * Bot defence is a honeypot plus (when an endpoint is chosen) that service's
+ * own captcha. Deliberately no time-trap: a "submitted too fast = bot" rule
+ * silently drops real leads on a false positive, and one lost enquiry costs
+ * more than deleting junk.
+ */
+import { BOOKING, CONTACT } from "../../lib/constants";
+import { TOURS } from "../../lib/catalog";
+import { t, tourCopy } from "../../lib/i18n/dictionary";
+import type { Locale } from "../../lib/i18n";
+
+interface Props { locale: Locale; preselect?: string }
+const { locale, preselect } = Astro.props;
+const d = t(locale);
+const live = Boolean(BOOKING.contactEndpoint);
+const field = "w-full rounded-lg border border-[var(--surface-line)] bg-[var(--surface-raised)] px-4 py-3 text-[var(--text)] outline-none focus:border-[var(--interactive)]";
+const label = "block text-sm font-medium mb-1.5";
+---
+<form
+  id="inquiry"
+  class="space-y-5"
+  method={live ? "POST" : undefined}
+  action={live ? BOOKING.contactEndpoint! : undefined}
+  data-inquiry-form
+  data-live={live ? "true" : "false"}
+>
+  {!live && (
+    <p class="rounded-lg border border-[var(--color-sulphur)]/40 bg-[var(--color-sulphur)]/10 px-4 py-3 text-sm">
+      {d.contact.formPresentation}
+    </p>
+  )}
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label class={label} for="f-name">{d.contact.formName}</label>
+      <input class={field} id="f-name" name="name" type="text" required autocomplete="name" />
+    </div>
+    <div>
+      <label class={label} for="f-email">{d.contact.formEmail}</label>
+      <input class={field} id="f-email" name="email" type="email" required autocomplete="email" />
+    </div>
+  </div>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label class={label} for="f-phone">{d.contact.formPhone}</label>
+      <input class={field} id="f-phone" name="phone" type="tel" autocomplete="tel" />
+    </div>
+    <div>
+      <label class={label} for="f-group">{d.contact.formGroup}</label>
+      <input class={field} id="f-group" name="group" type="number" min="1" max="8" />
+    </div>
+  </div>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label class={label} for="f-tour">{d.contact.formTour}</label>
+      <select class={field} id="f-tour" name="tour">
+        <option value="">{d.contact.formTourAny}</option>
+        {TOURS.map((tr) => (
+          <option value={tr.id} selected={tr.id === preselect}>{tourCopy(locale, tr.id).name}</option>
+        ))}
+      </select>
+    </div>
+    <div>
+      <label class={label} for="f-dates">{d.contact.formDates}</label>
+      <input class={field} id="f-dates" name="dates" type="text" placeholder="e.g. March 2027" />
+    </div>
+  </div>
+
+  <div>
+    <label class={label} for="f-message">{d.contact.formMessage}</label>
+    <textarea class={field} id="f-message" name="message" rows="5"></textarea>
+  </div>
+
+  {/* Honeypot. Off-screen rather than display:none — some bots skip
+      display-hidden fields. aria-hidden + tabindex keep it away from screen
+      readers and keyboard users; the name is one no password manager fills. */}
+  <div class="absolute -left-[9999px]" aria-hidden="true">
+    <label for="f-gotcha">Leave this empty</label>
+    <input id="f-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <button type="submit"
+          class="rounded-full bg-[var(--color-sulphur)] px-7 py-3.5 font-semibold text-[var(--color-ground-deep)] transition hover:bg-[var(--color-sulphur-bright)]">
+    {d.contact.formSubmit}
+  </button>
+
+  <p class="text-sm text-[var(--text-muted)]">{d.contact.responseNote}</p>
+</form>
+
+<div id="inquiry-success" hidden class="rounded-[var(--radius-card)] border border-[var(--interactive)]/40 bg-[var(--interactive)]/10 p-6">
+  <p class="font-display text-xl font-semibold">{d.contact.formSuccess}</p>
+  <p class="mt-2 text-[var(--text-muted)]">{d.contact.formSuccessBody}</p>
+  {/* Address read-back: catches the one thing double opt-in would have caught
+      (a typo'd address) without any of its backscatter risk. */}
+  <p class="mt-3 text-sm text-[var(--text-muted)]">
+    <span data-readback-label>—</span> <strong data-readback class="text-[var(--text)]"></strong>
+  </p>
+  <p class="mt-4 text-sm text-[var(--text-muted)]">{CONTACT.email}</p>
+</div>
+
+<script is:inline>
+  (function () {
+    const form = document.querySelector("[data-inquiry-form]");
+    const ok = document.getElementById("inquiry-success");
+    if (!form || !ok) return;
+    form.addEventListener("submit", function (e) {
+      const honey = form.querySelector('[name="_gotcha"]');
+      // A bot told it failed simply retries, so show success either way.
+      if (honey && honey.value) { e.preventDefault(); form.hidden = true; ok.hidden = false; return; }
+      if (form.getAttribute("data-live") === "true") return;   // real POST
+      e.preventDefault();
+      const email = form.querySelector('[name="email"]');
+      const rb = ok.querySelector("[data-readback]");
+      if (rb && email) rb.textContent = email.value;
+      form.hidden = true;
+      ok.hidden = false;
+      ok.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  })();
+</script>
