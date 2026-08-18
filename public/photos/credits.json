@@ -1,0 +1,756 @@
+{
+  "auckland-01": {
+    "title": "Lion Rock, from North Piha.jpg",
+    "author": "Avenue",
+    "licence": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lion_Rock,_from_North_Piha.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 60%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "auckland-12": {
+    "title": "Bull kelp (Durvillaea antarctica) is flung about by a wave breaking at The Gap, Piha.jpg",
+    "author": "Avenue",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bull_kelp_(Durvillaea_antarctica)_is_flung_about_by_a_wave_breaking_at_The_Gap,_Piha.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "auckland-13": {
+    "title": "Unusual wave at the Gap.jpg",
+    "author": "Avenue",
+    "licence": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Unusual_wave_at_the_Gap.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 55%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "auckland-14": {
+    "title": "Ice plant (Carpobrotus edulis) in Muriwai sand dunes IMG 102 1378.JPG",
+    "author": "Avenue",
+    "licence": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ice_plant_(Carpobrotus_edulis)_in_Muriwai_sand_dunes_IMG_102_1378.JPG",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "texture",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "bay-of-islands-01": {
+    "title": "Pier, Russell, Northland 20100301 1.jpg",
+    "author": "DXR",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pier,_Russell,_Northland_20100301_1.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "bay-of-islands-02": {
+    "title": "00 2829 Bay of Islands - New Zealand.jpg",
+    "author": "W. Bulach",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:00_2829_Bay_of_Islands_-_New_Zealand.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "bay-of-islands-03": {
+    "title": "00 1840 Bay of Islands - in New Zealand.jpg",
+    "author": "W. Bulach",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:00_1840_Bay_of_Islands_-_in_New_Zealand.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 55%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "bay-of-islands-04": {
+    "title": "00 1776 Bay of Islands, New Zealand.jpg",
+    "author": "W. Bulach",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:00_1776_Bay_of_Islands,_New_Zealand.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 55%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "bay-of-islands-05": {
+    "title": "Sailboats, Bay of Islands, 2013 (02).jpg",
+    "author": "Bahnfrend",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Sailboats,_Bay_of_Islands,_2013_(02).jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "coast-01": {
+    "title": "Pakiri Beach Northland New Zealand (51083264558).jpg",
+    "author": "Bernard Spragg. NZ from Christchurch, New Zealand",
+    "licence": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Pakiri_Beach_Northland_New_Zealand_(51083264558).jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 60%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "coast-05": {
+    "title": "Ninety Mile Beach at Hukatere2.JPG",
+    "author": "User:Gadfium",
+    "licence": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Ninety_Mile_Beach_at_Hukatere2.JPG",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 55%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "coast-11": {
+    "title": "Hokianga Harbour, 2016-01-22.jpg",
+    "author": "Szilas",
+    "licence": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Hokianga_Harbour,_2016-01-22.jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 55%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "coast-12": {
+    "title": "Hokianga Harbour (panorama).jpg",
+    "author": "Ulrich Lange, Bochum, Germany",
+    "licence": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hokianga_Harbour_(panorama).jpg",
+    "attributionRequired": true,
+    "shareAlike": false,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "coast-13": {
+    "title": "Motukiore Island Hokianga Aotearoa New Zealand.jpg",
+    "author": "LawrieM",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Motukiore_Island_Hokianga_Aotearoa_New_Zealand.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 55%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "coast-15": {
+    "title": "Whangarei Heads. Northland NZ (19830067709).jpg",
+    "author": "Bernard Spragg. NZ from Christchurch, New Zealand",
+    "licence": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Whangarei_Heads._Northland_NZ_(19830067709).jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 50%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "coromandel-01": {
+    "title": "Te Hoho Rock 01.jpg",
+    "author": "Krzysztof Golik",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Te_Hoho_Rock_01.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "coromandel-02": {
+    "title": "Te Hoho Rock 05.jpg",
+    "author": "Krzysztof Golik",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Te_Hoho_Rock_05.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 55%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "coromandel-04": {
+    "title": "Hot Water Beach on Coromandel Peninsula 02.jpg",
+    "author": "Krzysztof Golik",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hot_Water_Beach_on_Coromandel_Peninsula_02.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 60%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "coromandel-05": {
+    "title": "Tairua Harbour 01.jpg",
+    "author": "Krzysztof Golik",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tairua_Harbour_01.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 55%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "east-cape-01": {
+    "title": "VIew from East Cape.JPG",
+    "author": "No machine-readable author provided. Chakal assumed (based on copyright claims).",
+    "licence": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:VIew_from_East_Cape.JPG",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 55%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "east-cape-02": {
+    "title": "East Cape, New Zealand, 14th. Dec. 2010 - Flickr - PhillipC.jpg",
+    "author": "Phillip Capper from Wellington, New Zealand",
+    "licence": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:East_Cape,_New_Zealand,_14th._Dec._2010_-_Flickr_-_PhillipC.jpg",
+    "attributionRequired": true,
+    "shareAlike": false,
+    "focus": "50% 50%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "east-cape-03": {
+    "title": "East Cape with Otiki and East Cape Lighthouse.jpg",
+    "author": "Ulanwp",
+    "licence": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:East_Cape_with_Otiki_and_East_Cape_Lighthouse.jpg",
+    "attributionRequired": true,
+    "shareAlike": false,
+    "focus": "50% 55%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "east-cape-04": {
+    "title": "East Cape Road, Gisborne District.jpg",
+    "author": "Ulrich Lange, Bochum, Germany",
+    "licence": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:East_Cape_Road,_Gisborne_District.jpg",
+    "attributionRequired": true,
+    "shareAlike": false,
+    "focus": "50% 60%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "forest-01": {
+    "title": "Lake Waikaremoana 01.jpg",
+    "author": "Krzysztof Golik",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lake_Waikaremoana_01.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 55%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "forest-02": {
+    "title": "New Zealand, Great Walk Lake Waikaremoana (41).JPG",
+    "author": "Michal Klajban",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:New_Zealand,_Great_Walk_Lake_Waikaremoana_(41).JPG",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 55%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "forest-03": {
+    "title": "Forest trail in Te Urewera National Park 01.jpg",
+    "author": "Krzysztof Golik",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Forest_trail_in_Te_Urewera_National_Park_01.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 60%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "forest-05": {
+    "title": "Lake Waikaremoana sun set.jpg",
+    "author": "Shanedwilson at English Wikipedia",
+    "licence": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lake_Waikaremoana_sun_set.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "geothermal-01": {
+    "title": "Algal mats on hot pool, Orakei Korako 2.jpg",
+    "author": "Avenue",
+    "licence": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Algal_mats_on_hot_pool,_Orakei_Korako_2.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "texture",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "geothermal-02": {
+    "title": "Algal mats on hot pool, Orakei Korako 1.jpg",
+    "author": "Avenue",
+    "licence": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Algal_mats_on_hot_pool,_Orakei_Korako_1.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "geothermal-03": {
+    "title": "Looking down into Ruatapu Cave at Orakei Korako geothermal park.jpg",
+    "author": "Pseudopanax at English Wikipedia",
+    "licence": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Looking_down_into_Ruatapu_Cave_at_Orakei_Korako_geothermal_park.jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "geothermal-04": {
+    "title": "Craters of The Moon NZ.jpg",
+    "author": "Gameraquai",
+    "licence": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Craters_of_The_Moon_NZ.jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 55%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "geothermal-05": {
+    "title": "Karapiti (Craters of the Moon) - Taupō, NZ - DSC06167.jpg",
+    "author": "Daderot",
+    "licence": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Karapiti_(Craters_of_the_Moon)_-_Taup%C5%8D,_NZ_-_DSC06167.jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 55%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "rotorua-01": {
+    "title": ".00 0603 Hot Mud pools in the Waiotapu Thermal Wonderland (New Zealand).jpg",
+    "author": "W. Bulach",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:.00_0603_Hot_Mud_pools_in_the_Waiotapu_Thermal_Wonderland_(New_Zealand).jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "rotorua-02": {
+    "title": "Wai-O-Tapu Thermal Wonderland - Waikato Region, NZ - DSC06252.jpg",
+    "author": "Daderot",
+    "licence": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Wai-O-Tapu_Thermal_Wonderland_-_Waikato_Region,_NZ_-_DSC06252.jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 45%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "rotorua-03": {
+    "title": "Wai-O-Tapu Thermal Wonderland - Waikato Region, NZ - DSC06326.jpg",
+    "author": "Daderot",
+    "licence": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Wai-O-Tapu_Thermal_Wonderland_-_Waikato_Region,_NZ_-_DSC06326.jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 50%",
+    "role": "texture",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "rotorua-04": {
+    "title": "Walkway - Wai-O-Tapu Thermal Wonderland - Waikato Region, NZ - DSC06311.jpg",
+    "author": "Daderot",
+    "licence": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Walkway_-_Wai-O-Tapu_Thermal_Wonderland_-_Waikato_Region,_NZ_-_DSC06311.jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "taupo-01": {
+    "title": "Huka Falls.jpg",
+    "author": "Avenue",
+    "licence": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Huka_Falls.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "taupo-03": {
+    "title": "Hot pool at Orakei Korako.jpg",
+    "author": "Avenue",
+    "licence": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hot_pool_at_Orakei_Korako.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 55%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "taupo-04": {
+    "title": "Huka Falls - Waikato River.jpg",
+    "author": "Dave Ozanne from Brisbane, Australia",
+    "licence": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Huka_Falls_-_Waikato_River.jpg",
+    "attributionRequired": true,
+    "shareAlike": false,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "tongariro-01": {
+    "title": "Tongariro alpine crossing Ngauruhoe behind volcanic mouth.JPG",
+    "author": "Borvan53",
+    "licence": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tongariro_alpine_crossing_Ngauruhoe_behind_volcanic_mouth.JPG",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 45%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "tongariro-02": {
+    "title": "Le Ngauruhoe et le Ruapehu vus du sommet du Tongariro.jpg",
+    "author": "Eusebius",
+    "licence": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Le_Ngauruhoe_et_le_Ruapehu_vus_du_sommet_du_Tongariro.jpg",
+    "attributionRequired": true,
+    "shareAlike": false,
+    "focus": "50% 55%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "tongariro-03": {
+    "title": "Landscape in Tongariro National Park 05.jpg",
+    "author": "Krzysztof Golik",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Landscape_in_Tongariro_National_Park_05.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 60%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "tongariro-04": {
+    "title": "Mount Ngauruhoe 02.jpg",
+    "author": "Krzysztof Golik",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mount_Ngauruhoe_02.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 50%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "tongariro-05": {
+    "title": "Mount Ngauruhoe 01.jpg",
+    "author": "Krzysztof Golik",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mount_Ngauruhoe_01.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 55%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "waiheke-02": {
+    "title": "Waiheke Island Vineyard.jpg",
+    "author": "russellstreet",
+    "licence": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Waiheke_Island_Vineyard.jpg",
+    "attributionRequired": true,
+    "shareAlike": true,
+    "focus": "50% 60%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  },
+  "waiheke-03": {
+    "title": "Waiheke Island Mar 2024 MRD 02.jpg",
+    "author": "Mike Dickison",
+    "licence": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Waiheke_Island_Mar_2024_MRD_02.jpg",
+    "attributionRequired": true,
+    "shareAlike": false,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "waiheke-05": {
+    "title": "Stony Batter Waiheke Vineyards.jpg",
+    "author": "Ingolfson at English Wikipedia (Original text: Uploader.)",
+    "licence": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Stony_Batter_Waiheke_Vineyards.jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 65%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "waitomo-04": {
+    "title": "Green Glow Caves in New Zealand (6563152219).jpg",
+    "author": "Donnie Ray Jones",
+    "licence": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Green_Glow_Caves_in_New_Zealand_(6563152219).jpg",
+    "attributionRequired": true,
+    "shareAlike": false,
+    "focus": "50% 50%",
+    "role": "gallery",
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "waitomo-05": {
+    "title": "Ruakuri Cave's spiral ramp cave entrance.jpg",
+    "author": "Pseudopanax at English Wikipedia",
+    "licence": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Ruakuri_Cave%27s_spiral_ramp_cave_entrance.jpg",
+    "attributionRequired": false,
+    "shareAlike": false,
+    "focus": "50% 50%",
+    "role": "hero",
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ]
+  }
+}

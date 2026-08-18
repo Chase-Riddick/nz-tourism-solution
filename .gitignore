@@ -1,0 +1,24 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# Original full-resolution downloads from Wikimedia Commons.
+# These are 3-50MB each and are the *source* for the responsive derivatives in
+# public/photos/. AGENTS.md rule 10: public/ is published, photo-library/ is not.
+# Regenerate with `npm run photos:source`; the manifest that describes them IS
+# tracked, so the set is reproducible without carrying ~500MB in git.
+photo-library/*.jpg
+photo-library/*.jpeg
+photo-library/*.png
+photo-library/*.webp
+build/
+
+# test output
+test-results/
+playwright-report/
+
+# os
+.DS_Store

@@ -1,0 +1,338 @@
+{
+  "_comment": "Visual curation pass, 2026-08-18. Every file in manifest.json was viewed on a contact sheet (build/contact-sheet-*.jpg) and given a verdict. The automated pipeline verifies licence, resolution, ratio, subject and country; it cannot tell a hero landscape from a seagull. This file is that judgement, recorded so it is reviewable and not repeated.",
+  "_verdicts": {
+    "hero": "Strong enough for a full-bleed hero band at 2400px.",
+    "gallery": "Good at card or gallery scale; not at hero scale.",
+    "texture": "Abstract/detail. Section backgrounds and accents, never a destination shot.",
+    "reject": "Not usable. Reason recorded."
+  },
+  "_focus_note": "focus sets object-position on cropping slots. Landscapes with a low horizon or a subject under a lot of sky get their heads cut off by a default centre crop.",
+  "tongariro-01": {
+    "verdict": "hero",
+    "focus": "50% 45%",
+    "note": "Red Crater. The single best frame in the set - volcanic reds carry the whole palette argument."
+  },
+  "tongariro-02": {
+    "verdict": "hero",
+    "focus": "50% 55%",
+    "note": "Ngauruhoe and Ruapehu, clear sky. The classic Crossing view."
+  },
+  "tongariro-03": {
+    "verdict": "gallery",
+    "focus": "50% 60%",
+    "note": "Moody cloud over forest and peaks."
+  },
+  "tongariro-04": {
+    "verdict": "hero",
+    "focus": "50% 50%",
+    "note": "Ngauruhoe in cloud. Dark and atmospheric - sits beautifully on the basalt ground."
+  },
+  "tongariro-05": {
+    "verdict": "gallery",
+    "focus": "50% 55%"
+  },
+  "rotorua-01": {
+    "verdict": "gallery",
+    "focus": "50% 50%",
+    "note": "Waiotapu mud pools. Flat light."
+  },
+  "rotorua-02": {
+    "verdict": "gallery",
+    "focus": "50% 45%"
+  },
+  "rotorua-03": {
+    "verdict": "texture",
+    "focus": "50% 50%",
+    "note": "Silica crust detail. Excellent abstract texture for section grounds."
+  },
+  "rotorua-04": {
+    "verdict": "gallery",
+    "focus": "50% 50%"
+  },
+  "rotorua-05": {
+    "verdict": "reject",
+    "note": "Pohutu geyser - good subject, but a burned-in camera date stamp (20.01.2017) in the corner. Unfixable without a crop that loses the plume."
+  },
+  "waitomo-01": {
+    "verdict": "reject",
+    "note": "Photograph OF a printed archival page, not of the caves."
+  },
+  "waitomo-02": {
+    "verdict": "reject",
+    "note": "Archival B&W print, same problem."
+  },
+  "waitomo-03": {
+    "verdict": "reject",
+    "note": "Visitor centre architecture. The blocklist missed it - titled 'main entrance', not 'visitor centre'."
+  },
+  "waitomo-04": {
+    "verdict": "gallery",
+    "focus": "50% 50%",
+    "note": "Actual glowworm grotto - the money shot for Waitomo. Contains a family, but small and unlit; no identifiable faces. Use at gallery scale only, never enlarged."
+  },
+  "waitomo-05": {
+    "verdict": "hero",
+    "focus": "50% 50%",
+    "note": "Ruakuri spiral ramp. Architectural, warm, genuinely distinctive."
+  },
+  "coromandel-01": {
+    "verdict": "hero",
+    "focus": "50% 50%",
+    "note": "Te Hoho Rock through the Cathedral Cove arch. Iconic."
+  },
+  "coromandel-02": {
+    "verdict": "hero",
+    "focus": "50% 55%",
+    "note": "Same subject, wider. Distant figures only - not identifiable."
+  },
+  "coromandel-03": {
+    "verdict": "reject",
+    "note": "Red-billed gull on shingle. Passed every automated gate; it is a bird, not a destination."
+  },
+  "coromandel-04": {
+    "verdict": "gallery",
+    "focus": "50% 60%",
+    "note": "Hot Water Beach. Empty and flat, but honest."
+  },
+  "coromandel-05": {
+    "verdict": "gallery",
+    "focus": "50% 55%",
+    "note": "Tairua Harbour."
+  },
+  "bay-of-islands-01": {
+    "verdict": "gallery",
+    "focus": "50% 50%",
+    "note": "Russell pier. Correct place - the geographic guard fixed this one."
+  },
+  "bay-of-islands-02": {
+    "verdict": "gallery",
+    "focus": "50% 50%"
+  },
+  "bay-of-islands-03": {
+    "verdict": "hero",
+    "focus": "50% 55%",
+    "note": "Island arch with sailboat. Strong turquoise."
+  },
+  "bay-of-islands-04": {
+    "verdict": "hero",
+    "focus": "50% 55%",
+    "note": "Rocks and beach. Best colour in the Northland set."
+  },
+  "bay-of-islands-05": {
+    "verdict": "gallery",
+    "focus": "50% 50%"
+  },
+  "taupo-01": {
+    "verdict": "hero",
+    "focus": "50% 50%",
+    "note": "Huka Falls. That turquoise IS the lake token in the palette."
+  },
+  "taupo-02": {
+    "verdict": "reject",
+    "note": "Lake Taupo under flat grey. Nothing happening in the frame."
+  },
+  "taupo-03": {
+    "verdict": "hero",
+    "focus": "50% 55%",
+    "note": "Orakei Korako hot pool with steam."
+  },
+  "taupo-04": {
+    "verdict": "gallery",
+    "focus": "50% 50%"
+  },
+  "taupo-05": {
+    "verdict": "reject",
+    "note": "1887 sepia plate with a visible fold. Archival."
+  },
+  "waiheke-01": {
+    "verdict": "reject",
+    "note": "Odd crop of a reflection pool. Reads as a mistake."
+  },
+  "waiheke-02": {
+    "verdict": "hero",
+    "focus": "50% 60%",
+    "note": "Vineyard rows to the sea. The Waiheke shot."
+  },
+  "waiheke-03": {
+    "verdict": "gallery",
+    "focus": "50% 50%"
+  },
+  "waiheke-04": {
+    "verdict": "reject",
+    "note": "A 19th-century land sale deed. Document, not photograph."
+  },
+  "waiheke-05": {
+    "verdict": "gallery",
+    "focus": "50% 65%",
+    "note": "Blown-out sky, but the track through vines is usable small."
+  },
+  "auckland-01": {
+    "verdict": "hero",
+    "focus": "50% 60%",
+    "note": "Lion Rock from North Piha. Black sand west coast - the basalt colour token, photographed."
+  },
+  "auckland-02": {
+    "verdict": "reject",
+    "note": "Tree weta macro. Waitakere biodiversity categories leaked in."
+  },
+  "auckland-03": {
+    "verdict": "reject",
+    "note": "Pohutukawa seeds macro."
+  },
+  "auckland-04": {
+    "verdict": "reject",
+    "note": "Reef starfish."
+  },
+  "auckland-05": {
+    "verdict": "reject",
+    "note": "Sea anemone."
+  },
+  "east-cape-01": {
+    "verdict": "gallery",
+    "focus": "50% 55%"
+  },
+  "east-cape-02": {
+    "verdict": "hero",
+    "focus": "50% 50%",
+    "note": "East Cape coastline in evening light. Best light in the whole set."
+  },
+  "east-cape-03": {
+    "verdict": "gallery",
+    "focus": "50% 55%"
+  },
+  "east-cape-04": {
+    "verdict": "hero",
+    "focus": "50% 60%",
+    "note": "East Cape Road with a lone tree. An empty road is the single most on-brand image available to a touring company."
+  },
+  "east-cape-05": {
+    "verdict": "reject",
+    "note": "A seal warning road sign."
+  },
+  "forest-01": {
+    "verdict": "hero",
+    "focus": "50% 55%",
+    "note": "Lake Waikaremoana. Deep, moody, forested."
+  },
+  "forest-02": {
+    "verdict": "gallery",
+    "focus": "50% 55%"
+  },
+  "forest-03": {
+    "verdict": "gallery",
+    "focus": "50% 60%",
+    "note": "Te Urewera trail. Cluttered but authentic."
+  },
+  "forest-04": {
+    "verdict": "reject",
+    "note": "A person at a kauri dieback boot-wash station. Identifiable individual, no model release, and mundane."
+  },
+  "forest-05": {
+    "verdict": "gallery",
+    "focus": "50% 50%",
+    "note": "Waikaremoana sunset."
+  },
+  "coast-01": {
+    "verdict": "hero",
+    "focus": "50% 60%",
+    "note": "Pakiri Beach. Public domain, so no attribution obligation."
+  },
+  "coast-02": {
+    "verdict": "reject",
+    "note": "ISS satellite photograph. Public domain and beautiful, but it is not a place a guest stands."
+  },
+  "coast-03": {
+    "verdict": "reject",
+    "note": "ISS satellite photograph."
+  },
+  "coast-04": {
+    "verdict": "reject",
+    "note": "A grid of 2023 general election candidate headshots. Every automated gate passed it. This single file is the argument for the visual gate existing."
+  },
+  "coast-05": {
+    "verdict": "gallery",
+    "focus": "50% 55%",
+    "note": "Ninety Mile Beach at Hukatere."
+  },
+  "geothermal-01": {
+    "verdict": "texture",
+    "focus": "50% 50%",
+    "note": "Algal mats, Orakei Korako. This ochre is the sulphur accent token."
+  },
+  "geothermal-02": {
+    "verdict": "hero",
+    "focus": "50% 50%",
+    "note": "Algal mats, stronger composition. Best geothermal colour in the set."
+  },
+  "geothermal-03": {
+    "verdict": "gallery",
+    "focus": "50% 50%"
+  },
+  "geothermal-04": {
+    "verdict": "hero",
+    "focus": "50% 55%",
+    "note": "Craters of the Moon. Steam over scrub, sun behind."
+  },
+  "geothermal-05": {
+    "verdict": "gallery",
+    "focus": "50% 55%"
+  },
+  "waitomo-11": {
+    "verdict": "reject",
+    "note": "Duplicate of waitomo-05 (same Ruakuri file, re-fetched by the top-up run)."
+  },
+  "waitomo-12": {
+    "verdict": "reject",
+    "note": "Archival print, duplicate of waitomo-01."
+  },
+  "waitomo-13": {
+    "verdict": "reject",
+    "note": "Archival print, duplicate of waitomo-02."
+  },
+  "auckland-11": {
+    "verdict": "reject",
+    "note": "Duplicate of auckland-01."
+  },
+  "auckland-12": {
+    "verdict": "gallery",
+    "focus": "50% 50%",
+    "note": "Titled for the kelp, but the frame is a wave breaking through a rock gap on the west coast. Dramatic and on-brand despite the misleading title."
+  },
+  "auckland-13": {
+    "verdict": "gallery",
+    "focus": "50% 55%",
+    "note": "Monochrome wave at the Gap. Striking; use sparingly so the set does not read as half black-and-white."
+  },
+  "auckland-14": {
+    "verdict": "texture",
+    "focus": "50% 50%",
+    "note": "Ice plant on Muriwai black sand. Ignore the botany - this is the best photograph of west-coast black sand in the set, and black sand is the basalt token."
+  },
+  "auckland-15": {
+    "verdict": "reject",
+    "note": "Kelp close-up in a hand."
+  },
+  "coast-11": {
+    "verdict": "hero",
+    "focus": "50% 55%",
+    "note": "Hokianga Harbour with the road in frame and the north-head dunes beyond. Road plus destination - the strongest touring image in the whole library."
+  },
+  "coast-12": {
+    "verdict": "gallery",
+    "focus": "50% 50%",
+    "note": "Hokianga panorama, 7000x2190. Only usable as a full-width band; it will not crop to a card."
+  },
+  "coast-13": {
+    "verdict": "gallery",
+    "focus": "50% 55%"
+  },
+  "coast-14": {
+    "verdict": "reject",
+    "note": "A primary school entrance sign."
+  },
+  "coast-15": {
+    "verdict": "hero",
+    "focus": "50% 50%",
+    "note": "Whangarei Heads from the water. Wake in the foreground gives it motion."
+  }
+}

@@ -71,6 +71,17 @@ TITLE_BLOCK = (
     "church", "cathedral", "hut ", "shed", "fence", "roadworks", "construction",
     "panoramio",          # bulk Panoramio imports are low quality by default
     "arboretum", "botanic", "garden", "cemetery", "airport", "railway station",
+    # --- added after the 2026-08-18 visual curation pass. Each of these got
+    # through licence + resolution + ratio + subject + country and was rejected
+    # by eye. The single worst was a grid of 2023 general election candidate
+    # headshots that matched "coast"; that file is why the visual gate exists.
+    "election", "candidate", "headshot", "portrait of",
+    "iss0", "from space", "satellite", "landsat", "sentinel-",   # orbital imagery
+    "deed", "land sale", "manuscript", "lithograph", "engraving",
+    "18th", "19th century", "1887", "1900",                      # archival plates
+    "starfish", "anemone", "weta", "gull", "seeds", "insect", "spider",
+    "fungus", "lichen", "moss", "flower", "seedling",            # macro biology
+    "main entrance", "reception", "cafe", "shop",
 )
 
 MIN_W, MIN_H = 1600, 900          # below this it cannot serve a hero band
@@ -95,7 +106,8 @@ SUBJECTS: dict[str, dict] = {
         "require": ["rotorua", "wai-o-tapu", "waiotapu", "pohutu", "whakarewarewa", "champagne pool"],
     },
     "waitomo": {
-        "terms": ["Waitomo Caves", "Waitomo glowworm", "Ruakuri"],
+        "terms": ["Ruakuri Cave", "Waitomo glowworm grotto", "Marokopa Falls",
+                  "Mangapohue Natural Bridge", "Waitomo Caves"],
         "require": ["waitomo", "glowworm", "glow-worm", "ruakuri"],
     },
     "coromandel": {
@@ -115,8 +127,10 @@ SUBJECTS: dict[str, dict] = {
         "require": ["waiheke"],
     },
     "auckland": {
-        "terms": ["Auckland skyline", "Piha Beach", "Waitakere Ranges", "Rangitoto"],
-        "require": ["auckland", "piha", "waitakere", "rangitoto", "hauraki"],
+        "terms": ["Piha Beach", "Karekare Beach", "Bethells Beach", "Muriwai Beach",
+                  "Rangitoto Island", "Auckland skyline"],
+        "require": ["auckland", "piha", "karekare", "bethells", "muriwai",
+                    "waitakere", "rangitoto", "hauraki"],
     },
     "east-cape": {
         "terms": ["East Cape New Zealand", "Tolaga Bay", "Gisborne New Zealand", "Te Araroa"],
@@ -127,8 +141,10 @@ SUBJECTS: dict[str, dict] = {
         "require": ["whirinaki", "urewera", "kauri", "waikaremoana", "podocarp"],
     },
     "coast": {
-        "terms": ["Northland New Zealand coast", "Ninety Mile Beach", "Hokianga"],
-        "require": ["northland", "ninety mile", "hokianga", "pakiri", "new zealand"],
+        "terms": ["Hokianga Harbour", "Whangarei Heads", "Tutukaka coast",
+                  "Ninety Mile Beach", "Pakiri Beach"],
+        "require": ["northland", "ninety mile", "hokianga", "pakiri", "whangarei",
+                    "tutukaka", "opononi", "omapere"],
     },
     "geothermal": {
         "terms": ["Orakei Korako", "Craters of the Moon Taupo", "Waimangu"],
@@ -270,6 +286,9 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--per-subject", type=int, default=4)
     ap.add_argument("--out", default="photo-library")
+    ap.add_argument("--only", default="", help="comma-separated subject slugs")
+    ap.add_argument("--start-index", type=int, default=1,
+                    help="first numeric suffix, so a top-up does not clobber curated files")
     args = ap.parse_args()
 
     out = pathlib.Path(args.out)
@@ -278,7 +297,10 @@ def main() -> int:
     manifest: list[dict] = []
     seen_titles: set[str] = set()
 
+    only = {s.strip() for s in args.only.split(",") if s.strip()}
     for slug, spec in SUBJECTS.items():
+        if only and slug not in only:
+            continue
         terms, require = spec["terms"], spec["require"]
         print(f"\n{slug}")
         taken = 0
@@ -300,7 +322,7 @@ def main() -> int:
                     continue
                 seen_titles.add(cand["title"])
                 taken += 1
-                idx = f"{slug}-{taken:02d}"
+                idx = f"{slug}-{taken + args.start_index - 1:02d}"
                 ext = pathlib.Path(urllib.parse.urlparse(cand["url"]).path).suffix.lower()
                 ext = ".jpg" if ext in (".jpeg", "") else ext
                 dest = out / f"{idx}{ext}"
@@ -317,7 +339,12 @@ def main() -> int:
             time.sleep(0.2)
 
     if not args.dry_run:
-        (out / "manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False))
+        mpath = out / "manifest.json"
+        if mpath.exists() and only:          # top-up: merge, never truncate
+            existing = json.loads(mpath.read_text())
+            have = {m["id"] for m in manifest}
+            manifest = [m for m in existing if m["id"] not in have] + manifest
+        mpath.write_text(json.dumps(manifest, indent=2, ensure_ascii=False))
     print(f"\n{len(manifest)} images across {len(SUBJECTS)} subjects")
     if manifest:
         sa = sum(1 for m in manifest if m["share_alike"])
