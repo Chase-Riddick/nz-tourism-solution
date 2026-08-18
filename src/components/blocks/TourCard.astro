@@ -1,0 +1,54 @@
+---
+import Photo from "../Photo.astro";
+import { nzd, perDay, type Tour } from "../../lib/catalog";
+import { MAX_GROUP } from "../../lib/constants";
+import { tourCopy } from "../../lib/i18n/dictionary";
+
+interface Props { tour: Tour }
+const { tour } = Astro.props;
+const copy = tourCopy("en", tour.id);
+const seasonal = tour.months.length < 12;
+---
+<article
+  data-tour-id={tour.id}
+  data-price={tour.price}
+  data-days={tour.days}
+  class="group relative flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-raised)] transition hover:border-[var(--color-lake)]/40"
+>
+  <div class="relative aspect-[4/3] overflow-hidden">
+    <Photo
+      id={tour.hero}
+      alt={copy.name}
+      sizes="(min-width:1024px) 30vw, (min-width:640px) 45vw, 90vw"
+      class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+    />
+    <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+      <span class="rounded-full bg-[var(--color-ground-deep)]/80 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
+        {tour.days === 1 ? `${tour.hours} hours` : `${tour.days} days`}
+      </span>
+      {seasonal && (
+        <span class="rounded-full bg-[var(--color-sulphur)]/90 px-2.5 py-1 text-[11px] font-semibold text-[var(--color-ground-deep)]">
+          Seasonal
+        </span>
+      )}
+    </div>
+  </div>
+
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="font-display text-xl font-semibold">{copy.name}</h3>
+    <p class="mt-2 text-sm text-[var(--text-muted)]">{copy.tagline}</p>
+
+    <div class="flex-1"></div>
+
+    <div class="mt-5 flex items-end justify-between border-t border-[var(--surface-line)] pt-4">
+      <div>
+        <p class="text-xs text-[var(--text-muted)]">From</p>
+        <p class="font-display text-2xl font-semibold">{nzd(tour.price)}</p>
+        <p class="text-xs text-[var(--text-muted)]">
+          per person{tour.days > 1 ? ` · ${nzd(perDay(tour))} per person, per day` : ""}
+        </p>
+      </div>
+      <p class="text-right text-xs text-[var(--text-muted)]">Maximum {MAX_GROUP}</p>
+    </div>
+  </div>
+</article>

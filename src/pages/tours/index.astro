@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TourCard from "../../components/blocks/TourCard.astro";
+import { dayTours, multiDayTours } from "../../lib/catalog";
+import { MAX_GROUP } from "../../lib/constants";
+---
+<BaseLayout locale="en" title="Tours and prices — Slow North">
+  <section class="surface-work py-20">
+    <div class="container-page">
+      <h1 class="font-display text-4xl font-semibold sm:text-5xl">Tours and prices</h1>
+      <p class="prose-measure mt-4 text-lg text-[var(--text-muted)]">
+        Ten tours, one to five days. Every price is per person, in New Zealand dollars,
+        GST included. Multi-day prices are twin share, maximum {MAX_GROUP} guests.
+      </p>
+
+      {/* Day tours return to base nightly, so they can run almost daily.
+          Multi-day tours carry accommodation, so departures are set. That is a
+          real operational difference, not a presentational one. */}
+      <section data-group="day" class="mt-16">
+        <h2 class="font-display text-2xl font-semibold">Day tours</h2>
+        <p class="mt-2 text-[var(--text-muted)]">Back where you started by evening.</p>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {dayTours().map((tour) => <TourCard tour={tour} />)}
+        </div>
+      </section>
+
+      <section data-group="multi" class="mt-20">
+        <h2 class="font-display text-2xl font-semibold">Two to five days</h2>
+        <p class="mt-2 text-[var(--text-muted)]">
+          Accommodation and breakfast included, twin share. Departures are set rather
+          than daily — one vehicle and one guide only stretches so far.
+        </p>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {multiDayTours().map((tour) => <TourCard tour={tour} />)}
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

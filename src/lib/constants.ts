@@ -17,3 +17,15 @@ export const SITE = {
    */
   indexable: false,
 } as const;
+
+/**
+ * The whole commercial argument in one number, so it can never drift between
+ * the homepage, the tour cards and the FAQ.
+ *
+ * Derivation (docs/research/pricing-and-products.md): Wild Kiwi runs a 7-day
+ * North Island loop at ~$283/person/day *because* it fills sixteen seats. A
+ * private driver-guide is ~$950/person/day at two guests. Eight is the
+ * deliberate middle, and it is why our per-day rate is roughly double the coach
+ * rate. The site states this openly rather than hiding it.
+ */
+export const MAX_GROUP = 8;
