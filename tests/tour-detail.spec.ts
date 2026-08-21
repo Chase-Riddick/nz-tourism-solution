@@ -70,7 +70,7 @@ test.describe("price panel", () => {
   }
 
   test("cancellation terms are visible before a guest enquires", async ({ page }) => {
-    await page.goto("/tours/tongariro-crossing");
+    await page.goto("/tours/tongariro-weekender");
     await expect(page.locator("[data-cancellation] tr")).toHaveCount(4);
     await expect(page.getByText(/weather or safety/i)).toBeVisible();
   });

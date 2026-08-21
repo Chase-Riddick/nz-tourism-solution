@@ -7,13 +7,12 @@
  * silently-English page, and `tests/i18n.spec.ts` asserts every id resolves in
  * every locale.
  *
- * PRICING. Every figure is triangulated in docs/research/pricing-and-products.md
- * against four independent reference points. In short:
- *   - Day tours are priced against Bush and Beach ($510 for Hobbiton+Waitomo,
- *     12.25 hrs ex-Auckland), the closest true comparable.
- *   - Multi-day sits at ~$560-590 pp/day twin-share: roughly double the 16-seat
- *     packaged rate (Wild Kiwi, ~$283/day) and ~60% of a private driver-guide
- *     (~$950/day). Eight guests is why. The site says so openly.
+ * PRICING (v2). Every figure derives from docs/research/pricing-v2-cheekykiwi.md
+ * (Cheeky Kiwi Travel's published rates, fetched 2026-08-21): launch prices sit
+ * 15-20% under CK's comparable product, and `compareAt` carries CK's list rate
+ * for the struck comparison the site shows openly. Where no crisp comparable
+ * exists (Waiheke, the 4-day), there is no compareAt - the research doc records
+ * the range instead. First-season framing is deliberate and site-wide.
  * All prices NZD, per person, GST inclusive.
  */
 
@@ -38,6 +37,12 @@ export interface Tour {
   hours?: number;
   /** NZD per person, GST inclusive. Twin-share for multi-day. */
   price: number;
+  /**
+   * The big operators' published rate for the comparable product (NZD),
+   * struck through beside our launch price. Omitted where the research doc
+   * records only a market range - a struck price must be a real list price.
+   */
+  compareAt?: number;
   /** Day tours only. ~55% of adult, following the market convention. */
   priceChild?: number;
   /** Multi-day only: private-room supplement. */
@@ -68,9 +73,61 @@ export interface Tour {
 export const TOURS: Tour[] = [
   /* ─────────────────────────────  Day tours  ───────────────────────────── */
   {
+    id: "west-coast-beaches",
+    days: 1, hours: 7,
+    price: 149, priceChild: 85, compareAt: 175,
+    maxGroup: MAX_GROUP, base: "auckland",
+    months: ALL_YEAR, fitness: "easy", minAge: 5,
+    places: ["piha", "waitakere", "muriwai"],
+    hero: "auckland-01",
+    gallery: ["auckland-01", "auckland-12", "auckland-13", "auckland-14"],
+    includes: ["transport", "guide", "pickupCity"],
+    excludes: ["lunch", "personalSpending", "travelInsurance"],
+    itineraryDays: 1, rank: 1,
+  },
+  {
+    id: "auckland-in-a-day",
+    days: 1, hours: 10,
+    price: 209, priceChild: 115, compareAt: 250,
+    maxGroup: MAX_GROUP, base: "auckland",
+    months: ALL_YEAR, fitness: "easy", minAge: 5,
+    places: ["auckland", "piha", "muriwai"],
+    hero: "auckland-13",
+    gallery: ["auckland-13", "auckland-01", "auckland-12"],
+    includes: ["transport", "guide", "morningTea", "pickupCity"],
+    excludes: ["lunch", "personalSpending", "travelInsurance"],
+    itineraryDays: 1, rank: 6,
+  },
+  {
+    id: "cathedral-cove-coromandel",
+    days: 1, hours: 12,
+    price: 219, priceChild: 125, compareAt: 259,
+    maxGroup: MAX_GROUP, base: "auckland",
+    months: ALL_YEAR, fitness: "easy", minAge: 5,
+    places: ["coromandel", "hahei", "hotwaterbeach"],
+    hero: "coromandel-02",
+    gallery: ["coromandel-01", "coromandel-04", "coromandel-05"],
+    includes: ["transport", "guide", "lunch", "pickupCity"],
+    excludes: ["personalSpending", "travelInsurance"],
+    itineraryDays: 1, rank: 2,
+  },
+  {
+    id: "waiheke-island",
+    days: 1, hours: 8,
+    price: 265,
+    maxGroup: MAX_GROUP, base: "auckland",
+    months: ALL_YEAR, fitness: "easy", minAge: 18,
+    places: ["waiheke"],
+    hero: "waiheke-02",
+    gallery: ["waiheke-02", "waiheke-03", "waiheke-05"],
+    includes: ["transport", "guide", "ferry", "tastings", "pickupCity"],
+    excludes: ["lunch", "personalSpending", "travelInsurance"],
+    itineraryDays: 1, rank: 7,
+  },
+  {
     id: "hobbiton-waitomo",
     days: 1, hours: 12,
-    price: 545, priceChild: 300,
+    price: 319, priceChild: 185, compareAt: 379,
     maxGroup: MAX_GROUP, base: "auckland",
     months: ALL_YEAR, fitness: "easy", minAge: 5,
     places: ["matamata", "waitomo"],
@@ -78,134 +135,76 @@ export const TOURS: Tour[] = [
     gallery: ["waitomo-04", "waitomo-05", "rotorua-03"],
     includes: ["transport", "guide", "entryFees", "lunch", "pickupCity"],
     excludes: ["personalSpending", "travelInsurance"],
-    itineraryDays: 1, rank: 1,
+    itineraryDays: 1, rank: 3,
   },
   {
-    id: "rotorua-geothermal",
-    days: 1, hours: 10,
-    price: 395, priceChild: 215,
-    maxGroup: MAX_GROUP, base: "rotorua",
+    id: "rotorua-waiotapu",
+    days: 1, hours: 12,
+    price: 325, priceChild: 185, compareAt: 384,
+    maxGroup: MAX_GROUP, base: "auckland",
     months: ALL_YEAR, fitness: "easy", minAge: 5,
     places: ["rotorua", "waiotapu", "redwoods"],
     hero: "geothermal-04",
     gallery: ["geothermal-02", "rotorua-01", "rotorua-02", "geothermal-05"],
-    includes: ["transport", "guide", "entryFees", "morningTea", "pickupCity"],
-    excludes: ["lunch", "personalSpending", "travelInsurance"],
-    itineraryDays: 1, rank: 3,
+    includes: ["transport", "guide", "entryFees", "lunch", "pickupCity"],
+    excludes: ["personalSpending", "travelInsurance"],
+    itineraryDays: 1, rank: 4,
   },
   {
-    id: "west-coast-beaches",
-    days: 1, hours: 7,
-    price: 265, priceChild: 145,
+    id: "waitomo-rotorua",
+    days: 1, hours: 12,
+    price: 345, priceChild: 195, compareAt: 409,
+    maxGroup: MAX_GROUP, base: "auckland",
+    months: ALL_YEAR, fitness: "easy", minAge: 5,
+    places: ["waitomo", "rotorua", "waiotapu"],
+    hero: "waitomo-04",
+    gallery: ["waitomo-04", "rotorua-01", "geothermal-02"],
+    includes: ["transport", "guide", "entryFees", "lunch", "pickupCity"],
+    excludes: ["personalSpending", "travelInsurance"],
+    itineraryDays: 1, rank: 5,
+  },
+  /* ───────────────────────────  Multi-day tours  ───────────────────────── */
+  {
+    id: "tongariro-weekender",
+    days: 2,
+    price: 739, singleSupplement: 140, compareAt: 909,
+    maxGroup: MAX_GROUP, base: "auckland",
+    months: ALPINE_SEASON, fitness: "active", minAge: 12,
+    places: ["tongariro", "taupo", "hukafalls"],
+    hero: "tongariro-01",
+    gallery: ["tongariro-01", "tongariro-04", "taupo-01", "geothermal-04"],
+    includes: ["transport", "guide", "accommodation", "breakfast", "trackTransfer", "safetyGear", "packedLunch"],
+    excludes: ["dinner", "personalSpending", "travelInsurance", "hikingBoots"],
+    itineraryDays: 2, rank: 8,
+    weatherGated: true,
+    conservationLand: true,
+  },
+  {
+    id: "bay-of-islands-weekender",
+    days: 2,
+    price: 799, singleSupplement: 140, compareAt: 949,
+    maxGroup: MAX_GROUP, base: "auckland",
+    months: ALL_YEAR, fitness: "easy", minAge: 5,
+    places: ["bayofislands", "waipoua", "hokianga"],
+    hero: "bay-of-islands-03",
+    gallery: ["bay-of-islands-03", "bay-of-islands-01", "bay-of-islands-05", "coast-11"],
+    includes: ["transport", "guide", "accommodation", "breakfast", "boatTrip", "pickupCity"],
+    excludes: ["lunch", "dinner", "personalSpending", "travelInsurance"],
+    itineraryDays: 2, rank: 9,
+    conservationLand: true, // Waipoua forest walk (Tāne Mahuta) is DOC-managed
+  },
+  {
+    id: "volcanic-heartland",
+    days: 4,
+    price: 1895, singleSupplement: 340,
     maxGroup: MAX_GROUP, base: "auckland",
     months: ALL_YEAR, fitness: "moderate", minAge: 8,
-    places: ["piha", "waitakere", "muriwai"],
-    hero: "auckland-01",
-    gallery: ["auckland-12", "auckland-14", "auckland-13"],
-    includes: ["transport", "guide", "morningTea", "pickupCity"],
-    excludes: ["lunch", "entryFees", "personalSpending", "travelInsurance"],
-    itineraryDays: 1, rank: 6,
-    conservationLand: true,
-  },
-  {
-    id: "waiheke-island",
-    days: 1, hours: 8,
-    price: 295, priceChild: 160,
-    maxGroup: MAX_GROUP, base: "auckland",
-    months: ALL_YEAR, fitness: "easy", minAge: 18,
-    places: ["waiheke"],
-    hero: "waiheke-02",
-    gallery: ["waiheke-03", "waiheke-05"],
-    includes: ["ferry", "guide", "tastings", "lunch"],
-    excludes: ["transport", "personalSpending", "travelInsurance"],
-    itineraryDays: 1, rank: 7,
-  },
-  {
-    id: "tongariro-crossing",
-    days: 1, hours: 12,
-    price: 345, priceChild: undefined,
-    maxGroup: MAX_GROUP, base: "rotorua",
-    months: ALPINE_SEASON, fitness: "active", minAge: 14,
-    places: ["tongariro"],
-    hero: "tongariro-01",
-    gallery: ["tongariro-02", "tongariro-04", "tongariro-03", "tongariro-05"],
-    includes: ["transport", "guide", "trackTransfer", "packedLunch", "safetyGear"],
-    excludes: ["personalSpending", "travelInsurance", "hikingBoots"],
-    itineraryDays: 1, rank: 2,
-    weatherGated: true, conservationLand: true,
-  },
-
-  /* ───────────────────────────────  2 day  ─────────────────────────────── */
-  {
-    id: "volcanic-two-day",
-    days: 2,
-    price: 1190, singleSupplement: 210,
-    maxGroup: MAX_GROUP, base: "rotorua",
-    months: ALL_YEAR, fitness: "easy", minAge: 8,
-    places: ["rotorua", "waiotapu", "taupo", "hukafalls"],
-    hero: "taupo-01",
-    gallery: ["geothermal-02", "taupo-03", "taupo-04", "geothermal-04", "rotorua-04"],
-    includes: ["transport", "guide", "accommodation", "breakfast", "entryFees"],
-    excludes: ["lunch", "dinner", "personalSpending", "travelInsurance"],
-    itineraryDays: 2, rank: 4,
-  },
-
-  /* ───────────────────────────────  3 day  ─────────────────────────────── */
-  {
-    id: "central-plateau",
-    days: 3,
-    price: 1745, singleSupplement: 320,
-    maxGroup: MAX_GROUP, base: "rotorua",
-    months: ALPINE_SEASON, fitness: "active", minAge: 14,
-    places: ["rotorua", "taupo", "tongariro", "hukafalls"],
-    hero: "tongariro-02",
-    gallery: ["tongariro-01", "taupo-01", "tongariro-04", "geothermal-05", "taupo-03"],
-    includes: ["transport", "guide", "accommodation", "breakfast", "packedLunch", "trackTransfer", "safetyGear"],
-    excludes: ["dinner", "personalSpending", "travelInsurance", "hikingBoots"],
-    itineraryDays: 3, rank: 5,
-    weatherGated: true, conservationLand: true,
-  },
-  {
-    id: "northland-three",
-    days: 3,
-    price: 1695, singleSupplement: 320,
-    maxGroup: MAX_GROUP, base: "auckland",
-    months: ALL_YEAR, fitness: "easy", minAge: 8,
-    places: ["bayofislands", "hokianga", "waipoua", "capereinga"],
-    hero: "coast-11",
-    gallery: ["bay-of-islands-03", "bay-of-islands-04", "coast-15", "coast-12", "coast-13", "bay-of-islands-05"],
-    includes: ["transport", "guide", "accommodation", "breakfast", "boatTrip"],
-    excludes: ["lunch", "dinner", "personalSpending", "travelInsurance"],
-    itineraryDays: 3, rank: 8,
-    conservationLand: true,
-  },
-
-  /* ───────────────────────────────  5 day  ─────────────────────────────── */
-  {
-    id: "north-island-five",
-    days: 5,
-    price: 2950, singleSupplement: 540,
-    maxGroup: MAX_GROUP, base: "auckland",
-    months: ALL_YEAR, fitness: "moderate", minAge: 12,
-    places: ["coromandel", "rotorua", "taupo", "waitomo", "tongariro"],
-    hero: "coromandel-01",
-    gallery: ["coromandel-02", "taupo-01", "tongariro-02", "geothermal-02", "coromandel-05", "waitomo-05"],
-    includes: ["transport", "guide", "accommodation", "breakfast", "entryFees", "pickupCity"],
-    excludes: ["lunch", "dinner", "personalSpending", "travelInsurance"],
-    itineraryDays: 5, rank: 9,
-  },
-  {
-    id: "east-cape-five",
-    days: 5,
-    price: 3150, singleSupplement: 480,
-    maxGroup: MAX_GROUP, base: "rotorua",
-    months: ALL_YEAR, fitness: "moderate", minAge: 12,
-    places: ["eastcape", "tolagabay", "gisborne", "waikaremoana"],
-    hero: "east-cape-04",
-    gallery: ["east-cape-02", "east-cape-01", "forest-01", "east-cape-03", "forest-05", "forest-02"],
-    includes: ["transport", "guide", "accommodation", "breakfast", "someDinners"],
+    places: ["waitomo", "rotorua", "waiotapu", "taupo", "hukafalls", "tongariro"],
+    hero: "tongariro-04",
+    gallery: ["rotorua-02", "geothermal-04", "taupo-01", "tongariro-01", "tongariro-03", "geothermal-03"],
+    includes: ["transport", "guide", "accommodation", "breakfast", "entryFees", "someDinners", "pickupCity"],
     excludes: ["lunch", "personalSpending", "travelInsurance"],
-    itineraryDays: 5, rank: 10,
+    itineraryDays: 4, rank: 10,
     conservationLand: true,
   },
 ];

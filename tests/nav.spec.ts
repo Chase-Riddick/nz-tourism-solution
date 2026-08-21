@@ -32,7 +32,7 @@ test.describe("site navigation", () => {
     await expect(current).toHaveText(/tours/i);
 
     // And it must follow into a detail page - section match, not exact match.
-    await page.goto("/tours/east-cape-five");
+    await page.goto("/tours/volcanic-heartland");
     await expect(page.locator('header a[aria-current="page"]:visible')).toHaveText(/tours/i);
   });
 

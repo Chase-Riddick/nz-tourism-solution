@@ -43,10 +43,18 @@ const seasonal = tour.months.length < 12;
     <div class="mt-5 flex items-end justify-between border-t border-[var(--surface-line)] pt-4">
       <div>
         <p class="text-xs text-[var(--text-muted)]">From</p>
-        <p class="font-display text-2xl font-semibold">{nzd(tour.price)}</p>
+        <p class="font-display text-2xl font-semibold">
+          {nzd(tour.price)}
+          {tour.compareAt && (
+            <del class="ml-1.5 align-[0.2em] text-sm font-normal text-[var(--text-muted)]">{nzd(tour.compareAt)}</del>
+          )}
+        </p>
         <p class="text-xs text-[var(--text-muted)]">
           per person{tour.days > 1 ? ` · ${nzd(perDay(tour))} per person, per day` : ""}
         </p>
+        {tour.compareAt && (
+          <p class="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">First-season rate</p>
+        )}
       </div>
       <p class="text-right text-xs text-[var(--text-muted)]">Maximum {MAX_GROUP}</p>
     </div>

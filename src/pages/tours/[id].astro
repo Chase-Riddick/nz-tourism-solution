@@ -86,7 +86,18 @@ const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 
       <div data-price-panel class="mt-14 rounded-[var(--radius-card)] border border-[var(--surface-line)] bg-[var(--surface-raised)] p-6 sm:max-w-md">
         <p class="text-sm text-[var(--text-muted)]">From</p>
-        <p class="font-display text-4xl font-semibold">{nzd(tour.price)}</p>
+        <p class="font-display text-4xl font-semibold">
+          {nzd(tour.price)}
+          {tour.compareAt && (
+            <del class="ml-2 align-[0.25em] text-lg font-normal text-[var(--text-muted)]">{nzd(tour.compareAt)}</del>
+          )}
+        </p>
+        {tour.compareAt && (
+          <p class="mt-1 text-xs text-[var(--text-muted)]">
+            <span class="font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">First-season rate</span>
+            {" "}— the struck figure is the big operators&rsquo; published price for the comparable day.
+          </p>
+        )}
         <p class="mt-1 text-sm text-[var(--text-muted)]">per person · GST included</p>
         {tour.days > 1 && (
           <p class="mt-1 text-sm text-[var(--text-muted)]">

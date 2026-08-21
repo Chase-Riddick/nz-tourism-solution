@@ -3,7 +3,7 @@ import { existsSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 const PAGES = [
-  "/", "/tours", "/tours/tongariro-crossing", "/destinations", "/faq",
+  "/", "/tours", "/tours/tongariro-weekender", "/destinations", "/faq",
   "/about", "/safety", "/contact", "/credits", "/privacy", "/terms",
   "/cookies", "/accessibility",
 ];

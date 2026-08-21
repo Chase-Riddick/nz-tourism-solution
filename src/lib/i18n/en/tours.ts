@@ -3,8 +3,139 @@
  * `itinerary.length` must equal the tour's `itineraryDays` — enforced by
  * tests/i18n.spec.ts, so a half-written itinerary fails the build rather than
  * shipping.
+ *
+ * Voice: personal, concrete, lightly cheeky. The person writing this drives
+ * the van. Prices never appear in prose — they live in the catalogue.
  */
 export const enTours = {
+  "west-coast-beaches": {
+    name: "Auckland's Wild West Coast",
+    tagline: "Black sand, gannets, and the coast the postcards ignore",
+    summary:
+      `Forty minutes from downtown Auckland is a coastline that behaves like the ` +
+      `end of the earth: black-sand beaches, waves with genuine intent, and a ` +
+      `gannet colony that runs its own crowded city on the cliffs at Muriwai. ` +
+      `This is the short, sharp version of what we do — half a day longer than a ` +
+      `harbour cruise, a whole world further out.`,
+    highlights: [
+      "Piha and Lion Rock, preferably with surf hammering the bar",
+      "The Muriwai gannet colony at conversational distance",
+      "Rainforest switchbacks through the Waitākere Ranges",
+      "A coffee stop that is non-negotiable and locally correct",
+    ],
+    itinerary: [
+      {
+        title: "The wild half-day that eats the whole morning",
+        body:
+          `We collect you from central Auckland at 8am and climb straight into the ` +
+          `Waitākere Ranges — rainforest one side, Tasman Sea the other. Down the ` +
+          `Piha road for the view everyone stops at, then the beach itself: black ` +
+          `sand, Lion Rock, and whatever the ocean is doing that day, which is ` +
+          `never nothing.\n\n` +
+          `North along the coast to Muriwai, where a few thousand gannets nest on ` +
+          `the cliff tops within metres of the viewing platform. If the group ` +
+          `wants longer on the sand, we take longer on the sand — that is the ` +
+          `point of eleven seats.\n\n` +
+          `Back in the city by mid-afternoon, salt-crusted and pleased with yourselves.`,
+      },
+    ],
+  },
+
+  "auckland-in-a-day": {
+    name: "Auckland in a Day",
+    tagline: "Volcanoes, two harbours, and the city between them",
+    summary:
+      `Auckland sits on fifty-odd volcanoes between two harbours, and most ` +
+      `visitors only ever see the bit with the shops. This is the whole picture ` +
+      `in one unhurried day — summit views, both coasts, and the neighbourhoods ` +
+      `we would actually send you to for dinner.`,
+    highlights: [
+      "A volcanic summit before the tour buses wake up",
+      "Both harbours — the Waitematā's sails, the Manukau's mood",
+      "The west coast lookout that ends most people's idea of Auckland",
+      "Local knowledge you can use for the rest of your stay",
+    ],
+    itinerary: [
+      {
+        title: "The whole city, properly",
+        body:
+          `A 9am pickup and straight up a maunga — a volcanic cone with the whole ` +
+          `isthmus laid out below, so the rest of the day makes sense. Then the ` +
+          `city in slices: the waterfront, the neighbourhoods, morning tea where ` +
+          `the flat whites are taken seriously.\n\n` +
+          `In the afternoon we cross to the west for the black-sand exclamation ` +
+          `mark — a lookout over the Tasman that most Aucklanders save for ` +
+          `impressing visitors. Your guide's advice on where to eat for the rest ` +
+          `of your stay is included and opinionated.\n\n` +
+          `Back by 7pm, with the city sorted into places you now know.`,
+      },
+    ],
+  },
+
+  "cathedral-cove-coromandel": {
+    name: "Cathedral Cove & the Coromandel",
+    tagline: "The cove before the crowds, and a beach you dig yourself",
+    summary:
+      `The Coromandel Peninsula is what New Zealanders mean when they say ` +
+      `"the beach." This day gets you to Cathedral Cove's rock arch before the ` +
+      `crowds land, feeds you properly in Hahei, and puts a spade in your hand ` +
+      `at Hot Water Beach at exactly the right state of tide.`,
+    highlights: [
+      "Cathedral Cove's arch with morning light and no queue",
+      "Lunch in Hahei — included, and the fish is local",
+      "Your own hot pool, dug at low tide at Hot Water Beach",
+      "One stop the group chooses — lookout, beach, or the famous pie shop",
+    ],
+    itinerary: [
+      {
+        title: "Over the hill to the good coast",
+        body:
+          `Away at 7:40am, over the Kopu bridge before the traffic wakes, and ` +
+          `coffee where the locals get it. We walk into Cathedral Cove while the ` +
+          `light is still low — your guide has photographed it all summer and ` +
+          `knows exactly where to stand.\n\n` +
+          `Lunch in Hahei is included. At Hot Water Beach the spades are already ` +
+          `in the van; low tide is why the day runs when it runs, and digging your ` +
+          `own spa in the sand is exactly as good as it sounds.\n\n` +
+          `On the way home the group picks a stop — the Tairua lookout, an extra ` +
+          `hour on the sand, or the pie shop we pretend is a secret. Drop-off ` +
+          `around 6:45pm; your photos land in your inbox that evening.`,
+      },
+    ],
+  },
+
+  "waiheke-island": {
+    name: "Waiheke Island, Vines & Bays",
+    tagline: "A ferry, three vineyards, and no one watching the clock",
+    summary:
+      `Forty minutes across the harbour is an island that decided, some decades ` +
+      `ago, to be very good at exactly two things: growing wine and being looked ` +
+      `at. We do both properly — three tastings at vineyards we'd drink at ` +
+      `ourselves, the bays in between, and a ferry ride home at golden hour. ` +
+      `Adults only, for reasons the vineyards insist on.`,
+    highlights: [
+      "Return ferry included — the approach is half the show",
+      "Tastings at three vineyards, chosen by people who go on their days off",
+      "Oneroa's beach and the headland views between pours",
+      "A pace with deliberate gaps in it",
+    ],
+    itinerary: [
+      {
+        title: "Island time, taken seriously",
+        body:
+          `We meet you at the downtown ferry terminal for the 9:30am sailing — ` +
+          `the Waitematā and the gulf islands sliding past are the opening act. ` +
+          `On the island, the van is waiting.\n\n` +
+          `Three vineyards across the day, each different on purpose: one grand, ` +
+          `one scrappy and brilliant, one with a view that upstages the wine. ` +
+          `Between them, the bays — and lunch at the vineyard restaurant is ` +
+          `yours to linger over.\n\n` +
+          `The late-afternoon ferry brings you home with the sun behind the city. ` +
+          `Nobody has ever complained about this day.`,
+      },
+    ],
+  },
+
   "hobbiton-waitomo": {
     name: "Hobbiton & Waitomo",
     tagline: "The two everyone comes for, done without the queue crush",
@@ -37,349 +168,195 @@ export const enTours = {
     ],
   },
 
-  "rotorua-geothermal": {
-    name: "Rotorua geothermal day",
+  "rotorua-waiotapu": {
+    name: "Rotorua & Wai-O-Tapu",
     tagline: "Steam, silica, and the smell you stop noticing after an hour",
     summary:
-      `Rotorua sits on an active geothermal field, and it does not let you forget it. ` +
-      `This is the all-weather day in our catalogue — rain makes the steam better, not ` +
-      `worse — and it is the one we run most often in winter.`,
+      `Rotorua sits on an active geothermal field and does not let you forget it. ` +
+      `We run this ex-Auckland as one long, rich day: the Champagne Pool before ` +
+      `the buses, lunch included, and the 1901 redwood forest to walk it all off. ` +
+      `Rain makes the steam better, not worse — this is our all-weather banker.`,
     highlights: [
       "The Champagne Pool at Wai-O-Tapu, which is genuinely that colour",
       "Silica terraces that look like something has spilled and set",
       "Towering redwoods planted in 1901, on soft forest floor",
-      "A soak in a hot pool at the end, if you want one",
+      "Lunch included, somewhere with steam in the view",
     ],
     itinerary: [
       {
-        title: "Geothermal country",
+        title: "Geothermal country, done properly",
         body:
-          `A 9am start from your Rotorua accommodation. We go to Wai-O-Tapu first ` +
-          `and walk the full circuit — mud pools, collapsed craters, and the ` +
-          `Champagne Pool with its orange arsenic-and-antimony rim.\n\n` +
-          `Morning tea somewhere with a view of something steaming. Then into ` +
-          `Whakarewarewa Forest, where the Californian redwoods planted over a ` +
-          `century ago have grown to a scale that stops conversation.\n\n` +
-          `We finish mid-afternoon. If you would like to end the day in a hot pool ` +
-          `we will drop you at one and tell you which is best.`,
+          `Away from central Auckland at 7:30am, south through dairy country with ` +
+          `a proper coffee stop. Into Wai-O-Tapu before the middle of the day and ` +
+          `around the full circuit — mud pools, collapsed craters, and the ` +
+          `Champagne Pool with its improbable orange rim.\n\n` +
+          `Lunch is included in Rotorua. In the afternoon, the Whakarewarewa ` +
+          `redwoods: hundred-and-twenty-year-old trees, soft forest floor, and the ` +
+          `sudden quiet after a morning of hissing ground.\n\n` +
+          `Home by about 7:30pm. Your guide's photos of the day — steam, colour, ` +
+          `you in front of both — arrive that evening.`,
       },
     ],
   },
 
-  "west-coast-beaches": {
-    name: "West coast & black sand",
-    tagline: "Forty minutes from the city, and a different country",
+  "waitomo-rotorua": {
+    name: "Waitomo Caves & Rotorua",
+    tagline: "Underground rivers and boiling ground, one long day",
     summary:
-      `Auckland's west coast is iron-sand, hard surf and rainforest, and most ` +
-      `visitors never see it. Half a day, close to town, and the most dramatic ` +
-      `landscape you can reach from a city hotel before lunch.`,
+      `The two great below-the-surface spectacles of the central North Island — ` +
+      `a glowworm cave you drift through by boat, and a geothermal field that ` +
+      `never switches off — folded into one ex-Auckland day with lunch included. ` +
+      `For people whose time is short and whose standards are not.`,
     highlights: [
-      "Lion Rock at Piha, from the sand and from the lookout above it",
-      "Black iron sand — magnetic, and startling underfoot on a hot day",
-      "Kauri forest in the Waitākere Ranges, with the boot-wash stations that are keeping it alive",
-      "Gannet colony at Muriwai, wheeling at eye level",
+      "The Waitomo glowworm boat ride, in engineered silence",
+      "Wai-O-Tapu's mud pools doing their slow, rude percussion",
+      "Lunch included between the two",
+      "One stop on the way home, chosen by the group",
     ],
     itinerary: [
       {
-        title: "Out west",
+        title: "Under the island and back up",
         body:
-          `A 9am pick-up, then west through the Waitākere Ranges. We stop at the ` +
-          `Arataki lookout for the view over the whole catchment, and walk a short ` +
-          `section of kauri forest — scrubbing boots on the way in and out, because ` +
-          `kauri dieback is spread on footwear and the trees here are hundreds of ` +
-          `years old.\n\n` +
-          `Down to Piha for the beach and the climb up Lion Rock. Then north along ` +
-          `the coast to Muriwai and the gannet colony, where several thousand birds ` +
-          `nest on a stack close enough to hear.\n\n` +
-          `Back in the city by about 4pm.`,
+          `A 7am start from central Auckland — this is the longest day tour we run ` +
+          `and it earns every hour. Waitomo first: down through the cathedral-sized ` +
+          `chambers and onto the river, lights off, a few hundred thousand ` +
+          `glowworms doing the ceiling's work.\n\n` +
+          `Lunch, included, then across to Rotorua and the Wai-O-Tapu field — mud ` +
+          `pools, steaming terraces, ground that audibly disagrees with itself.\n\n` +
+          `The group picks the homeward stop. Back around 7:30pm, photographed ` +
+          `and fed.`,
       },
     ],
   },
 
-  "waiheke-island": {
-    name: "Waiheke Island",
-    tagline: "Thirty-five minutes by ferry, and nobody is in a hurry",
+  "tongariro-weekender": {
+    name: "Tongariro Crossing Weekender",
+    tagline: "The great walk-in-a-day, without the 4am alarm",
     summary:
-      `An island of vineyards, olive groves and coves in the Hauraki Gulf, close ` +
-      `enough to Auckland to be a day trip and far enough to feel like leaving. ` +
-      `Three tastings, a long lunch, and a swim if the weather is doing its job.`,
+      `The Tongariro Alpine Crossing is the best day walk in the country and the ` +
+      `worst day trip from Auckland — unless you sleep at the mountain. We drive ` +
+      `down the afternoon before, stay in National Park village, and walk the ` +
+      `Crossing fresh, guided, at your group's pace. Alpine season only: the ` +
+      `mountain sets the calendar, not us.`,
     highlights: [
-      "Three cellar doors, chosen for the people rather than the scores",
-      "Syrah and Bordeaux blends that do not travel, so this is where you drink them",
-      "Lunch looking down vine rows to the water",
-      "A swim at Onetangi if the day allows",
+      "The full 19.4km Crossing with your guide walking beside you",
+      "Emerald Lakes, Red Crater, and steam on the descent",
+      "A night in National Park village instead of a 4am start",
+      "Huka Falls and Taupō on the drive down",
     ],
     itinerary: [
       {
-        title: "Island day",
+        title: "Down to the mountain",
         body:
-          `We meet at the downtown ferry terminal and cross at 9:15am — thirty-five ` +
-          `minutes, and worth standing outside for.\n\n` +
-          `Three vineyards through the day, spaced so it stays enjoyable rather than ` +
-          `becoming a march. Lunch is long and sitting down. Between tastings we ` +
-          `take the coast road and stop at Onetangi, and if it is warm you should swim.\n\n` +
-          `Back on the 5pm ferry. Adults only, for obvious reasons.`,
-      },
-    ],
-  },
-
-  "tongariro-crossing": {
-    name: "Tongariro Alpine Crossing",
-    tagline: "Nineteen and a half kilometres across an active volcanic massif",
-    summary:
-      `Widely called the best day walk in New Zealand, and it earns it. It is also ` +
-      `a serious alpine day: 19.4km, around 800m of climb, and weather that changes ` +
-      `without asking. We run it October to May with a guide, a track transfer at ` +
-      `both ends, and the willingness to call it off.`,
-    highlights: [
-      "Red Crater, and the drop into the Emerald Lakes beyond it",
-      "Mount Ngāuruhoe standing over the whole first half of the walk",
-      "Steam venting from ground you are standing on",
-      "The long descent north with Lake Taupō laid out ahead",
-    ],
-    itinerary: [
-      {
-        title: "The Crossing",
-        body:
-          `A pre-dawn start — we are at Mangatepopo for first light, because the ` +
-          `weather on this mountain is best early and the last shuttle does not wait.\n\n` +
-          `Up the valley, then the Devil's Staircase to South Crater. Across the ` +
-          `crater floor, up to Red Crater at 1,886m — the high point, and usually the ` +
-          `cold, windy one. Down the scree to the Emerald Lakes, past Blue Lake, then ` +
-          `a long descent through tussock and beech to Ketetahi.\n\n` +
-          `Seven to nine hours walking. We carry the safety gear and a spare layer ` +
-          `you will probably want. Back in Rotorua by early evening.\n\n` +
-          `**If the mountain says no, we do not go.** DOC issues a formal warning in ` +
-          `bad conditions and shuttle operators must stop running under the terms of ` +
-          `their concession. You get another date or your money back.`,
-      },
-    ],
-  },
-
-  "volcanic-two-day": {
-    name: "Volcanic heartland",
-    tagline: "Two days on the most active ground in the country",
-    summary:
-      `Rotorua and Taupō sit on the Taupō Volcanic Zone, which is why the ground ` +
-      `steams and the lake is a caldera. Two days, one night, and no walking that ` +
-      `requires anything more than comfortable shoes.`,
-    highlights: [
-      "Wai-O-Tapu's full circuit, unhurried",
-      "Huka Falls — 220,000 litres a second through a nine-metre gap",
-      "Ōrākei Kōrako, the geothermal terrace most visitors drive straight past",
-      "Craters of the Moon at dusk, when the steam catches the light",
-    ],
-    itinerary: [
-      {
-        title: "Rotorua and the terraces",
-        body:
-          `Morning at Wai-O-Tapu, walking the full circuit rather than the short ` +
-          `loop. Afternoon at Ōrākei Kōrako, which needs a boat to reach and is the ` +
-          `better site of the two — fewer people, more terrace.\n\n` +
-          `We stay in Taupō. Dinner is your own; we will tell you where to go.`,
-      },
-      {
-        title: "Taupō and the river",
-        body:
-          `Huka Falls first thing, before the tour buses. Then the Waikato River ` +
-          `downstream — the volume of water is difficult to believe until you are ` +
-          `standing over it.\n\n` +
-          `Craters of the Moon in the afternoon, walking the boardwalk through vents ` +
-          `and steaming ground. Back to Rotorua by early evening.`,
-      },
-    ],
-  },
-
-  "central-plateau": {
-    name: "Central Plateau",
-    tagline: "Three days built around the Crossing, with room to move it",
-    summary:
-      `The Tongariro Alpine Crossing with a day either side — which is the honest ` +
-      `way to sell an alpine walk in a maritime climate. If day two is unwalkable we ` +
-      `swap it to day three. That flexibility is the entire reason this itinerary is ` +
-      `three days rather than one.`,
-    highlights: [
-      "The Crossing, with a spare day built in for weather",
-      "Huka Falls and the Waikato at full volume",
-      "Ōrākei Kōrako's silica terraces by boat",
-      "Two nights in one place, so you unpack once",
-    ],
-    itinerary: [
-      {
-        title: "South to the mountains",
-        body:
-          `Out of Rotorua mid-morning, south past Ōrākei Kōrako for the terraces and ` +
-          `on to Taupō for Huka Falls. We get to National Park village in the late ` +
-          `afternoon, sort gear, and eat early — tomorrow starts before dawn.`,
+          `A civilised 10am departure from Auckland, with Huka Falls and a Taupō ` +
+          `lakefront stop on the way south. Gear check and dinner in National Park ` +
+          `village — your guide talks the group through the route over the meal, ` +
+          `and checks the forecast one more time than is strictly necessary.\n\n` +
+          `Night in the village, twin-share, close enough to the trailhead to make ` +
+          `tomorrow easy.`,
       },
       {
         title: "The Crossing",
         body:
-          `The full 19.4km alpine crossing with a track transfer at both ends. Seven ` +
-          `to nine hours. See the day-tour page for the detail.\n\n` +
-          `If the forecast is bad we move it to tomorrow and do this day's plan ` +
-          `instead. Having the spare day is the point.`,
-      },
-      {
-        title: "Whakapapa, and north",
-        body:
-          `A gentler day. The Taranaki Falls loop from Whakapapa if legs allow, or ` +
-          `the Tawhai Falls short walk if they do not. Lunch looking at Ruapehu.\n\n` +
-          `North through the Desert Road — genuinely desert-like, and unlike anywhere ` +
-          `else in the country — and back to Rotorua by evening.`,
+          `An early shuttle to the trailhead and onto the track as the light comes ` +
+          `up. The Crossing takes six to eight hours: the Devil's Staircase, Red ` +
+          `Crater's improbable colour, the Emerald Lakes, and the long steaming ` +
+          `descent to Ketetahi. Your guide sets the pace to the group and carries ` +
+          `the safety calls — if the mountain says no, we walk the lower tracks ` +
+          `and tell you why.\n\n` +
+          `Back in Auckland by about 9pm, tired in the specific way people pay ` +
+          `for. Photos land the next morning.`,
       },
     ],
   },
 
-  "northland-three": {
-    name: "Northland & the Hokianga",
-    tagline: "Three days in the winterless north",
+  "bay-of-islands-weekender": {
+    name: "Bay of Islands Weekender",
+    tagline: "Two days north, one night in Paihia, no ferry timetable stress",
     summary:
-      `Northland is subtropical, and it is where we go when the mountains close. ` +
-      `Kauri forest, a harbour with giant dunes on the far shore, and the place where ` +
-      `two oceans meet. This is our best winter tour and we would rather say so than ` +
-      `pretend every month is equal.`,
+      `The far north rewards an overnight: the bay itself, a boat trip among the ` +
+      `islands, Russell across the water, and — on the way home — Tāne Mahuta, ` +
+      `the largest living kauri, standing in the Waipoua forest like something ` +
+      `that has opinions about your schedule. Accommodation in Paihia included.`,
     highlights: [
-      "Tāne Mahuta, around 2,000 years old and 45 metres tall",
-      "The Hokianga, with the north-head dunes across the water",
-      "Cape Rēinga, where the Tasman Sea and the Pacific visibly collide",
-      "Ninety Mile Beach — a legal highway, though we won't drive it",
+      "A half-day on the water among the islands",
+      "Russell — the first capital, now the prettiest ferry ride in the country",
+      "Tāne Mahuta, Lord of the Forest, on the western route home",
+      "A night in Paihia with the evening to yourselves",
     ],
     itinerary: [
       {
-        title: "North to the Bay of Islands",
+        title: "North along the coast",
         body:
-          `Out of Auckland early, north over the Brynderwyns. We're on the water in ` +
-          `the Bay of Islands by afternoon — a half-day boat trip out among the ` +
-          `islands, with a decent chance of dolphins.\n\n` +
-          `Night in Paihia.`,
+          `Away at 8am up the east coast — beaches, oyster country, and a proper ` +
+          `lunch stop in Whangārei. Into Paihia by mid-afternoon with time to walk ` +
+          `the waterfront or take the ferry across to Russell for the evening.\n\n` +
+          `Night in Paihia, twin-share, close to the wharf.`,
       },
       {
-        title: "Across to the Hokianga",
+        title: "The bay, then the forest road home",
         body:
-          `West across the peninsula to Waipoua Forest and Tāne Mahuta, the largest ` +
-          `living kauri. Boot-wash stations both ways — dieback is the real threat to ` +
-          `these trees and the protocol is not optional.\n\n` +
-          `On to the Hokianga in the afternoon. The harbour with those enormous pale ` +
-          `dunes on the north head is one of the great views in the country and ` +
-          `almost nobody sees it. Night at Ōpononi.`,
-      },
-      {
-        title: "Cape Rēinga and south",
-        body:
-          `North to Cape Rēinga, where you can watch the Tasman and the Pacific meet ` +
-          `in a visible line of broken water. It is also, in Māori understanding, ` +
-          `where spirits depart — a significant place, and we treat it as one.\n\n` +
-          `Down the length of the peninsula and back to Auckland by evening.`,
+          `Morning on the water — a half-day boat trip among the islands, with ` +
+          `dolphins on their schedule, not ours. After lunch we take the western ` +
+          `route home through the Waipoua forest and stop for Tāne Mahuta, two ` +
+          `thousand years old and entirely unbothered by your itinerary.\n\n` +
+          `Down the Kauri Coast and back into Auckland by early evening.`,
       },
     ],
   },
 
-  "north-island-five": {
-    name: "North Island in five",
-    tagline: "Coast, forest, geothermal and alpine, without rushing any of it",
+  "volcanic-heartland": {
+    name: "Volcanic Heartland",
+    tagline: "Four days through the island's hot, loud, improbable middle",
     summary:
-      `Five days is the shortest trip that can take in the coast, the caves, the ` +
-      `geothermal field and the mountains without any of them becoming a photo stop. ` +
-      `It is the tour we would book ourselves.`,
+      `This is the tour we built the company for. Glowworm caves, geothermal ` +
+      `country, the big lake, and a volcano crossing, joined by the roads coaches ` +
+      `don't take — with three nights' accommodation included and the van never ` +
+      `more than eleven people full. In alpine season, day three is the Tongariro ` +
+      `Alpine Crossing; in winter it becomes the lower-mountain day, and we're ` +
+      `honest about that trade.`,
     highlights: [
-      "Cathedral Cove and the Coromandel coast",
-      "The Waitomo glowworm grotto by boat",
-      "Wai-O-Tapu and the geothermal field",
-      "Huka Falls and Lake Taupō",
-      "A day in Tongariro National Park",
+      "Waitomo's glowworms and Wai-O-Tapu's boiling colour in one trip",
+      "The Crossing, guided, in season — lower-mountain walks otherwise",
+      "Three nights sorted: Rotorua, Taupō, National Park village",
+      "The 45-minute stop each day that belongs to the group",
     ],
     itinerary: [
       {
-        title: "Auckland to the Coromandel",
+        title: "Auckland → Rotorua: under the island first",
         body:
-          `East out of Auckland along the Firth of Thames, then the coast road round ` +
-          `to Hahei. Cathedral Cove in the afternoon light, and Hot Water Beach if ` +
-          `the tide is doing the right thing — you dig your own pool in the sand and ` +
-          `hot water comes up through it.`,
+          `Waitomo mid-morning for the glowworm boat ride, then east into ` +
+          `geothermal country. Mud pools at golden hour, dinner in Rotorua, and ` +
+          `the smell of sulphur you will stop noticing by breakfast.\n\n` +
+          `Night: Rotorua, twin-share.`,
       },
       {
-        title: "South through Waitomo",
+        title: "Rotorua → Taupō: the colour and the lake",
         body:
-          `Down the Coromandel and inland to Waitomo. The cave system and the ` +
-          `glowworm grotto by boat, then east to Rotorua for two nights.`,
+          `Wai-O-Tapu early, before the buses — the Champagne Pool at its ` +
+          `stillest. Huka Falls on the way south, then an afternoon in Taupō ` +
+          `that is deliberately yours: spa, bike, lake swim, or nothing at all.\n\n` +
+          `Night: Taupō, twin-share.`,
       },
       {
-        title: "Geothermal Rotorua",
+        title: "Tongariro: the mountain day",
         body:
-          `Wai-O-Tapu's full circuit in the morning. Whakarewarewa Forest and the ` +
-          `redwoods after lunch. An unhurried day, deliberately placed in the middle ` +
-          `of the trip.`,
+          `In alpine season this is the full Crossing, guided, at the group's ` +
+          `pace — Red Crater, the Emerald Lakes, the steaming descent. Outside ` +
+          `the season, or when the mountain says no, we walk the lower tracks: ` +
+          `Taranaki Falls, Tama Lakes as conditions allow, and no pretending ` +
+          `that's the same thing, because it isn't — it's merely wonderful.\n\n` +
+          `Night: National Park village, twin-share.`,
       },
       {
-        title: "Taupō and the plateau",
+        title: "The long way home",
         body:
-          `South to Huka Falls and the lake. Ōrākei Kōrako's terraces by boat, then ` +
-          `on to the Tongariro area for the night, with Ruapehu ahead of you.`,
-      },
-      {
-        title: "Tongariro, then north",
-        body:
-          `A day in the national park — the Taranaki Falls loop, or a section of the ` +
-          `Crossing if the weather and the group are both up for it.\n\n` +
-          `Then north through the Desert Road and back to Auckland, arriving evening.`,
-      },
-    ],
-  },
-
-  "east-cape-five": {
-    name: "East Cape",
-    tagline: "The road most people skip, which is exactly why we go",
-    summary:
-      `The East Cape is the emptiest coastline in the North Island and the hardest ` +
-      `to reach — long driving days, few towns, and almost no tour buses. It is also ` +
-      `where the sun first hits inhabited land each day. If you have been to New ` +
-      `Zealand before, this is the one to do.`,
-    highlights: [
-      "First light of the day at the East Cape lighthouse",
-      "Tolaga Bay wharf, at 660 metres the longest in the country",
-      "Lake Waikaremoana, still and black, ringed by old-growth forest",
-      "Long empty roads, which are the actual attraction",
-    ],
-    itinerary: [
-      {
-        title: "Rotorua to Ōpōtiki",
-        body:
-          `East through the Bay of Plenty, along the coast to Ōpōtiki. The road ` +
-          `changes character here — the towns thin out and the coast opens up. ` +
-          `Night at Ōpōtiki.`,
-      },
-      {
-        title: "Around the Cape",
-        body:
-          `The long day, and the best one. State Highway 35 round the top of the ` +
-          `Cape: pōhutukawa hanging over the road, bays with nobody on them, and a ` +
-          `pace set by how often you want to stop. Night near Te Araroa.`,
-      },
-      {
-        title: "First light, then south",
-        body:
-          `An early climb to the East Cape lighthouse for sunrise — around 750 steps, ` +
-          `and the first inhabited place on earth to see the day.\n\n` +
-          `South in the afternoon to Tolaga Bay and its extraordinary wharf. Night ` +
-          `near Gisborne.`,
-      },
-      {
-        title: "Inland to Waikaremoana",
-        body:
-          `West into Te Urewera — dense old-growth forest, and a road that takes ` +
-          `longer than the map suggests. Lake Waikaremoana is black, still, and ` +
-          `almost silent. A short walk on the lake track in the afternoon.`,
-      },
-      {
-        title: "Out through the forest",
-        body:
-          `A slow morning at the lake, then back through the forest and north to ` +
-          `Rotorua, arriving late afternoon.\n\n` +
-          `You will have covered around 1,100km and seen perhaps six other tourists.`,
+          `River country north, one last swim somewhere your guide is smug ` +
+          `about, and the group's final chosen stop. Into Auckland by early ` +
+          `evening, four days of photographs already in your inbox.`,
       },
     ],
   },
 } as const;
 
-export type TourCopy = typeof enTours;
+export type ToursCopy = typeof enTours;

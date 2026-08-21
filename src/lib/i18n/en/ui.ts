@@ -6,6 +6,10 @@
  */
 export const enUi = {
   places: {
+    auckland: "Auckland",
+    hahei: "Hahei",
+    hotwaterbeach: "Hot Water Beach",
+    tairua: "Tairua",
     matamata: "Matamata",
     waitomo: "Waitomo",
     rotorua: "Rotorua",

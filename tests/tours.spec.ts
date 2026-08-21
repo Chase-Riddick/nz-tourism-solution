@@ -33,10 +33,10 @@ test.describe("catalogue structure", () => {
   test("day tours and multi-day tours are presented as separate groups", async ({ page }) => {
     await page.goto("/tours");
     await expect(page.getByRole("heading", { name: /day tours/i })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /two to five days/i })).toBeVisible();
-    // 5 day tours, 5 multi-day - the catalogue split.
-    await expect(page.locator("[data-group='day'] [data-tour-id]")).toHaveCount(5);
-    await expect(page.locator("[data-group='multi'] [data-tour-id]")).toHaveCount(5);
+    await expect(page.getByRole("heading", { name: /two to four days/i })).toBeVisible();
+    // 7 day tours, 3 multi-day - the v2 catalogue split (#25).
+    await expect(page.locator("[data-group='day'] [data-tour-id]")).toHaveCount(7);
+    await expect(page.locator("[data-group='multi'] [data-tour-id]")).toHaveCount(3);
   });
 
   // A guest comparing us against a coach tour does the per-day division in
@@ -46,7 +46,7 @@ test.describe("catalogue structure", () => {
     const cards = page.locator("[data-group='multi'] [data-tour-id]");
     // Guard: without this the loop body never runs and the test passes
     // vacuously, which is worse than having no test at all.
-    await expect(cards).toHaveCount(5);
+    await expect(cards).toHaveCount(3);
     for (let i = 0; i < (await cards.count()); i++) {
       const card = cards.nth(i);
       const total = Number((await card.getAttribute("data-price"))!);
@@ -71,6 +71,6 @@ test.describe("tour naming", () => {
       expect(h.length).toBeGreaterThan(3);
     }
     // The catalogue's own vocabulary should be visible to a reader.
-    expect(headings).toContain("Tongariro Alpine Crossing");
+    expect(headings).toContain("Tongariro Crossing Weekender");
   });
 });

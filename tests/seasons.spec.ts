@@ -7,7 +7,7 @@ test.describe("alpine seasonality", () => {
   test("the alpine tours are the ones the catalogue says they are", async () => {
     // Guards the fixture itself: if weatherGated is dropped from the catalogue
     // every assertion below would pass vacuously.
-    expect(ALPINE.map((t) => t.id).sort()).toEqual(["central-plateau", "tongariro-crossing"]);
+    expect(ALPINE.map((t) => t.id).sort()).toEqual(["tongariro-weekender"]);
     expect(ALPINE_SEASON).toEqual([10, 11, 12, 1, 2, 3, 4, 5]);
   });
 
@@ -58,11 +58,24 @@ test.describe("the year", () => {
     // Winter is the honest test: the alpine tours must be absent, and
     // something must still be running or the business looks shut.
     const winter = page.locator("[data-season-key='winter']");
-    await expect(winter).not.toContainText("Tongariro Alpine Crossing");
+    await expect(winter).not.toContainText("Tongariro Crossing Weekender");
     await expect(winter.locator("[data-season-tour]")).not.toHaveCount(0);
 
     const summer = page.locator("[data-season-key='summer']");
-    await expect(summer).toContainText("Tongariro Alpine Crossing");
+    await expect(summer).toContainText("Tongariro Crossing Weekender");
+  });
+});
+
+test.describe("the Crossing inside a year-round tour", () => {
+  // Invariant 5 has a subtle v2 case: Volcanic Heartland runs all year, but
+  // its mountain day is the Crossing only in season. The page must say the
+  // winter swap out loud - selling the Crossing in July by implication is
+  // still selling the Crossing in July.
+  test("volcanic-heartland states the winter swap explicitly", async ({ page }) => {
+    await page.goto("/tours/volcanic-heartland");
+    const body = (await page.locator("body").innerText()).toLowerCase();
+    expect(body).toContain("alpine season");
+    expect(body).toMatch(/outside the season|winter/);
   });
 });
 

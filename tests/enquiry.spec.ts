@@ -72,7 +72,7 @@ test.describe("bot defence", () => {
 
 test.describe("enquiring from a tour page", () => {
   test("the tour you were reading about is already selected", async ({ page }) => {
-    await page.goto("/tours/east-cape-five");
-    await expect(page.locator('select[name="tour"]')).toHaveValue("east-cape-five");
+    await page.goto("/tours/volcanic-heartland");
+    await expect(page.locator('select[name="tour"]')).toHaveValue("volcanic-heartland");
   });
 });
