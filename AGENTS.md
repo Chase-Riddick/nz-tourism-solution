@@ -8,6 +8,22 @@ guide considering going out on his own — to react to and colour in.
 **The company does not exist.** Every price, itinerary, testimonial, and credential
 is a researched approximation, not a fact. See rule 5.
 
+## Status — bookmarked (2026-08-21)
+
+Work is paused while Sam reacts to the demo; Chase expects to hear back over
+**September–October 2026** and will deliver the answers in one batch.
+
+- The design canvas is live at **https://nz-tour-demo.claralabs.tech** under
+  the public alias **Tom's NZ** (#39). Hosting details and redeploy/teardown
+  commands: `RUNBOOK.md`. The production build is *not* deployed — it still
+  wears the v1 design until #30–#38.
+- The open question set is `docs/client/design-review-round-1.pdf` — eight
+  questions, all unanswered. Answers unblock **#29 (spec lock)**, which
+  unblocks the production E rebuild **#30–#38**; **#23** (crew stand-in
+  photos) waits on question 1 specifically.
+- State at pause: suite green 152/152, `main` pushed, tracker current.
+  Nothing is half-done; the next session starts at #29.
+
 ## Non-negotiable project rules
 
 1. **`../capital-v3` is reference-only and NON-PRIVILEGED.** It is a genuinely good
