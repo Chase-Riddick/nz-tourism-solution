@@ -104,6 +104,37 @@ so it gets 30 days rather than `immutable`, or a re-encode would be pinned in
 returning visitors' browsers for a year. HTML deliberately keeps `max-age=0`:
 Amplify invalidates CloudFront on deploy, so content changes stay instant.
 
+## The design-canvas demo (live since 2026-08-21)
+
+The **design canvas** — the single-file "Night & Day" full-page mockup, with
+the public alias **Tom's NZ** (#39) — is hosted openly so the founder can react
+to it. This is separate from the production deployment above, which waits for
+the E rebuild (#30–#38).
+
+- **URL:** https://nz-tour-demo.claralabs.tech
+  (default domain: https://main.d2gs47utjusffl.amplifyapp.com)
+- **Amplify app:** `nz-tour-demo`, app id `d2gs47utjusffl`, region `us-west-2`,
+  account `507152675552`. **Manual zip deploy — no repo connection**, so pushing
+  this repo never redeploys the demo.
+- **What is deployed:** `index.html` (the built canvas: `prototypes/canvas.tpl.html`
+  spliced with fonts/photos/credits) + a deny-all `robots.txt`.
+- **noindex, three layers** (rule 4 applies to the demo exactly as to the site):
+  `<meta name="robots" content="noindex, nofollow">` in the canvas, deny-all
+  `robots.txt`, and an app-level custom header `X-Robots-Tag: noindex, nofollow`
+  on `**` (set via `aws amplify update-app --custom-headers`, lives in AWS, not
+  in this repo).
+- **DNS:** `nz-tour-demo.claralabs.tech` CNAME → `d1zts6f0ps1le2.cloudfront.net`
+  plus the ACM validation CNAME, both in the `claralabs.tech` Route 53 zone
+  (`Z0643334RIPQWT714EYS`).
+
+To redeploy after a canvas change: rebuild the canvas, zip it as `index.html`
+with `robots.txt`, then `aws amplify create-deployment` → PUT the zip to the
+returned `zipUploadUrl` → `aws amplify start-deployment` (app id and branch
+`main` as above).
+
+To take the demo down: `aws amplify delete-app --app-id d2gs47utjusffl
+--region us-west-2` and delete the two DNS records.
+
 ## The site is noindex, and must stay that way
 
 `SITE.indexable` is `false`. Every page ships
