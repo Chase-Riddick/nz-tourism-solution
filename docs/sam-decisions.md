@@ -98,3 +98,24 @@ Ordered by how early the decision has to be made, not by importance.
 
 **Start with `src/lib/catalog.ts`.** Prices and durations are the most likely
 things to be wrong, and every one carries its derivation in a comment.
+
+---
+
+## Addendum — v2 repositioning (2026-08-21)
+
+The grill with Chase (2026-08-19, `docs/grill-2026-08-19.md`) superseded several
+assumptions above: the name is now **Sam's NZ** (working title, 1.1 still
+yours), the base is **Auckland** (1.3 decided), the group size is **11 —
+matching Cheeky Kiwi**, and nothing runs longer than **four days**. The body of
+this document is being reworked slice-by-slice; new v2 decisions land here.
+
+| # | Decision | What the site now assumes |
+|---|---|---|
+| A.1 | **Launch pricing holds at these entry rates.** | Every tour priced 15–20% under Cheeky Kiwi's published comparable (`docs/research/pricing-v2-cheekykiwi.md`). You must confirm the margins survive — especially where CK buys third-party entries (Hobbiton, Wai-O-Tapu, Waitomo) at wholesale rates a new operator may not get. |
+| A.2 | **When first-season pricing ends.** | "When the reviews arrive" — deliberately vague on-site. You need an actual trigger (date, review count, or occupancy) and the step-up amount. |
+| A.3 | **The ten-tour mix.** | Seven day tours + two weekenders + one 4-day (see research doc). Kill or swap anything you couldn't physically run with two guides and one van. |
+| A.4 | **Multi-day accommodation.** | Twin-share, mid-range, named partners TBD for Paihia, National Park village and the 4-day loop. Single supplement ~18%. |
+| A.5 | **Waiheke details.** | Ferry class, which three vineyards, and whether the tour is 18+ (site currently assumes yes). |
+| A.6 | **Volcanic Heartland in winter.** | Crossing day swaps to lower-mountain walks Jun–Sep. Which walks, and does the price change? |
+| A.7 | **The photo package.** | Included on every tour, delivered same evening. Confirm the workflow (who shoots, what gear, delivery method) is one you'll actually sustain. |
+| A.8 | **WhatsApp line.** | The site promises direct guide messaging from booking to drop-off. Confirm the number strategy (shared business number vs per-guide) and hours. |
