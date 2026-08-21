@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LegalPage from "../components/blocks/LegalPage.astro";
-import { CONTACT } from "../lib/constants";
+import { SITE, CONTACT } from "../lib/constants";
 ---
-<BaseLayout locale="en" title="Accessibility — Slow North"
+<BaseLayout locale="en" title={`Accessibility — ${SITE.name}`}
   description="The standard we aim at, what is built, and the gaps we know about and have not solved yet.">
   <LegalPage title="Accessibility"
              lede="What we aim for, what is built, and what we know is not solved.">

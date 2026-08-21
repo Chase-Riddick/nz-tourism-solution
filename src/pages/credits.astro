@@ -1,4 +1,5 @@
 ---
+import { SITE } from "../lib/constants";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { attributions, shareAlikeCount, publishedCount } from "../lib/photos";
 
@@ -6,7 +7,7 @@ const rows = attributions();
 const sa = shareAlikeCount();
 const clean = (s: string) => s.replace(/\s+/g, " ").trim() || "Unknown";
 ---
-<BaseLayout locale="en" title="Photo credits — Slow North"
+<BaseLayout locale="en" title={`Photo credits — ${SITE.name}`}
   description="Every photograph on this site, with its photographer, licence and Wikimedia Commons source.">
   <section class="surface-work py-20">
     <div class="container-page">

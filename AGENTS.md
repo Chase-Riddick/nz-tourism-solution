@@ -1,7 +1,7 @@
 # NZ Tourism Solution — North Island tour operator marketing site
 
 A complete, deployment-ready marketing website for a **hypothetical** small-group
-tour operator on New Zealand's North Island, offering one- to five-day tours
+tour operator on New Zealand's North Island, offering one- to four-day tours
 year-round. Built as something concrete for a real New Zealander — a seasonal tour
 guide considering going out on his own — to react to and colour in.
 

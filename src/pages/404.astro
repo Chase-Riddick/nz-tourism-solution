@@ -1,7 +1,8 @@
 ---
+import { SITE } from "../lib/constants";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-<BaseLayout locale="en" title="Page not found — Slow North"
+<BaseLayout locale="en" title={`Page not found — ${SITE.name}`}
   description="That page has moved or never existed. The tours are all still here.">
   <section class="surface-dream flex min-h-[70svh] items-center pt-32 pb-20">
     <div class="container-page prose-measure">

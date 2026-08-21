@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LegalPage from "../components/blocks/LegalPage.astro";
-import { ANALYTICS } from "../lib/constants";
+import { SITE, ANALYTICS } from "../lib/constants";
 ---
-<BaseLayout locale="en" title="Cookie policy — Slow North"
+<BaseLayout locale="en" title={`Cookie policy — ${SITE.name}`}
   description="Nothing is set before you choose. What loads if you allow analytics, what happens if you decline, and how to change your mind.">
   <LegalPage title="Cookie policy"
              lede="Short, because there is not much to say.">

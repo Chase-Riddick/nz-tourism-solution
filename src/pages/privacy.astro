@@ -1,15 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LegalPage from "../components/blocks/LegalPage.astro";
-import { CONTACT, ANALYTICS } from "../lib/constants";
+import { SITE, CONTACT, ANALYTICS } from "../lib/constants";
 ---
-<BaseLayout locale="en" title="Privacy — Slow North"
+<BaseLayout locale="en" title={`Privacy — ${SITE.name}`}
   description="What the enquiry form collects, what analytics does once you consent, and your rights under the New Zealand Privacy Act 2020.">
   <LegalPage title="Privacy"
              lede="What we collect, why, and how to get rid of it. Written to be read rather than to be survived.">
     <h2>Who we are</h2>
     <p>
-      Slow North is a small tour operator based in New Zealand. We are the agency
+      {SITE.name} is a small tour operator based in New Zealand. We are the agency
       responsible for the personal information described here. You can reach us at
       <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
     </p>

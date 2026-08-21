@@ -3,8 +3,8 @@
  * No price, date, statistic or contact detail may be hardcoded elsewhere in src/.
  */
 export const SITE = {
-  name: "Slow North",
-  tagline: "Fewer people. Longer days. The North Island at its own pace.",
+  name: "Sam's NZ",
+  tagline: "Your day, in good hands.", // SAM-VERIFY: working tagline from the design canvas
   /**
    * AGENTS.md rule 4 - NOT NEGOTIABLE, and not an SEO setting.
    *
@@ -16,8 +16,8 @@ export const SITE = {
    * Flip to `true` only if this becomes a real, trading business.
    */
   indexable: false,
-  base: "Rotorua",
-  url: "https://slownorth.claralabs.tech",
+  base: "Auckland",
+  url: "https://samsnz.claralabs.tech", // SAM-VERIFY: final name and domain
   foundingYear: 2026,
   region: "North Island, New Zealand",
 } as const;
@@ -26,13 +26,14 @@ export const SITE = {
  * The whole commercial argument in one number, so it can never drift between
  * the homepage, the tour cards and the FAQ.
  *
- * Derivation (docs/research/pricing-and-products.md): Wild Kiwi runs a 7-day
- * North Island loop at ~$283/person/day *because* it fills sixteen seats. A
- * private driver-guide is ~$950/person/day at two guests. Eight is the
- * deliberate middle, and it is why our per-day rate is roughly double the coach
- * rate. The site states this openly rather than hiding it.
+ * Eleven matches Cheeky Kiwi Travel, the operator every guest will compare us
+ * against (docs/research/pricing-v2-cheekykiwi.md). The grill (2026-08-19)
+ * was explicit: "smaller" is NOT the wedge - the wedge is launch pricing
+ * 15-20% under CK list plus the personal layer (photos included, direct
+ * WhatsApp line, the guest-chosen stop). Same van class, same seat count,
+ * better day.
  */
-export const MAX_GROUP = 8;
+export const MAX_GROUP = 11;
 
 /**
  * Peak supplement on multi-day departures.
@@ -115,8 +116,8 @@ export const ANALYTICS = {
 
 export const CONTACT = {
   // SAM-VERIFY: every contact detail is a placeholder pattern, not a live line.
-  email: "kiaora@slownorth.example",
-  phone: { display: "+64 7 000 0000", e164: "+6470000000" },
+  email: "kiaora@samsnz.example",
+  phone: { display: "+64 9 000 0000", e164: "+6490000000" }, // Auckland landline pattern
   /** Southern-hemisphere hours. A team of two to four is not a 24/7 desk. */
   hours: "Mon-Sat, 8am-6pm NZST",
   responseTime: "within one working day",

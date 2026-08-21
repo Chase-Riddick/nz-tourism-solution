@@ -15,15 +15,11 @@ Infer the repo from `git remote -v` — `gh` does this automatically when run in
 
 ## Repo identity
 
-Issues live in **`claralabs/nz-tourism-solution`** (GitHub).
-
-`clara-labs` was already taken by an unrelated account, so the org is **`claralabs`**.
-Free GitHub orgs cannot be created through the REST API (`POST /orgs` is a 404 for
-non-enterprise tokens) — it is a one-click action at
-<https://github.com/organizations/new>. Until that org exists and `git remote add
-origin` has been run, **`gh issue …` will fail with "no git remote found"**. That is
-expected, not a misconfiguration. Track work in the commit log until the remote lands,
-then open issues retroactively if they are still useful.
+Issues live in **`Chase-Riddick/nz-tourism-solution`** (GitHub) — the `origin`
+remote of this repo, which `gh` infers automatically. The earlier plan to house
+this under a `claralabs` org was overtaken: the remote landed on Chase's
+personal account and the full v1 issue history (#1–#15) lives there. If the
+repo ever moves to an org, transfer the issues with it and update this note.
 
 ## Pull requests as a triage surface
 

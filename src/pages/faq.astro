@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/blocks/Hero.astro";
-import { MAX_GROUP, CANCELLATION, BOOKING, CONTACT, PEAK_SUPPLEMENT_PCT } from "../lib/constants";
+import { SITE, MAX_GROUP, CANCELLATION, BOOKING, CONTACT, PEAK_SUPPLEMENT_PCT } from "../lib/constants";
 import { TOURS, nzd } from "../lib/catalog";
 
 const cheapest = Math.min(...TOURS.map((t) => t.price));
@@ -42,7 +42,7 @@ const FAQ = [
   },
 ];
 ---
-<BaseLayout locale="en" title="Questions — Slow North"
+<BaseLayout locale="en" title={`Questions — ${SITE.name}`}
   description="Prices, group size, weather cancellations, fitness, what to bring, and which languages our guides actually speak.">
   <Hero
     image="geothermal-04"

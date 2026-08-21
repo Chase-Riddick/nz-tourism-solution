@@ -16,15 +16,15 @@ const ourLow = Math.min(...rates);
 const COACH_DAY_RATE = 283;   // Wild Kiwi 7-day North Island — docs/research/pricing-and-products.md
 const PRIVATE_DAY_RATE = 950; // NZ$1,900/day for two — same source
 ---
-<BaseLayout locale="en" title={`${SITE.name}
-  description="Small-group guided tours across New Zealand's North Island — one to five days, maximum eight guests, year-round from Auckland and Rotorua." — small-group North Island tours`}>
+<BaseLayout locale="en" title={`${SITE.name} — small-group North Island tours`}
+  description={`Small-group guided tours across New Zealand's North Island — one to four days, maximum ${MAX_GROUP} guests, year-round out of Auckland.`}>
   <Hero
     size="full"
     image="tongariro-01"
     alt="Red Crater on the Tongariro Alpine Crossing, with Mount Ngāuruhoe rising above cloud"
     kicker="North Island, Aotearoa New Zealand"
     title="The North Island, at its own pace"
-    body={`${MAX_GROUP} people, one guide, and the time to actually stop. One to five days, year-round, from Auckland and Rotorua.`}
+    body={`${MAX_GROUP} people, one guide, and the time to actually stop. One to four days, year-round, out of Auckland.`}
   >
     <div class="flex flex-wrap gap-4">
       <a href="/tours" class="rounded-full bg-[var(--color-sulphur)] px-7 py-3.5 font-semibold text-[var(--color-ground-deep)] transition hover:bg-[var(--color-sulphur-bright)]">
@@ -46,8 +46,9 @@ const PRIVATE_DAY_RATE = 950; // NZ$1,900/day for two — same source
           stay at a lookout until the light is right.
         </p>
         <p>
-          It also means we cost more per person than a coach, and we would rather explain
-          why than pretend otherwise.
+          It also means your guide knows your name by the first stop — and this season,
+          our first under our own name, the price sits under the operators we learned
+          the roads with.
         </p>
       </div>
       <Photo id="east-cape-04" alt="An empty road along the East Cape with a single wind-shaped tree"
@@ -68,7 +69,7 @@ const PRIVATE_DAY_RATE = 950; // NZ$1,900/day for two — same source
         <div class="sm:border-x sm:border-[var(--surface-line)] sm:px-6">
           <p class="font-display text-3xl font-semibold text-[var(--accent)]">{nzd(ourLow)}</p>
           <p class="mt-1 text-sm">
-            Us, at a maximum of {MAX_GROUP}. Roughly double the coach, and deliberately so.
+            Us, at a maximum of {MAX_GROUP} — first-season rates 15–20% under the big operators’ list prices, while we earn our reviews.
           </p>
         </div>
         <div>
@@ -79,13 +80,13 @@ const PRIVATE_DAY_RATE = 950; // NZ$1,900/day for two — same source
         </div>
       </div>
       <p class="mt-6 text-sm text-[var(--text-muted)]">
-        Group size is the whole difference. We sit in the middle on purpose.
+        Same small-group day the big operators sell — two guides you can talk to before you book, for less.
       </p>
     </div>
   </Section>
 
   <Section kicker="Tours" title="Where we can take you"
-           lede="One to five days. Day tours run most of the year; multi-day departures are set.">
+           lede="One to four days. Day tours run most of the year; multi-day departures are set.">
     <div data-featured class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {featured.map((tour, i) => <TourCard tour={tour} data-reveal style={`--reveal-delay:${i * 70}ms`} />)}
     </div>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/blocks/Hero.astro";
-import { CREDENTIALS, MAX_GROUP } from "../lib/constants";
+import { SITE, CREDENTIALS, MAX_GROUP } from "../lib/constants";
 import { TOURS } from "../lib/catalog";
 import { tourCopy } from "../lib/i18n/dictionary";
 
@@ -14,7 +14,7 @@ const STATUS_LABEL = {
   planned: "Planned",
 } as const;
 ---
-<BaseLayout locale="en" title="Safety & credentials — Slow North"
+<BaseLayout locale="en" title={`Safety & credentials — ${SITE.name}`}
   description="DOC concession, WorkSafe adventure-activity registration, Qualmark, insurance and P endorsement — what we are licensed to do, and what is still in progress.">
   <Hero
     image="tongariro-04"

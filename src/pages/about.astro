@@ -4,7 +4,7 @@ import Hero from "../components/blocks/Hero.astro";
 import Photo from "../components/Photo.astro";
 import { SITE, MAX_GROUP, CONTACT } from "../lib/constants";
 ---
-<BaseLayout locale="en" title="About — Slow North"
+<BaseLayout locale="en" title={`About — ${SITE.name}`}
   description="A two-to-four person North Island tour operator. One vehicle, one guide, a maximum of eight guests, and why that is the whole product.">
   <Hero
     image="east-cape-04"
@@ -19,7 +19,7 @@ import { SITE, MAX_GROUP, CONTACT } from "../lib/constants";
       <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
         <div class="prose-measure space-y-5 text-lg leading-relaxed">
           <p>
-            Slow North is based in {SITE.base} and works across the {SITE.region}. We
+            {SITE.name} is based in {SITE.base} and works across the {SITE.region}. We
             started in {SITE.foundingYear} after years of guiding for other people, and
             the whole reason for going out alone was to run trips at a pace that
             a fifty-seat coach cannot.

@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import InquiryForm from "../components/blocks/InquiryForm.astro";
-import { CONTACT, MAX_GROUP } from "../lib/constants";
+import { SITE, CONTACT, MAX_GROUP } from "../lib/constants";
 ---
-<BaseLayout locale="en" title="Contact — Slow North"
+<BaseLayout locale="en" title={`Contact — ${SITE.name}`}
   description="Ask about a tour, a private departure, or a date that is not listed. A person replies, usually within one working day.">
   <section class="surface-work py-20">
     <div class="container-page">
