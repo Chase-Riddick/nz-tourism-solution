@@ -4,28 +4,28 @@
  *
  * SHIPPING ENGLISH ONLY, DELIBERATELY (Chase, 2026-08-18).
  *
- * The market research still stands and still names German as the correct second
- * locale (docs/research/inbound-markets.md): Germany is only ~73,000 arrivals
- * against Australia's 1.48M, but 74% arrive for a holiday against ~48%
- * market-wide, they post the highest spend per trip and the longest stay, and
- * their most-enjoyed activity is walks and hikes - which is the product.
+ * PLANNED LOCALE 2 IS SIMPLIFIED CHINESE (Chase, grill decision 7,
+ * docs/grill-2026-08-19.md). The German research conclusion still stands on
+ * its own numbers (docs/research/inbound-markets.md) and is kept there for the
+ * record - but the second locale is the one the operator can actually stand
+ * behind, and Sam lived in China for years: he can answer a booking email in
+ * Chinese, which is what publishing the locale promises. A published locale is
+ * a service promise, not a translation (CONTEXT.md).
  *
- * What changed is the SEQUENCING, not the conclusion. Translating content that
- * has not been confirmed means every revision to a price, an itinerary or a
- * season has to be made twice, and the second copy silently rots. So: get the
- * English content to ~95% confirmed with Sam, then translate once.
+ * The sequencing rule is unchanged: confirm the English content with Sam to
+ * ~95%, ship, then translate once. Translating unconfirmed content means every
+ * price/itinerary/season revision is made twice and the second copy rots.
  *
- * Nothing here is throwaway. Add "de" to LOCALES, add its dictionary, and the
- * route helpers below already do the right thing. A full German dictionary and
- * tour copy already exist on `spike/first-pass` and can be lifted when the
- * content settles.
+ * Nothing here is throwaway. Add "zh-Hans" to LOCALES, add its dictionary,
+ * and the route helpers below already do the right thing - no existing URL
+ * moves, ever (locked by tests/locale.spec.ts).
  */
 export const LOCALES = ["en"] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = "en";
 
 /** Queued, not shipped. Kept visible so the plan is legible in the code. */
-export const PLANNED_LOCALES = ["de"] as const;
+export const PLANNED_LOCALES = ["zh-Hans"] as const;
 
 /** BCP-47 tags for <html lang>, hreflang and number/date formatting. */
 export const LOCALE_TAGS: Record<Locale, string> = {

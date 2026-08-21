@@ -29,7 +29,7 @@ only he can decide is a **`SAM-VERIFY`** marker, mirrored in `docs/sam-decisions
 | **Season** | Which months a tour runs, as `months: Month[]`. Not marketing copy — a hard constraint. |
 | **Alpine season** | October–May. The only window the Tongariro Alpine Crossing can be sold in. |
 | **Peak supplement** | The December–February uplift on multi-day tours, because accommodation and vehicle costs rise 20–50%. |
-| **Locale** | `en` only at launch; `de` queued. A published locale is a *service promise*, not a translation. |
+| **Locale** | `en` only at launch; `zh-Hans` queued (grill decision 7 - Sam can answer email in it). A published locale is a *service promise*, not a translation. |
 | **Credit** | An image's licence + author + source. A licence condition, not a courtesy. |
 | **Curation verdict** | `hero` / `gallery` / `texture` / `reject` — the human judgement over the machine-filtered photo set. |
 | **Surface** | `dream` (dark, photography leads) or `work` (light, reader is comparing). Chosen by page function. |
