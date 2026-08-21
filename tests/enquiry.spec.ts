@@ -33,15 +33,15 @@ test.describe("presentation mode", () => {
   // this artifact cannot afford.
   test("submitting succeeds and reads the address back to the visitor", async ({ page }) => {
     await page.goto("/contact");
-    await page.fill('[name="name"]', "Sam Whitfield");
-    await page.fill('[name="email"]', "sam@example.co.nz");
+    await page.fill('[name="name"]', "Alex Whitfield");
+    await page.fill('[name="email"]', "alex@example.co.nz");
     await page.click('button[type="submit"]');
 
     const ok = page.locator("#inquiry-success");
     await expect(ok).toBeVisible();
     // Catches the one thing double opt-in would have caught - a typo'd
     // address - without any of its backscatter risk.
-    await expect(ok.locator("[data-readback]")).toHaveText("sam@example.co.nz");
+    await expect(ok.locator("[data-readback]")).toHaveText("alex@example.co.nz");
   });
 });
 

@@ -3,7 +3,12 @@
  * No price, date, statistic or contact detail may be hardcoded elsewhere in src/.
  */
 export const SITE = {
-  name: "Sam's NZ",
+  /**
+   * "Tom" is a public alias (#39). The demo is openly reachable, so the real
+   * founder's first name stays out of everything a viewer can see; internal
+   * docs (docs/grill-*, docs/sam-decisions.md) keep the real name.
+   */
+  name: "Tom's NZ",
   tagline: "Your day, in good hands.", // SAM-VERIFY: working tagline from the design canvas
   /**
    * AGENTS.md rule 4 - NOT NEGOTIABLE, and not an SEO setting.
@@ -17,7 +22,7 @@ export const SITE = {
    */
   indexable: false,
   base: "Auckland",
-  url: "https://samsnz.claralabs.tech", // SAM-VERIFY: final name and domain
+  url: "https://nz-tour-demo.claralabs.tech", // SAM-VERIFY: final name and domain
   foundingYear: 2026,
   region: "North Island, New Zealand",
 } as const;
@@ -116,7 +121,7 @@ export const ANALYTICS = {
 
 export const CONTACT = {
   // SAM-VERIFY: every contact detail is a placeholder pattern, not a live line.
-  email: "kiaora@samsnz.example",
+  email: "kiaora@tomsnz.example",
   phone: { display: "+64 9 000 0000", e164: "+6490000000" }, // Auckland landline pattern
   /** Southern-hemisphere hours. A team of two to four is not a 24/7 desk. */
   hours: "Mon-Sat, 8am-6pm NZST",

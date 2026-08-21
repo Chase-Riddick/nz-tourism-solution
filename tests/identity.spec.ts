@@ -2,9 +2,12 @@ import { test, expect } from "@playwright/test";
 
 /**
  * Issue #20 (PRD #16) - the grill (docs/grill-2026-08-19.md) repositioned the
- * company: Sam's NZ, based in Auckland, eleven seats to match the operator
- * being benchmarked, nothing implying the old premium-at-eight argument.
- * Asserted at the one seam: what a visitor reads on the built pages.
+ * company: founder-named, based in Auckland, eleven seats to match the
+ * operator being benchmarked, nothing implying the old premium-at-eight
+ * argument. Asserted at the one seam: what a visitor reads on the built pages.
+ *
+ * The public alias is "Tom" (#39): the site is deployed openly, so the real
+ * founder's name must never appear on a built page. Internal docs keep "Sam".
  */
 
 const KEY_PAGES = ["/", "/tours", "/about", "/faq", "/contact", "/destinations"];
@@ -12,7 +15,7 @@ const KEY_PAGES = ["/", "/tours", "/about", "/faq", "/contact", "/destinations"]
 test.describe("repositioned identity", () => {
   test("the homepage carries the new name", async ({ page }) => {
     await page.goto("/");
-    await expect(page).toHaveTitle(/Sam's NZ/);
+    await expect(page).toHaveTitle(/Tom's NZ/);
   });
 
   for (const path of KEY_PAGES) {
@@ -20,6 +23,13 @@ test.describe("repositioned identity", () => {
       await page.goto(path);
       const body = await page.content();
       expect(body).not.toContain("Slow North");
+    });
+
+    test(`the real founder's name never appears: ${path}`, async ({ page }) => {
+      await page.goto(path);
+      const body = await page.content();
+      expect(body).not.toMatch(/\bSam\b/);
+      expect(body).not.toContain("samsnz");
     });
   }
 

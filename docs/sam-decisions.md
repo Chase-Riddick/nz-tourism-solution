@@ -103,6 +103,11 @@ things to be wrong, and every one carries its derivation in a comment.
 
 ## Addendum — v2 repositioning (2026-08-21)
 
+> **Public alias:** on everything a viewer can see the founder is **"Tom"**
+> and the site is **"Tom's NZ"** (#39) — the demo is openly reachable and the
+> real name comes off it. This document keeps "Sam" because it is addressed to
+> him.
+
 The grill with Chase (2026-08-19, `docs/grill-2026-08-19.md`) superseded several
 assumptions above: the name is now **Sam's NZ** (working title, 1.1 still
 yours), the base is **Auckland** (1.3 decided), the group size is **11 —
